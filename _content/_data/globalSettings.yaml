@@ -1,0 +1,9 @@
+siteName: Compagnie 3637
+productionUrl: https://www.compagnie3637.be
+languages:
+  - code: fr
+    status: published
+    keepUrlPrefix: false
+collections:
+  - people
+  - organizations

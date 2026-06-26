@@ -1,0 +1,45 @@
+<article class="card-play-detailed px-restore pbe-card palette--tone-contrast breakout-clickable">
+  {% if cover %}
+    <figure class="card-cover px-0">
+      {% image src=cover, alt=name, aspectRatio="16/9", class="radius-b-0" %}
+    </figure>
+  {% endif %}
+  <header class="px-body">
+    <a href="{{ url }}">
+      <h3>{{ name }}</h3>
+    </a>
+  </header>
+  <hr/>
+  {% if playProjects.future.length %}
+    <p class="dates with-icon">
+      {% icon "tablerOutline:calendar" %}
+      <span>{{ playProjects.future.length }} dates</span>
+    </p>
+  {% endif %}
+  {% if summary %}
+    <p class="summary">{{ summary | truncate(200) }}</p>
+  {% endif %}
+  <dl class="meta flow space:--step--2">
+    {% if duration %}
+      <div class="meta-item with-icon flex items-center">
+        {% icon "tablerOutline:clock" %}
+        <dt class="sr-only">Durée</dt>
+        <dd>{{ duration }}</dd>
+      </div>
+    {% endif %}
+    {% if audienceAge %}
+      <div class="meta-item with-icon flex items-center">
+        {% icon "tablerOutline:backpack" %}
+        <dt class="sr-only">Public</dt>
+        <dd>{{ audienceAge }}</dd>
+      </div>
+    {% endif %}
+    {% if creditsIntro %}
+      <div class="meta-item with-icon flex items-center">
+        {% icon "tablerOutline:bulb" %}
+        <dt class="sr-only">Création</dt>
+        <dd>{{ creditsIntro | md }}</dd>
+      </div>
+    {% endif %}
+  </dl>
+</article>

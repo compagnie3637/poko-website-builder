@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="{{ lang or 'en' }}" class="no-js">
+  <head>
+    {% partial "_html-head-default.md" %}
+    {% getBundle "html", "head" %}
+  </head>
+  <body>
+    <!-- Navigation -->
+    {% partial "headless/page-nav.11ty.js" %}
+    <!-- Main content -->
+    <main id="main-content" class="fonts-info">
+      <h1 id="play-title">{{ name }}</h1>
+      {% if tags and tags.length %}
+        <ul aria-label="Status" role="list" class="status-tags">
+          {% for tag in tags %}
+            <li class="bleed-bg">{{ tag | tagLabel }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <div class="page-container flow-section palette--pop-contrast radius-top-card reset-down-w">
+        {% if cover %}
+          <figure class="p-0">
+            {% image src=cover, alt=name %}
+          </figure>
+        {% endif %}
+        {% if announcement %}
+          <section aria-label="Annonce">
+            {{ announcement | md }}
+          </section>
+        {% endif %}
+        <!-- =====================================================
+             META BAR
+             Quick-read metadata + practical info sidebar
+        ====================================================== -->
+        <section
+          aria-label="Informations générales" class="fonts-main py-card">
+          <!-- Core meta -->
+          <dl class="cluster">
+            {% if representationType %}
+              <dt class="sr-only">Type de spectacle</dt>
+              <dd>{{ representationType }}</dd>
+            {% endif %}
+            {% if yearStart %}
+              <dt class="sr-only">Année de création</dt>
+              <dd>{{ yearStart }}</dd>
+            {% endif %}
+            {% if audienceAge %}
+              <dt class="sr-only">Public</dt>
+              <dd>{{ audienceAge }}</dd>
+            {% endif %}
+          </dl>
+        </section>
+        <div class="top-row switcher px-0 gap-0">
+          <div class="col">
+            <section
+              aria-label="Téléchargements" class="cluster px-body py-card box-border">
+              <!-- TODO: plug download links for folio (folio), tech specs (techSpecs) when available -->
+              {% if folio %}
+                {% link url=folio, type="file", class="button radius-round", target="_blank" %}Dossier{% endlink %}
+              {% endif %}
+              {% if picturesKit %}
+                {% link url=picturesKit, type="file", class="button radius-round", target="_blank" %}Kit photos{% endlink %}
+              {% endif %}
+              {% if techSpecs %}
+                {% link url=techSpecs, type="file", class="button radius-round", target="_blank" %}Fiche technique{% endlink %}
+              {% endif %}
+            </section>
+            <!-- =====================================================
+                         SUMMARY
+                         Text summary + optional teaser video
+                    ====================================================== -->
+            <section aria-label="Résumé" class="px-body py-card box-border">
+              {{ summary | md }}
+            </section>
+          </div>
+          <!-- Practical / technical sidebar -->
+          <aside aria-label="Informations techniques" class="technical-info">
+            <dl class="flow space:0">
+              {% if audienceAge %}
+                <div class="with-icon cluster">
+                  {% icon "tablerOutline:users" %}
+                  <dt class="sr-only">Public</dt>
+                  <dd>{{ audienceAge }}</dd>
+                </div>
+              {% endif %}
+              {% if duration %}
+                <div class="with-icon cluster">
+                  {% icon "tablerOutline:clock" %}
+                  <dt class="sr-only">Durée</dt>
+                  <dd>{{ duration }}</dd>
+                </div>
+              {% endif %}
+              {% if setupDuration %}
+                <div class="with-icon cluster">
+                  {% icon "tablerOutline:users" %}
+                  <dt>Montage</dt>
+                  <dd>{{ setupDuration }}</dd>
+                </div>
+              {% endif %}
+              {% if peopleOnTour %}
+                <div class="with-icon cluster">
+                  {% icon "tablerOutline:users" %}
+                  <dt>Personnes en tournée</dt>
+                  <dd>{{ peopleOnTour }}</dd>
+                </div>
+              {% endif %}
+              {% if audienceCapacity %}
+                <div class="with-icon cluster">
+                  {% icon "tablerOutline:users" %}
+                  <dt class="sr-only">Jauge</dt>
+                  <dd>{{ audienceCapacity }}</dd>
+                </div>
+              {% endif %}
+              {% if stageDimensions %}
+                <div class="with-icon cluster">
+                  {% icon "tablerOutline:users" %}
+                  <dt>Plateau</dt>
+                  <dd>{{ stageDimensions }}</dd>
+                </div>
+              {% endif %}
+            </dl>
+          </aside>
+        </div>
+        <!-- =====================================================
+             TEASER VIDEO
+             Optional teaser video
+        ====================================================== -->
+        {% if teaserLink %}
+          <hr/>
+          <section class="box-border">
+            <div class="width-prose">
+              {% embed teaserLink %}
+              </div>
+            </section>
+          {% endif %}
+          <!-- =====================================================
+               PRESS REVIEWS
+          ====================================================== -->
+          {% if pressReviews and pressReviews.length %}
+            <hr/>
+            <section aria-labelledby="press-heading">
+              <h2 id="press-heading">Presse</h2>
+              <ul role="list" class="grid-fluid">
+                {% for review in pressReviews %}
+                  <li class="card box">
+                    <blockquote>
+                      <p>{{ review.quote }}</p>
+                      {% if review.cite %}
+                        <footer>
+                          <cite>{{ review.cite }}</cite>
+                        </footer>
+                      {% endif %}
+                    </blockquote>
+                  </li>
+                {% endfor %}
+              </ul>
+              {% if pressReviewsDoc %}
+                <p class="text-center">
+                  {% link url=pressReviewsDoc, type="file", target="_blank", class="with-icon" %}{% icon "tablerOutline:download" %} Dossier de presse{% endlink %}
+                </p>
+              {% endif %}
+            </section>
+          {% endif %}
+          <!-- =====================================================
+               CREDITS
+               creditsIntro + credits list
+          ====================================================== -->
+          <hr/>
+          <section class="section-credits box-border">
+            {% if creditsIntro %}
+              {{ creditsIntro | md }}
+            {% endif %}
+            {% if credits %}
+              <dl>
+                {% for role, names in credits %}
+                  <dt>
+                    <span class="palette--tone-contrast">{{ role }}</span>
+                  </dt>
+                  <dd>{{ names }}</dd>
+                {% endfor %}
+              </dl>
+            {% endif %}
+          </section>
+          <!-- =====================================================
+               ARTISTIC APPROACH
+               approach field (Markdown rendered)
+          ====================================================== -->
+          {% if approach %}
+            <hr/>
+            <section class="section-approach box-border">
+              {{ approach | md }}
+            </section>
+          {% endif %}
+          <!-- =====================================================
+               PHOTO GALLERY
+               TODO: plug photo gallery data source when available
+               Mock structure shown below
+          ====================================================== -->
+          <hr/>
+          <section class="section-gallery box-border">
+            <h2>Photos</h2>
+            {% htmlPartial "playGallery.njk" %}
+          </section>
+          <!-- =====================================================
+               AROUND THE SHOW
+               more field (Markdown rendered) — bords de scène, tools, edition…
+          ====================================================== -->
+          {% if more %}
+            <hr/>
+            <section class="section-more box-border">
+              {{ more | md }}
+            </section>
+          {% endif %}
+          <!-- =====================================================
+               UPCOMING DATES
+               Sourced from orfeo.representations filtered by orfeoId
+               Filtered to start_date >= today via Eleventy data cascade or
+               a custom filter — TODO: add date filtering when ready
+          ====================================================== -->
+          <hr/>
+          <section aria-labelledby="prochaines-dates">
+            <h2 id="prochaines-dates">Prochaines dates</h2>
+            {% if playProjects.future.length %}
+              {% partial "representationsCalendar.njk", { projects: playProjects.future | asc("start_date") } %}
+            {% else %}
+              <p>Aucune date pour le moment.</p>
+            {% endif %}
+          </section>
+          <!-- =====================================================
+               PAST DATES
+               TODO: add date filtering (start_date < today) when ready
+          ====================================================== -->
+          <section aria-labelledby="dates-passees">
+            <h2 id="dates-passees">Dates passées</h2>
+            {% if playProjects.past.length %}
+              {% partial "representationsCalendar.njk", { projects: playProjects.past | desc("start_date") } %}
+            {% else %}
+              <p>Aucune date pour le moment.</p>
+            {% endif %}
+          </section>
+          <!-- =====================================================
+               THANKS / PRODUCTION / SUPPORT
+               thanks field (Markdown rendered)
+          ====================================================== -->
+          {% if thanks %}
+            <hr/>
+            <section class="section-thanks box-border">
+              {{ thanks | md }}
+            </section>
+          {% endif %}
+          <!-- =====================================================
+               COVER BOTTOM
+               Optional bottom hero image
+               TODO: plug coverBottom field when available
+          ====================================================== -->
+          {% if coverBottom %}
+            {% image src=coverBottom, aspectRatio="3", class="cover-bottom p-inline-0" %}
+          {% endif %}
+        </div>
+      </main>
+      <!-- Footer -->
+      {% partial "headless/page-footer.11ty.js" %}</body>
+  </body>
+</html>
+<style>
+  #main-content h2 {
+    font-size: var(--step-4);
+  }
+  .status-tags {
+    position: relative;
+  }
+  .status-tags > li {
+    color: white;
+    position: absolute;
+    z-index: 300;
+    top: var(--step-6);
+    right: 0;
+    padding: 0.2rem var(--step-6) 0.2rem 1rem;
+    border-radius: var(--radius-token);
+    --color-bg: hsl(from var(--gold) h s l / 0.6);
+    background-color: transparent;
+    --bleed-left: 0;
+    --bleed-right: 100vw;
+  }
+  hr {
+    border-block-start: solid 1px var(--color-tone-theme);
+  }
+  .technical-info > dl > div {
+    border: solid 1px var(--color-tone-theme);
+    padding: var(--step--1);
+  }
+  .technical-info dt:after {
+    content: ": ";
+  }
+  .section-credits *:is(dt, dd) {
+    display: contents;
+  }
+</style>
+{% if pageStyles %}
+  <style>{{pageStyles | safe}}</style>
+{% endif %}

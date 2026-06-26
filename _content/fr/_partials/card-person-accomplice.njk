@@ -1,0 +1,38 @@
+<article class="card-person-accomplice">
+    <header class="card-person-header flow space:--step--2">
+        <h2 class="h3 reset-case font-bold">{{ name }}</h2>
+        {% if metadata.jobTitle %}
+            <p class="card-person-jobtitle">{{ metadata.jobTitle }}</p>
+        {% endif %}
+        {% if metadata.email %}
+            <p class="card-person-email">
+                {{ metadata.email | emailLink }}
+            </p>
+        {% endif %}
+        {% if metadata.telephone %}
+            <p class="card-person-phone">
+                <a href="tel:{{ metadata.telephone }}">{{ metadata.telephone }}</a>
+            </p>
+        {% endif %}
+    </header>
+    {% if metadata.links %}
+        <ul role="list" class="card-person-links cluster v--gap-cluster:--step--2 palette-gold palette--pop">
+            {% for link in metadata.links %}
+                {% set linkName = link.name | lower %}
+                {% if linkName == "facebook" %}
+                    {% set iconName = "tablerOutline:brand-facebook" %}
+                {% elif linkName == "instagram" %}
+                    {% set iconName = "tablerOutline:brand-instagram" %}
+                {% else %}
+                    {% set iconName = "tablerOutline:link" %}
+                {% endif %}
+                <li>
+                    <a href="{{ link.url }}" aria-label="{{ link.name }}" rel="noopener" target="_blank" class="with-icon">
+                        {% icon iconName %}
+                        <span aria-hidden="true" class="sr-only">{{ link.name }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</article>

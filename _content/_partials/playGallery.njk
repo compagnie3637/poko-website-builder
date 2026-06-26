@@ -1,0 +1,253 @@
+{% set globPath = "_images/" + page.fileSlug + "/**" %}
+
+<dialog id="gallery-modal" role="region" aria-label="Image gallery carousel">
+    <div id="carousel" class="carousel reel" aria-live="polite">
+        {% for imagePath in globPath | glob %}
+        {% set thumbnail = imagePath | image({ width: 30 }) %}
+        <div
+            class="carousel__slide"
+            data-label="Image {{ loop.index }}"
+            id="modal-image-{{ loop.index }}"
+            style="--thumbnail-url: url({{ thumbnail.webp[0].url }})"
+        >
+            {% image src="/" + imagePath, imgAttributes={'aria-label': 'Image ' + loop.index} %}
+        </div>
+        {% endfor %}
+        <button class="scroll-button left" aria-label="Scroll Left" onclick="carousel.scrollBy({left: carousel.offsetWidth * -0.8})"></button>
+        <button class="scroll-button right" aria-label="Scroll Right" onclick="carousel.scrollBy({left: carousel.offsetWidth * 0.8})"></button>
+    </div>
+    <form method="dialog" class="form-close">
+        <button aria-label="Close"></button>
+    </form>
+</dialog>
+
+<ul role="list" aria-label="Galerie photos" class="gallery-play grid-fluid v--columns:10">
+    {% for imagePath in globPath | glob %}
+    {% set imgStats = imagePath | image({ widths: ['auto'] }) %}
+    {% set imgAuto = imgStats.webp[0].url %}
+    <li>
+        <a
+            href="{{ imgAuto }}"
+            class="preview-img-link"
+            data-modal-image-id="modal-image-{{ loop.index }}"
+            >
+                {% image src="/" + imagePath, width="300", aspectRatio=1 %}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% js %}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const galleryModal = document.getElementById("gallery-modal");
+    const previewImgLinks = document.getElementsByClassName("preview-img-link");
+    const pageUrl = window.location.origin + window.location.pathname;
+
+    // provide a function to 'click outside to close' event listener
+    function clickOutsideModalToClose(e) {
+      if (e.target.id === 'gallery-modal') galleryModal.close()
+    }
+    // Close modal when clicking outside
+    galleryModal.addEventListener('click', clickOutsideModalToClose)
+
+    for (let i = 0; i < previewImgLinks.length; i++) {
+        const modalImageId = previewImgLinks[i].dataset.modalImageId;
+        previewImgLinks[i].href = pageUrl + "#" + modalImageId;
+        previewImgLinks[i].addEventListener("click", function(event) {
+            galleryModal.showModal();
+        });
+    }
+});
+
+{% endjs %}
+
+{% css %}
+
+dialog {
+    --dialog-padding: var(--step--2);
+    --marker-group-height: var(--step-2);
+    --marker-group-margin-block: var(--step-1);
+    --scroll-btn-proportions: var(--step-3);
+    --bg-clr: #ffffff90;
+    --carousel-btn-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+    position: fixed;
+    inset: var(--step--2);
+    z-index: 10000;
+    padding: 0;
+    margin: auto;
+    border: none;
+    max-inline-size: min(var(--width-max), calc(100% - var(--dialog-padding) * 2));
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+dialog > .carousel {
+    padding: var(--dialog-padding);
+    --gallery-height: calc(98vh - var(--dialog-padding) * 2 - var(--marker-group-height) - var(--marker-group-margin-block) * 2);
+    max-block-size: calc(100% - var(--dialog-padding));
+    max-block-size: min(var(--gallery-height), 50rem);
+    block-size: min(var(--gallery-height), 50rem);
+    overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+    background: var(--bg-clr);
+}
+
+.carousel {
+    anchor-name: --carousel;
+
+    scroll-snap-type: x mandatory;
+    /* scroll-behavior: smooth; */
+
+    scrollbar-color: currentColor var(--color-bg);
+    scrollbar-width: none;
+    scroll-marker-group: after;
+
+    &::scroll-marker-group {
+        display: flex;
+        gap: 0.2rem;
+        block-size: var(--marker-group-height);
+        overflow-x: auto;
+        scrollbar-width: none;
+        /*
+        margin-block-start: var(--marker-group-margin-block);
+        margin-inline: var(--dialog-padding);
+        */
+        margin: var(--dialog-padding);
+
+
+        /* Lateral shadows */
+        background-image:
+            linear-gradient(to right, white, white),
+            linear-gradient(to right, white, white),
+            linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(255, 255, 255, 0)),
+            linear-gradient(to left, rgba(0, 0, 0, 0.75), rgba(255, 255, 255, 0));
+        background-position:
+            left center,
+            right center,
+            left center,
+            right center;
+        background-repeat: no-repeat;
+        background-color: white;
+        background-size:
+            20px 100%,
+            20px 100%,
+            10px 100%,
+            10px 100%;
+        background-attachment: local, local, scroll, scroll;
+    }
+} /* End of .carousel */
+
+/* Scroll buttons */
+.carousel::scroll-button(*) {
+    position: absolute;
+    width: var(--scroll-btn-proportions);
+    height: var(--scroll-btn-proportions);
+    box-shadow: var(--carousel-btn-shadow);
+    border: none;
+    border-radius: 100%;
+}
+.carousel::scroll-button(*) {
+    position-anchor: --carousel;
+    margin: var(--dialog-padding);
+}
+.carousel::scroll-button(inline-start) {
+    content: "" / "Scroll Left";
+    position-area: span-inline-end center;
+    background: var(--bg-clr) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15 6l-6 6 6 6' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/50% no-repeat;
+}
+.carousel::scroll-button(inline-start):disabled {
+    background: var(--bg-clr) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15 6l-6 6 6 6' fill='none' stroke='%2333333340' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/50% no-repeat;
+}
+.carousel::scroll-button(inline-end) {
+    content: "" / "Scroll Right";
+    position-area: span-inline-start center;
+    background: var(--bg-clr) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/50% no-repeat;
+}
+.carousel::scroll-button(inline-end):disabled {
+    background: var(--bg-clr) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%2333333340' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/50% no-repeat;
+}
+.carousel .scroll-button {
+    /* ??? For some reason, I cannot group this with '.carousel::scroll-button(*)' above...? */
+    position: absolute;
+    width: var(--scroll-btn-proportions);
+    height: var(--scroll-btn-proportions);
+    box-shadow: var(--carousel-btn-shadow);
+    border: none;
+    border-radius: 100%;
+    /* End of group */
+    display: none;
+    margin: 0;
+    bottom: 50%;
+    &.left {
+        left: var(--dialog-padding);
+        background: var(--bg-clr) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15 6l-6 6 6 6' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/50% no-repeat;
+    }
+    &.right {
+        right: var(--dialog-padding);
+        background: var(--bg-clr) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/50% no-repeat;
+    }
+}
+
+.carousel__slide {
+    width: 100%;
+    scroll-snap-align: center;
+    align-content: center;
+}
+.carousel__slide::scroll-marker {
+    content: "" / attr(data-label);
+    inline-size: var(--marker-group-height);
+    block-size: var(--marker-group-height);
+    flex-shrink: 0;
+
+    background-image:
+        linear-gradient(#ffffff90, #ffffff90), var(--thumbnail-url);
+}
+
+.carousel__slide::scroll-marker:target-current {
+    background-image:
+        linear-gradient(#ffffff00, #ffffff00), var(--thumbnail-url);
+}
+
+.carousel img {
+    max-block-size: 100%;
+    object-fit: contain;
+}
+
+@supports not (scroll-marker-group: after) {
+    .carousel {
+        scrollbar-color: currentColor var(--color-bg);
+        scrollbar-width: thin;
+    }
+    .carousel .scroll-button {
+        display: block;
+        content: "";
+    }
+}
+
+.form-close > button {
+  border: none;
+  position: absolute;
+  top: var(--dialog-padding);
+  right: var(--dialog-padding);
+  width: var(--scroll-btn-proportions);
+  height: var(--scroll-btn-proportions);
+  border-radius: 100%;
+  background-color: var(--bg-clr);
+  box-shadow: var(--carousel-btn-shadow);
+}
+.form-close > button::before, .form-close > button::after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  width: calc(var(--scroll-btn-proportions) / 3);
+  height: 2px;
+  background: currentColor;
+}
+.form-close > button::before { transform: translate(-50%, -50%) rotate(45deg); }
+.form-close > button::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+{% endcss %}

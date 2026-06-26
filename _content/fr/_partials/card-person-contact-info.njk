@@ -1,0 +1,13 @@
+<article class="card-person-contact-info flow space:0.2rem text-center">
+    <h3 class="reset-case">{{ name }}</h3>
+    {% if metadata.telephone %}
+        <p class="card-person-phone">
+            <a href="tel:{{ metadata.telephone }}">{{ metadata.telephone }}</a>
+        </p>
+    {% endif %}
+    {% if metadata.email or email %}
+        <p class="card-person-email">
+            {% link url=metadata.email or email, type="email", class="palette--pop no-underline" %}{% endlink %}
+        </p>
+    {% endif %}
+</article>

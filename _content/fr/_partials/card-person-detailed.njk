@@ -1,0 +1,30 @@
+<article class="card-person-detailed fixed-fluid v--width-fixed:250px">
+    <div class="card-person-aside">
+        {% if metadata.image %}
+            <figure class="card-person-photo">
+                {% image src=metadata.image.src, alt=name, aspectRatio="1", width=250 %}
+            </figure>
+        {% endif %}
+        <header class="card-person-header flow space:--step--2">
+            <h2 class="h3 reset-case font-bold">{{ name }}</h2>
+            {% if metadata.jobTitle %}
+                <p class="card-person-jobtitle">{{ metadata.jobTitle }}</p>
+            {% endif %}
+            {% if metadata.email %}
+                <p class="card-person-email">
+                    {{ metadata.email | emailLink }}
+                </p>
+            {% endif %}
+            {% if metadata.telephone %}
+                <p class="card-person-phone">
+                    <a href="tel:{{ metadata.telephone }}">{{ metadata.telephone }}</a>
+                </p>
+            {% endif %}
+        </header>
+    </div>
+    {% if rawInput %}
+        <div class="card-person-bio">
+            {{ rawInput | md }}
+        </div>
+    {% endif %}
+</article>

@@ -1,0 +1,25 @@
+tagsList:
+  - slug: founder
+    label: Fondateur
+  - slug: art-direction
+    label: Direction artistique
+  - slug: prod-admin-diffusion
+    label: Prod - Admin - Diffusion
+  - slug: administrator
+    label: Administrateur
+  - slug: accomplices
+    label: Complices
+  - slug: soon
+    label: Prochainement
+  - slug: on-tour
+    label: En tournée
+  - slug: past
+    label: Passé
+  - slug: coordination
+    label: Coordination
+  - slug: diffusion
+    label: Diffusion
+  - slug: stewardship
+    label: Régie
+vars:
+  newsletterLink: '#'

@@ -1,0 +1,32 @@
+<article class="card-actu palette-darker prose box">
+    <header class="card-actu-header">
+        {% if datePublished %}
+            <time class="card-actu-date small palette--pop" datetime="{{ datePublished | formatDate('YYYY-MM-DD') }}">
+                {{ datePublished | formatDate('DD.MM.YYYY') }}
+            </time>
+        {% endif %}
+        <h2 class="card-actu-title h3 flow-0">{{ title }}</h2>
+        <hr/>
+    </header>
+    {% if rawInput %}
+        <div class="card-actu-body">
+            {{ rawInput | md }}
+        </div>
+    {% endif %}
+    {% if mainLink %}
+        <footer class="card-actu-footer">
+            {{ mainLink | md }}
+        </footer>
+    {% endif %}
+</article>
+<style>
+    .card-actu hr {
+        border-top: 3px solid var(--color-pop-theme);
+    }
+    .columns {
+        columns: 2;
+    }
+    .columns > * + * {
+        margin-top: 1rem;
+    }
+</style>

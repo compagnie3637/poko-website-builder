@@ -1,0 +1,52 @@
+{% set compagnie = collections.organizations | filterCollection({ by:"slug", value: "compagnie-3637"}) | first %}
+{% set metadata = compagnie.data.metadata %}
+<footer class="site-footer palette--contrast palette--pop bleed-bg" role="contentinfo">
+    <div class="footer-container cluster">
+        <section class="footer-link prose flow items-center" aria-label="Liens">
+            {% link vars.newsletterLink, type="external", class="button uppercase palette--tone-contrast border-0" %} Newsletter
+                {% endlink %}
+            <nav class="footer-social" aria-label="Réseaux sociaux">
+                <ul role="list" class="social-links cluster justify-center">
+                    {% for link in metadata.links %}
+                        <li>
+                            <a href="{{ link.url }}" aria-label="{{ link.name }}" rel="noopener noreferrer" target="_blank" class="with-icon">
+                                {% icon "tablerOutline:brand-" + link.name | lower %}
+                                <span aria-hidden="true" class="sr-only">{{ link.name }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </section>
+        <section class="footer-info prose flow space:--step--3 text-center" aria-label="Informations légales">
+            <p class="copyright">&copy; {{ metadata.legalName }}</p>
+            <address class="company-address">
+                <p>
+                    <strong>Siège social:</strong>
+                    {{ metadata.legalAddress.streetAddress }} - {{ metadata.legalAddress.postalCode | default('1470') }}
+                    {{ metadata.legalAddress.addressLocality }}
+                </p>
+                <p>
+                    <strong>Bureau:</strong>
+                    c/o Le Bocal – {{ metadata.address.streetAddress }} - {{ metadata.address.postalCode | default('Bruxelles') }}
+                    {{ metadata.address.addressLocality }}
+                </p>
+            </address>
+            <div class="legal-info no-flow">
+                <p>{{ metadata.legalName }}</p>
+                <p>{{ metadata.vatID }}</p>
+            </div>
+        </section>
+        <figure class="footer-logo" aria-label="Logo Compagnie 3637">
+            {% image src="/_images/compagnie-3637-logo-black-tight.svg", alt="Compagnie 3637", width=200 %}
+        </figure>
+    </div>
+    <div class="footer-credits text-center">
+        <p>
+            Site web éco-conçu avec
+            <a href="https://www.poko.eco" rel="noopener">poko</a>
+            par
+            <a href="https://www.mookai.be" rel="noopener">mookaï asbl</a>
+        </p>
+    </div>
+</footer>

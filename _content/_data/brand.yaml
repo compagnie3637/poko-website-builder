@@ -1,0 +1,109 @@
+ctxCssImport: true
+inlineAllStyles: true
+widthsContexts:
+  - name: main
+    max: 80rem
+    prose: 50rem
+fontStacksContexts:
+  - name: main
+    body:
+      native: transitional
+      custom: Lora
+    heading:
+      native: neo-grotesque
+      custom: Darker Grotesque
+    code:
+      native: monospace-code
+  - name: info
+    body:
+      native: neo-grotesque
+    heading:
+      native: neo-grotesque
+      custom: Darker Grotesque
+    code:
+      native: monospace-code
+customFontsImport:
+  - name: Lora
+    source:
+      type: fontsource
+      name: Lora
+      weights:
+        - "400"
+        - "100"
+        - "200"
+        - "300"
+        - "500"
+        - "600"
+        - "700"
+        - "800"
+        - "900"
+      styles:
+        - normal
+        - italic
+      subsets:
+        - latin
+  - name: Darker Grotesque
+    source:
+      type: fontsource
+      name: Darker Grotesque
+      weights:
+        - "400"
+        - "100"
+        - "200"
+        - "300"
+        - "500"
+        - "600"
+        - "700"
+        - "800"
+        - "900"
+      styles:
+        - normal
+      subsets:
+        - latin
+typeScales:
+  - name: main
+    minFontSize: 16
+    maxFontSize: 20
+    minTypeScale: 1.2
+    maxTypeScale: 1.25
+    advanced:
+      minWidth: 360
+      maxWidth: 1240
+      positiveSteps: 9
+      negativeSteps: 4
+      prefix: step
+      relativeTo: viewport-width
+colors:
+  - name: black
+    value: "#000001"
+  - name: white
+    value: "#ffffff"
+  - name: turquoise
+    value: "#477c77"
+  - name: turquoise-light
+    value: "#32c8b9"
+  - name: turquoise-dark
+    value: "#3a5f5b"
+  - name: gold
+    value: "#e6c419"
+  - name: bronze
+    value: "#b39e2f"
+palettes:
+  - name: turquoise
+    read: black
+    tone: turquoise
+    pop: turquoise-light
+    neutral: white
+  - name: gold
+    read: black
+    tone: turquoise
+    pop: bronze
+    neutral: white
+  - name: darker
+    read: white
+    tone: turquoise
+    pop: gold
+    neutral: turquoise-dark
+styleContexts:
+  - name: main
+    value: ctx

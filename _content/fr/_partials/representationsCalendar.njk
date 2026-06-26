@@ -1,0 +1,115 @@
+<table class="representations-calendar">
+    <thead>
+        <tr>
+            <th scope="col" class="sr-only">Dates</th>
+            <th scope="col" class="sr-only">Horaires</th>
+            {% if showSpectacle %}
+                <th scope="col" class="sr-only">Spectacle</th>
+            {% endif %}
+            <th scope="col" class="sr-only">Public</th>
+            <th scope="col" class="sr-only">Lieu</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set prevYear = null %}
+        {% for project in projects %}
+            {% set year = project.start_date | formatDate("YYYY") %}
+            {% if prevYear != year %}
+                <tr class="year-divider h3 font-bold">
+                    <td colspan="{{ 4 + (1 if showSpectacle else 0) }}">{{ year }}</td>
+                </tr>
+                {% set prevYear = year %}
+            {% endif %}
+            {% set spectaclePage = null %}
+            {% if showSpectacle %}
+                {% for p in collections.plays %}
+                    {% if (p.data.orfeoId == project.spectacle.pk) or (p.page.fileSlug == project.spectacle.name | slugify) %}
+                        {% set spectaclePage = p %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <tr>
+                <td class="dates">
+                    {% if project.sameDay %}
+                        <time datetime="{{ project.start_date }}">{{ project.start_date | formatDate("D MMM") }}</time>
+                    {% else %}
+                        {% set startFmt = "D" if project.sameMonth else "D MMM" %}
+                        <time datetime="{{ project.start_date }}">{{ project.start_date | formatDate(startFmt) }}</time>-<time datetime="{{ project.end_date }}">{{ project.end_date | formatDate("D MMM") }}</time>
+                    {% endif %}
+                </td>
+                <td class="times">{{ project.perfTimes | join(", ") }}</td>
+                {% if showSpectacle %}
+                    <td>
+                        {% if spectaclePage %}
+                            <a href="{{ spectaclePage.url }}">{{ spectaclePage.data.name }}</a>
+                        {% else %}
+                            {{ project.spectacle.name }}
+                        {% endif %}
+                    </td>
+                {% endif %}
+                <td class="audience">
+                    {% if project.hasSchool %}
+                        <span class="with-icon">{% icon "tablerOutline:backpack" %}Repr. scolaire</span>
+                    {% endif %}
+                    {% if project.hasPublic %}
+                        <span class="with-icon">{% icon "tablerOutline:users" %}Tout public</span>
+                    {% endif %}
+                </td>
+                <td class="venue">
+                    {% if project.venueUrl %}
+                        <a href="{{ project.venueUrl }}" target="_blank" rel="noopener">{{ project.venue_data.name }}</a>
+                    {% else %}
+                        {{ project.venue_data.name }}
+                    {% endif %}
+                    /
+                    {% if project.mapsUrl %}
+                        <a href="{{ project.mapsUrl }}" target="_blank" rel="noopener">{{ project.venue_data.city }}</a>
+                    {% else %}
+                        {{ project.venue_data.city }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="{{ 4 + (1 if showSpectacle else 0) }}">Aucune date pour le moment.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<style>
+    .representations-calendar {
+        margin-block-start: 0;
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+    .representations-calendar th,
+    .representations-calendar td {
+        padding: var(--step--4) var(--step--1);
+        text-align: left;
+    }
+    .representations-calendar thead tr,
+    .representations-calendar tbody tr {
+        border-bottom: 3px solid;
+    }
+    .representations-calendar tbody tr:hover {
+        background-color: var(--color-tone-theme);
+    }
+    .representations-calendar td.dates {
+        white-space: nowrap;
+        width: 1%;
+    }
+    .representations-calendar td.times {
+        width: 1%;
+        white-space: nowrap;
+    }
+    .representations-calendar td.audience {
+        vertical-align: middle;
+        & span {
+            display: flex;
+            white-space: nowrap;
+            font-size: var(--step--1);
+            align-items: center;
+        }
+    }
+</style>
