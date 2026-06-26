@@ -170,10 +170,19 @@
 
 /* 1.1 Base typography */
 :where(body) {
+  /* NOTE: This is needed on Chrome to avoid .reel overflowing the viewport */
+  overflow-x: clip;
+
   font-size: var(--step-0);
   font-family: var(--font-stack-body, system-ui, sans-serif);
   /* color: #100c08; */
   /* background-color: #fdfdfe; */
+}
+
+/* Necessary for context classes change so the var is re-applied. */
+/* Otherwise the var on the body is used and redefinition has no effect. */
+:where([class*="fonts-"]) {
+  font-family: var(--font-stack-body, system-ui, sans-serif);
 }
 
 /* 1.2 Headings */

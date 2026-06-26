@@ -48,7 +48,7 @@
 
 {% if inlineAllStyles %}
 
-<style>
+<style eleventy:ignore>
 /* CTX CSS Styles */
 {{CtxCssInline | safe}}
 /* UnoCSS Styles */
@@ -64,7 +64,7 @@
 {{htmlExternalCtxCssTag | safe}}
 
 <!-- UnoCSS Styles -->
-<style>
+<style eleventy:ignore>
 .noop-load-uno{}
 </style>
 <!-- Project Stylesheets -->
@@ -84,7 +84,7 @@
 <link rel="stylesheet" href="{% getBundleFileUrl 'css', 'external' %}" fetchpriority="low" data-forced-external-css>
 {% endif %}
 
-<style>
+<style eleventy:ignore>
 /* globalSettings.cssHead */
 {{ globalSettings.cssHead | safe }}
 /* CSS template bundles */
@@ -93,14 +93,14 @@
 
 {# JS: detection + bundle #}
 
-<script>
+<script eleventy:ignore>
 (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
 {% getBundle "js" %}
 </script>
 
-<script src="{% getBundleFileUrl 'js', 'async' %}" async fetchpriority="low"></script>
-<script src="{% getBundleFileUrl 'js', 'defer' %}" defer fetchpriority="low"></script>
+<script src="{% getBundleFileUrl 'js', 'async' %}" async fetchpriority="low" eleventy:ignore></script>
+<script src="{% getBundleFileUrl 'js', 'defer' %}" defer fetchpriority="low" eleventy:ignore></script>
 
 {% partial "_metadata-jsonld" %}
 
-<script src="/assets/js/instant-page.js" type="module"></script>
+<script src="/assets/js/instant-page.js" type="module" eleventy:ignore></script>

@@ -18,13 +18,24 @@ export function filterCollection(collection, filtersRaw, exclusions = false) {
   const filteredCollection = filters.reduce((acc, { by, value } = {}) => {
     switch (by) {
       // NOTE: Match some special keywords first
+      case "slug": {
+        const needles = toArrayOfStrings(value)
+          .map((v) => v.trim().toLowerCase())
+          .filter(Boolean);
+        if (needles.length === 0) return acc;
+        return filterAcc(acc, (item) => {
+          const slug = toString(item.page.fileSlug).toLowerCase();
+          if (!slug) return false;
+          return needles.some((s) => slug.includes(s));
+        });
+      }
       case "name": {
         const needles = toArrayOfStrings(value)
           .map((v) => v.trim().toLowerCase())
           .filter(Boolean);
         if (needles.length === 0) return acc;
         return filterAcc(acc, (item) => {
-          const name = toString(item.data?.name).toLowerCase();
+          const name = toString(item.data?.name || item?.name).toLowerCase();
           if (!name) return false;
           return needles.some((n) => name.includes(n));
         });
@@ -82,7 +93,8 @@ export function filterCollection(collection, filtersRaw, exclusions = false) {
               acc,
               (item) => tryMatchNestedVariable(item, by) === value,
             );
-          } else if (typeof value === "boolean") {
+            // We only match `true` here. `false` is ok to be matched as falsy value?
+          } else if (value === true) {
             return filterAcc(acc, (item) => tryMatchNestedVariable(item, by));
           } else if (!value) {
             return filterAcc(acc, (item) => {
@@ -93,7 +105,7 @@ export function filterCollection(collection, filtersRaw, exclusions = false) {
         }
         return acc;
     }
-  }, collection);
+  }, collection || []);
 
   if (exclusions) {
     return collection.filter((item) => !filteredCollection.includes(item));

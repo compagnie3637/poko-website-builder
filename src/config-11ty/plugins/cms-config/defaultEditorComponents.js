@@ -1,6 +1,7 @@
 import {
   env,
   activeCollections,
+  editorComponents,
   // activeCollectionNames,
   iconLists,
 } from "./env.js";
@@ -13,6 +14,7 @@ const SECTION_WRAPPER_STYLE = `background-color: hsl(var(--sui-background-color-
 const AREA_ITEM_PREVIEW_STYLE = `border: 1px dashed hsl(var(--sui-background-color-4-hsl) / 1); margin-block-start: .5rem; padding: 0 1rem .5rem;`;
 const AREA_PREVIEW_STYLE = `border: 1px dashed hsl(var(--sui-background-color-4-hsl) / 1); margin-block-start: .5rem; padding: 0 .5rem .5rem;`;
 
+const ec = (idExcl) => editorComponents.filter((id) => id !== idExcl);
 const multilineToInline = (multi) => {
   return multi?.replace(/\n/g, "\\n")?.replace(/"/g, '\\"');
 };
@@ -248,6 +250,22 @@ const extractAttributes = (attributesString, propNames) => {
   let remaining = attributesString;
 
   for (const propName of propNames) {
+    // Fast-path: bracket/brace values (e.g. filters=[...]) cannot be matched by
+    // the regex below. Delegate to extractProperty which does balanced parsing.
+    const jsonValue = extractProperty(remaining, propName);
+    if (jsonValue !== null) {
+      extracted[propName] = JSON.parse(jsonValue);
+      const token = propName + "=" + jsonValue;
+      const idx = remaining.indexOf(token);
+      const before = remaining.slice(0, idx);
+      const after = remaining.slice(idx + token.length);
+      remaining = (before + after)
+        .replace(/^[,\s]+|[,\s]+$/g, "")
+        .replace(/\s*,\s*,\s*/g, ", ")
+        .trim();
+      continue;
+    }
+
     // Pattern handles:
     // - Double quoted: attr="value" (with escape support)
     // - Single quoted: attr='value' (with escape support)
@@ -556,6 +574,16 @@ const TWO_COLUMNS_LAYOUT_KEYS = [
 ];
 const GRID_LAYOUT_KEYS = ["type", "gap", "widthWrap", "columns"];
 const REEL_LAYOUT_KEYS = ["type", "itemWidth", "height", "gap", "noBar"];
+// Union of all layout keys supported by the collection component
+const COLLECTION_LAYOUT_KEYS = [
+  "type",
+  "gap",
+  "widthWrap",
+  "columns",
+  "itemWidth",
+  "height",
+  "noBar",
+];
 
 /**
  * Parse a `{% twoColumns %}...{% endtwoColumns %}` block into structured data.
@@ -683,6 +711,34 @@ ${gridItemsStr}
 };
 
 /**
+ * Strip a single surrounding `{% raw %}…{% endraw %}` pair (with optional
+ * whitespace) from the captured body, so the editor stores only the meaningful
+ * per-item markup. Returns `undefined` for empty/whitespace-only input.
+ */
+const stripRawTags = (content) => {
+  if (typeof content !== "string") return undefined;
+  const trimmed = content.trim();
+  if (!trimmed) return undefined;
+  const match = trimmed.match(/^\{%\s*raw\s*%\}([\s\S]*?)\{%\s*endraw\s*%\}$/);
+  return match ? match[1].trim() : trimmed;
+};
+
+/**
+ * Wrap the stored item template back into `{% raw %}…{% endraw %}` so the
+ * paired `{% collection %}` shortcode receives it unrendered.
+ */
+const wrapInRawTags = (itemTemplate) => {
+  const t = typeof itemTemplate === "string" ? itemTemplate.trim() : "";
+  return t
+    ? `
+{% raw %}
+${t}
+{% endraw %}
+`
+    : "";
+};
+
+/**
  * Parse a collection area's body content and attributes into structured data.
  * Extracts collection-specific fields (collection, filters, sortCriterias, exclusions)
  * and layout options from the {% collection %} tag.
@@ -701,11 +757,14 @@ const parseCollectionBody = ({ attributes, content }) => {
       "itemPartial",
     ]);
 
-  // Then parse layout attrs from what remains
-  const { class: className, layoutOptions } = parseLayoutAttrs(
-    afterCollectionSpecific,
-    GRID_LAYOUT_KEYS,
-  );
+  // Then parse layout attrs from what remains. `remaining` here holds any
+  // unknown leftover attributes (e.g. `tag="ul"`) that we round-trip via the
+  // hidden `attributes` field.
+  const {
+    class: className,
+    layoutOptions,
+    attributes: remainingAttributes,
+  } = parseLayoutAttrs(afterCollectionSpecific, COLLECTION_LAYOUT_KEYS);
   // `itemPartial` was already pulled out into `collectionSpecific` above.
   const itemPartial = collectionSpecific.itemPartial;
 
@@ -723,8 +782,9 @@ const parseCollectionBody = ({ attributes, content }) => {
     sortAndFilterOptions,
     class: className,
     itemPartial,
+    itemTemplate: stripRawTags(content),
     layoutOptions,
-    attributes: afterCollectionSpecific,
+    attributes: remainingAttributes,
   };
 };
 
@@ -738,27 +798,27 @@ const buildCollectionBody = ({
   sortAndFilterOptions,
   class: className,
   itemPartial,
+  itemTemplate,
   layoutOptions,
   attributes,
 }) => {
   const { filters, sortCriterias, exclusions } = sortAndFilterOptions || {};
-  const { type, gap, widthWrap, columns } = layoutOptions || {};
 
   const collAttrs = {
     collection: collection || "all",
     filters,
     exclusions,
     sortCriterias,
-    type,
-    columns,
-    gap,
+    ...(layoutOptions || {}),
     class: className,
     itemPartial,
-    widthWrap,
   };
-  const collAttrsStr = njkAttrsStringFromObj(collAttrs);
+  const collAttrsStr = [njkAttrsStringFromObj(collAttrs), attributes || ""]
+    .filter(Boolean)
+    .join(", ");
+  const body = wrapInRawTags(itemTemplate);
 
-  return `{% collection ${collAttrsStr} %}{% endcollection %}`;
+  return `{% collection ${collAttrsStr} %}${body}{% endcollection %}`;
 };
 
 /**
@@ -1049,7 +1109,7 @@ const imageFields = [
 ];
 
 // Section fields
-const sectionHeaderField = {
+const sectionHeaderField = (parentCompName) => ({
   name: "header",
   label: "Section Header",
   widget: "object",
@@ -1064,6 +1124,7 @@ const sectionHeaderField = {
       widget: "markdown",
       required: false,
       i18n: true,
+      editor_components: ec(parentCompName),
     },
     {
       name: "class",
@@ -1080,8 +1141,8 @@ const sectionHeaderField = {
       i18n: true,
     },
   ],
-};
-const sectionFooterField = {
+});
+const sectionFooterField = (parentCompName) => ({
   name: "footer",
   label: "Section Footer",
   widget: "object",
@@ -1096,6 +1157,7 @@ const sectionFooterField = {
       widget: "markdown",
       required: false,
       i18n: true,
+      editor_components: ec(parentCompName),
     },
     {
       name: "class",
@@ -1112,9 +1174,15 @@ const sectionFooterField = {
       i18n: true,
     },
   ],
-};
+});
 
 // Layout options
+const layoutTypeNone = {
+  name: "layout-none",
+  label: "No Layout",
+  required: false,
+  fields: [],
+};
 const layoutTypeGridFluid = {
   name: "grid-fluid",
   // label: "Fluid Grid: Fluid sized blocks wrap automatically",
@@ -1270,7 +1338,8 @@ export const link = {
   id: "link",
   label: "Link",
   icon: "link",
-  dialog: true,
+  mode: "dialog",
+  // dialog: true, // Legacy
   summary:
     "🔗 {{content | truncate(20)}}{{content | ternary(': ', '')}}{{linkType.url | truncate(30)}}",
   fields: [
@@ -1398,9 +1467,10 @@ export const link = {
               label: "Select File",
               widget: "file",
               required: true,
+              multiple: false,
               // TODO: ⚠️ Overriding media_folder and public_folder does not work!
               media_folder: `/${CONTENT_DIR}/_files`,
-              public_folder: "/_files",
+              public_folder: "/assets/files",
             },
           ],
         },
@@ -1565,7 +1635,8 @@ export const icon = {
   id: "icon",
   label: "Icon",
   icon: "triangle_circle",
-  dialog: true,
+  mode: "dialog",
+  // dialog: true, // Legacy
   summary: "🔅 {{icon.iconLib.iconName}}",
   fields: [
     {
@@ -1771,6 +1842,13 @@ export const imageShortcode = {
               required: false,
             },
             {
+              name: "objectPosition",
+              label: "Image Position",
+              widget: "string",
+              required: false,
+              hint: "Position the image vertically and horizontally with CSS object-position (e.g., 'center', 'top left', 'center 75%')",
+            },
+            {
               name: "wrapper",
               label: "Wrapper",
               widget: "string",
@@ -1805,6 +1883,7 @@ export const imageShortcode = {
         "id",
         "title",
         "loading",
+        "objectPosition",
         "wrapper",
       ],
     );
@@ -1817,6 +1896,7 @@ export const imageShortcode = {
       id,
       title,
       loading,
+      objectPosition,
       wrapper,
     } = extracted;
 
@@ -1831,6 +1911,7 @@ export const imageShortcode = {
           ...(id && { id }),
           ...(title && { title }),
           ...(loading && { loading }),
+          ...(objectPosition && { objectPosition }),
           ...(wrapper && { wrapper }),
           ...(imgAttrs && { imgAttrs }),
         },
@@ -1845,6 +1926,7 @@ export const imageShortcode = {
       id,
       title,
       loading,
+      objectPosition,
       wrapper,
       imgAttrs,
     } = advanced || {};
@@ -1858,6 +1940,7 @@ export const imageShortcode = {
       ...(id && { id }),
       ...(title && { title }),
       ...(loading && { loading }),
+      ...(objectPosition && { objectPosition }),
       ...(wrapper && { wrapper }),
       // ...(imgAttrs && { imgAttrs }),
     };
@@ -1987,12 +2070,20 @@ export const htmlPartial = {
   },
 };
 
+console.log({ editorComponents });
+
 export const wrapper = {
   id: "wrapper",
   label: "Wrapper",
   icon: "lunch_dining",
   fields: [
-    { name: "content", label: "Content", widget: "markdown", required: false },
+    {
+      name: "content",
+      label: "Content",
+      widget: "markdown",
+      required: false,
+      editor_components: ec("wrapper"),
+    },
     {
       name: "wrapperTag",
       label: "Wrapper Tag",
@@ -2620,7 +2711,7 @@ export const sectionFlow = {
   label: "Section > Flow",
   icon: "flex_direction",
   fields: [
-    sectionHeaderField,
+    sectionHeaderField("sectionFlow"),
     {
       name: "items",
       label: "Flow Items",
@@ -2634,6 +2725,7 @@ export const sectionFlow = {
           label: "Flow Item Content",
           widget: "markdown",
           required: false,
+          editor_components: ec("sectionFlow"),
         },
         {
           name: "class",
@@ -2657,22 +2749,7 @@ export const sectionFlow = {
       required: false,
       collapsed: true,
       i18n: true,
-      types: [
-        {
-          name: "gap",
-          label: "Gap",
-          fields: [
-            {
-              name: "gap",
-              label: "Gap",
-              widget: "string",
-              hint: "The gap between flow items (e.g. 1em [default], var(--step-2) [fluid type scale], 0 [no gap])",
-              default: "1em",
-              required: false,
-            },
-          ],
-        },
-      ],
+      types: [layoutTypeFlow, layoutTypeNone],
     },
     {
       name: "class",
@@ -2681,7 +2758,7 @@ export const sectionFlow = {
       hint: "Class names added to the inner layout element ({% flow %}). For classes on the outer section element, use the Section Wrapper below.",
       required: false,
     },
-    sectionFooterField,
+    sectionFooterField("sectionFlow"),
     sectionWrapperField,
   ],
   pattern:
@@ -2751,7 +2828,7 @@ export const sectionGrid = {
   // icon: "flex_wrap",
   icon: "grid_view",
   fields: [
-    sectionHeaderField,
+    sectionHeaderField("sectionGrid"),
     {
       name: "items",
       label: "Grid Items",
@@ -2766,6 +2843,7 @@ export const sectionGrid = {
           label: "Grid Item Content",
           widget: "markdown",
           required: false,
+          editor_components: ec("sectionGrid"),
         },
         {
           name: "class",
@@ -2791,7 +2869,12 @@ export const sectionGrid = {
       required: false,
       collapsed: true,
       i18n: true,
-      types: [layoutTypeSwitcher, layoutTypeGridFluid, layoutTypeCluster],
+      types: [
+        layoutTypeSwitcher,
+        layoutTypeGridFluid,
+        layoutTypeCluster,
+        layoutTypeNone,
+      ],
     },
     {
       name: "class",
@@ -2800,7 +2883,7 @@ export const sectionGrid = {
       hint: "Class names added to the inner layout element ({% grid %}). For classes on the outer section element, use the Section Wrapper below.",
       required: false,
     },
-    sectionFooterField,
+    sectionFooterField("sectionGrid"),
     sectionWrapperField,
     // {
     //   name: "itemsAttributes",
@@ -2880,7 +2963,7 @@ export const sectionTwoColumns = {
   icon: "view_column_2",
   icon: "vertical_split",
   fields: [
-    sectionHeaderField,
+    sectionHeaderField("sectionTwoColumns"),
     {
       name: "itemLeft",
       label: "Column Left",
@@ -2895,6 +2978,7 @@ export const sectionTwoColumns = {
           label: "Column Left Content",
           widget: "markdown",
           required: false,
+          editor_components: ec("sectionTwoColumns"),
         },
         {
           name: "class",
@@ -2924,6 +3008,7 @@ export const sectionTwoColumns = {
           label: "Column Right Content",
           widget: "markdown",
           required: false,
+          editor_components: ec("sectionTwoColumns"),
         },
         {
           name: "class",
@@ -2947,7 +3032,7 @@ export const sectionTwoColumns = {
       required: false,
       collapsed: true,
       i18n: true,
-      types: [layoutTypeSwitcher, layoutTypeFixedFluid],
+      types: [layoutTypeSwitcher, layoutTypeFixedFluid, layoutTypeNone],
     },
     {
       name: "class",
@@ -2956,7 +3041,7 @@ export const sectionTwoColumns = {
       hint: "Class names added to the inner layout element ({% twoColumns %}). For classes on the outer section element, use the Section Wrapper below.",
       required: false,
     },
-    sectionFooterField,
+    sectionFooterField("sectionTwoColumns"),
     sectionWrapperField,
   ],
   pattern:
@@ -3032,7 +3117,7 @@ export const sectionReel = {
   // icon: "view_week",
   icon: "flex_no_wrap",
   fields: [
-    sectionHeaderField,
+    sectionHeaderField("sectionReel"),
     {
       name: "items",
       label: "Reel Items",
@@ -3046,6 +3131,7 @@ export const sectionReel = {
           label: "Reel Item Content",
           widget: "markdown",
           required: false,
+          editor_components: ec("sectionReel"),
         },
         {
           name: "class",
@@ -3069,7 +3155,7 @@ export const sectionReel = {
       required: false,
       collapsed: true,
       i18n: true,
-      types: [layoutTypeReel],
+      types: [layoutTypeReel, layoutTypeNone],
     },
     {
       name: "class",
@@ -3078,7 +3164,7 @@ export const sectionReel = {
       hint: "Class names added to the inner layout element ({% reel %}). For classes on the outer section element, use the Section Wrapper below.",
       required: false,
     },
-    sectionFooterField,
+    sectionFooterField("sectionReel"),
     sectionWrapperField,
   ],
   pattern:
@@ -3147,7 +3233,7 @@ export const sectionCollection = {
   label: "Section > Collection List",
   icon: "bookmark_stacks",
   fields: [
-    sectionHeaderField,
+    sectionHeaderField("sectionCollection"),
     {
       name: "collection",
       label: "Select a collection to display",
@@ -3275,7 +3361,7 @@ export const sectionCollection = {
                   collection: "dataFiles",
                   file: "translatedData",
                   value_field: "tagsList.*.slug",
-                  display_fields: ["tagsList.*.name"],
+                  display_fields: ["tagsList.*.label"],
                   required: true,
                   multiple: true,
                 },
@@ -3355,6 +3441,7 @@ export const sectionCollection = {
         layoutTypeCluster,
         layoutTypeFlow,
         layoutTypeReel,
+        layoutTypeNone,
       ],
     },
     {
@@ -3373,7 +3460,23 @@ export const sectionCollection = {
       required: false,
       value_field: "{{slug}}",
     },
-    sectionFooterField,
+    {
+      name: "itemTemplate",
+      label: "Item Template (raw)",
+      widget: "hidden",
+      // widget: "markdown",
+      // editor_components: ec("sectionCollection"),
+      required: false,
+      i18n: true,
+    },
+    {
+      name: "attributes",
+      label: "Collection Raw Attributes",
+      widget: "hidden",
+      required: false,
+      i18n: true,
+    },
+    sectionFooterField("sectionCollection"),
     sectionWrapperField,
   ],
   pattern:
@@ -3398,6 +3501,8 @@ export const sectionCollection = {
       layoutOptions: parsed?.layoutOptions,
       class: parsed?.class,
       itemPartial: parsed?.itemPartial,
+      itemTemplate: parsed?.itemTemplate,
+      attributes: parsed?.attributes,
       sectionWrapper: parseSectionWrapper(sectionAttributes),
     };
   },
@@ -3412,7 +3517,9 @@ export const sectionCollection = {
       sortAndFilterOptions: data?.sortAndFilterOptions,
       class: data?.class,
       itemPartial: data?.itemPartial,
+      itemTemplate: data?.itemTemplate,
       layoutOptions: data?.layoutOptions,
+      attributes: data?.attributes,
     });
 
     const sectionAttrsStr = buildSectionWrapperString(data?.sectionWrapper);
@@ -3431,7 +3538,7 @@ export const sectionBuilder = {
   label: "Section > Builder",
   icon: "brick",
   fields: [
-    sectionHeaderField,
+    sectionHeaderField("sectionBuilder"),
     {
       name: "areas",
       label: "Areas",
@@ -3482,6 +3589,7 @@ export const sectionBuilder = {
                   label: "Column Left Content",
                   widget: "markdown",
                   required: false,
+                  editor_components: ec("sectionBuilder"),
                 },
                 {
                   name: "class",
@@ -3511,6 +3619,7 @@ export const sectionBuilder = {
                   label: "Column Right Content",
                   widget: "markdown",
                   required: false,
+                  editor_components: ec("sectionBuilder"),
                 },
                 {
                   name: "class",
@@ -3540,7 +3649,7 @@ export const sectionBuilder = {
               required: false,
               collapsed: true,
               i18n: true,
-              types: [layoutTypeSwitcher, layoutTypeFixedFluid],
+              types: [layoutTypeSwitcher, layoutTypeFixedFluid, layoutTypeNone],
             },
             {
               name: "attributes",
@@ -3569,6 +3678,7 @@ export const sectionBuilder = {
                   label: "Item Content",
                   widget: "markdown",
                   required: false,
+                  editor_components: ec("sectionBuilder"),
                 },
                 {
                   name: "class",
@@ -3602,6 +3712,7 @@ export const sectionBuilder = {
                 layoutTypeSwitcher,
                 layoutTypeGridFluid,
                 layoutTypeCluster,
+                layoutTypeNone,
               ],
             },
             {
@@ -3709,7 +3820,7 @@ export const sectionBuilder = {
                           collection: "dataFiles",
                           file: "translatedData",
                           value_field: "tagsList.*.slug",
-                          display_fields: ["tagsList.*.name"],
+                          display_fields: ["tagsList.*.label"],
                           required: true,
                           multiple: true,
                         },
@@ -3793,6 +3904,7 @@ export const sectionBuilder = {
                 layoutTypeSwitcher,
                 layoutTypeGridFluid,
                 layoutTypeCluster,
+                layoutTypeNone,
               ],
             },
             {
@@ -3831,6 +3943,7 @@ export const sectionBuilder = {
                   label: "Item Content",
                   widget: "markdown",
                   required: false,
+                  editor_components: ec("sectionBuilder"),
                 },
                 {
                   name: "class",
@@ -3860,7 +3973,7 @@ export const sectionBuilder = {
               required: false,
               collapsed: true,
               i18n: true,
-              types: [layoutTypeFlow],
+              types: [layoutTypeFlow, layoutTypeNone],
             },
             {
               name: "attributes",
@@ -3889,6 +4002,7 @@ export const sectionBuilder = {
                   label: "Item Content",
                   widget: "markdown",
                   required: false,
+                  editor_components: ec("sectionBuilder"),
                 },
                 {
                   name: "class",
@@ -3918,7 +4032,7 @@ export const sectionBuilder = {
               required: false,
               collapsed: true,
               i18n: true,
-              types: [layoutTypeReel],
+              types: [layoutTypeReel, layoutTypeNone],
             },
             {
               name: "attributes",
@@ -3974,7 +4088,7 @@ export const sectionBuilder = {
         // },
       ],
     },
-    sectionFooterField,
+    sectionFooterField("sectionBuilder"),
     sectionWrapperField,
   ],
   pattern:
@@ -4237,6 +4351,22 @@ ${footerContent}
 </section>
 `;
   },
+};
+
+export const sections = {
+  id: "sections",
+  label: "Sections",
+  icon: "open_jam",
+  fields: [],
+  pattern:
+    /^{%\s*sections\s*([^>]*?)\s*%}\s*([\S\s]*?)\s*{%\s*endsections\s*%}$/gm,
+  fromBlock: function (match) {
+    return {};
+  },
+  toBlock: function (data) {
+    return `{% sections %}{% endsections %}`;
+  },
+  toPreview: (data) => `<span>SECTIONS</span>`,
 };
 
 // Example for project specific component def
