@@ -2,6 +2,9 @@
 import Fetch from "@11ty/eleventy-fetch";
 
 const BASE_URL = "https://orfeoapp.com/api";
+const ORFEO_DELAY = process.env.ORFEO_DELAY
+  ? parseInt(process.env.ORFEO_DELAY)
+  : 300;
 
 /**
  * Fetch all pages of a paginated Orfeo endpoint.
@@ -102,7 +105,7 @@ async function cachedFetch(url, options) {
  * Preserves input order in the output.
  * Only adds delay between network fetches, not cache hits.
  */
-async function mapLimit(items, limit, fn, delayMs = 300) {
+async function mapLimit(items, limit, fn, delayMs = ORFEO_DELAY) {
   const results = new Array(items.length);
   let i = 0;
   let networkFetches = 0;

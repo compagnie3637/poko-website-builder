@@ -11,7 +11,6 @@ representationType: Danse
 yearStart: 2018
 audienceAge: 6ans+
 folio: /assets/files/humanimal/humanimal_a5_fr.pdf
-picturesKit: /assets/files/humanimal/humanimal-kit-photo.zip
 techSpecs: /assets/files/humanimal/ft_humanimal_juil-20.pdf
 teaserLink: https://youtu.be/CFkhJx1e9KM?si=m9tgY_FghEz5K1DG
 pressReviewsDoc: /assets/files/humanimal/presse_humanimal-2021.pdf
@@ -25,7 +24,7 @@ pressReviews:
   - quote: Partant de notre état sauvage, Bénédicte Mottart danse notre rapport au monde. (…) De ses mains plongées dans l'encre noire naissent forêts, nuages, oiseaux, méduses, baleines. De ses mouvements émergent nos instincts contradictoires. De la musique jaillit une mystérieuse harmonie. (…) Suave et raffiné.
     cite: Le Soir, août 2018
 prizes:
-  - 'Rencontres de Huy 2018 – Mention spéciale du jury: « une expérience singulière »'
+  - "Rencontres de Huy 2018 – Mention spéciale du jury: « une expérience singulière »"
 creditsIntro: Concept & chorégraphie Bénédicte Mottart
 credits:
   Concept & chorégraphie: Bénédicte Mottart
