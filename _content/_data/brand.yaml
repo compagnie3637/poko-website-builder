@@ -1,5 +1,5 @@
 ctxCssImport: true
-inlineAllStyles: true
+inlineAllStyles: false
 widthsContexts:
   - name: main
     max: 80rem
@@ -28,15 +28,15 @@ customFontsImport:
       type: fontsource
       name: Lora
       weights:
-        - "400"
-        - "100"
-        - "200"
-        - "300"
-        - "500"
-        - "600"
-        - "700"
-        - "800"
-        - "900"
+        - '400'
+        - '100'
+        - '200'
+        - '300'
+        - '500'
+        - '600'
+        - '700'
+        - '800'
+        - '900'
       styles:
         - normal
         - italic
@@ -47,15 +47,15 @@ customFontsImport:
       type: fontsource
       name: Darker Grotesque
       weights:
-        - "400"
-        - "100"
-        - "200"
-        - "300"
-        - "500"
-        - "600"
-        - "700"
-        - "800"
-        - "900"
+        - '400'
+        - '100'
+        - '200'
+        - '300'
+        - '500'
+        - '600'
+        - '700'
+        - '800'
+        - '900'
       styles:
         - normal
       subsets:
@@ -75,22 +75,27 @@ typeScales:
       relativeTo: viewport-width
 colors:
   - name: black
-    value: "#000001"
+    value: '#000001'
   - name: white
-    value: "#ffffff"
+    value: '#ffffff'
   - name: turquoise
-    value: "#477c77"
+    value: '#477c77'
   - name: turquoise-light
-    value: "#32c8b9"
+    value: '#32c8b9'
   - name: turquoise-dark
-    value: "#3a5f5b"
+    value: '#3a5f5b'
   - name: gold
-    value: "#e6c419"
+    value: '#e6c419'
   - name: bronze
-    value: "#b39e2f"
+    value: '#b39e2f'
 palettes:
   - name: turquoise
     read: black
+    tone: turquoise
+    pop: turquoise-light
+    neutral: white
+  - name: alt
+    read: turquoise-dark
     tone: turquoise
     pop: turquoise-light
     neutral: white

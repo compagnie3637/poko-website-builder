@@ -8,7 +8,12 @@ name: Cortex
 cover: /_images/cortex/cie3637_cortex4_credit-marie-helene-tercafs.webp
 representationType: Danse & Théâtre
 yearStart: 2013
-audienceAge: 8ans+
+audienceAge: À partir de 8 ans
+duration: 55 minutes
+setupDuration: 3 à 5 h
+peopleOnTour: 4
+audienceCapacity: 200 spectateurs
+stageDimensions: Minimum 8 x 6 x 5m
 picturesKit: /assets/files/cortex/visuels-pros-cortex-hd.zip
 techSpecs: /assets/files/cortex/cortex_fiche-technique.pdf
 teaserLink: https://youtu.be/DxDnlg4y-qo?si=eK_lH7IU4fbyIsAd
@@ -73,4 +78,5 @@ thanks: |-
   Ministère de la Fédération Wallonie-Bruxelles – Service de la Danse.
 tags:
   - past
+vars: {}
 ---

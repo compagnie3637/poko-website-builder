@@ -10,8 +10,14 @@ cover: /_images/puissant-es/puissantes_m-tercafs_1.webp
 representationType: Théâtre
 yearStart: 2023
 audienceAge: 14ans+
+duration: 55’ (sans entracte) +15’ de bord de scène en représentation scolaire
+setupDuration: 6 à 8h
+peopleOnTour: 5
+audienceCapacity: 180 à 220 spectateurs maximum
+stageDimensions: Minimum 8 x 7 x 4,75m
 folio: /assets/files/puissant-es/puissant-es_dossier.pdf
 techSpecs: /assets/files/puissant-es/puissant-es-fiche-technique-mai-2025.pdf
+teaserLink: https://youtu.be/p02eDcvXrEc?si=_cZyQP6zBdyubGEZ
 pressReviewsDoc: /assets/files/puissant-es/dossier-presse_puissantes_lr.pdf
 summary: |-
   Cette nuit, Mael, Kadija et Sonik ont rendez-vous près du pont du Canal. Ce soir, iels se faufilent dans le noir et vont coller leur rage sur les murs. En lettres noires et rouges, iels forment des phrases qui dénoncent, donnent de l'espoir, visibilisent les injustices vécues et exorcisent leur peine.

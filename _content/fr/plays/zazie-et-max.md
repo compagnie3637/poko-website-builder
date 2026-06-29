@@ -10,6 +10,11 @@ cover: /_images/zazie-et-max/zazie-et-max-au-lit-credit-aurelie-deloche.webp
 representationType: Théâtre
 yearStart: 2010
 audienceAge: 6-10ans
+duration: 50 minutes
+setupDuration: 3h30
+peopleOnTour: 3
+audienceCapacity: 90 à 100 spectateurs
+stageDimensions: Min 12 x 8 x 3,5m
 folio: /assets/files/zazie-et-max/dossier_zazie-et-max_2018.pdf
 picturesKit: /assets/files/zazie-et-max/zazie_et_max_photos.zip
 techSpecs: /assets/files/zazie-et-max/zazie-et-max_fiche-technique1.pdf
@@ -69,4 +74,5 @@ thanks: |-
   La coopération au développement belge, d'Ile de Paix et le soutien du Théâtre des 4 mains.
 tags:
   - past
+vars: {}
 ---

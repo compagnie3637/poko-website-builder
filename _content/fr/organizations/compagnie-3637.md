@@ -8,7 +8,7 @@ name: Compagnie 3637
 sections:
   - type: sectionTwoColumns
     itemLeft:
-      content: '{% image src="/_images/team_mars26.webp" %}'
+      content: '{% image src="/_images/team_mars26.webp", class="radius-card" %}'
     itemRight:
       content: |-
         Fondée en 2008, la Compagnie 3637 aujourd’hui dirigée par Sophie Linsmaux et Coralie Vanderlinden, crée des spectacles jeune et tout public qui s’emparent de sujets vastes et complexes à l’image du monde dans lequel nous vivons et pour lequel les artistes de la compagnie ressentent une urgence à (ré)affirmer, (ré)introduire une place pour chacun, pour des visions du monde différentes, dans la défense d’un vrai vivre-ensemble, multiple et diversifié. En ce sens, les valeurs de liberté, de singularité et de respect des différences constituent leurs valeurs fondamentales.
@@ -18,7 +18,7 @@ sections:
         Avec l’insatisfaction comme moteur de changement et de remise en question, les artistes de la Compagnie 3637 sont convaincu·es qu’offrir aux générations de demain des spectacles engagés et qui, tout en finesse, bousculent les idées reçues peut amener à la construction d’un esprit critique et à des bouleversements intimes et collectifs.
   - type: sectionCollection
     header:
-      content: '## Direction artistique'
+      content: "## Direction artistique"
     layoutOptions:
       type: flow
       gap: var(--step-4)
@@ -32,7 +32,7 @@ sections:
     itemPartial: card-person-detailed
   - type: sectionCollection
     header:
-      content: '## Production, admin & diffusion'
+      content: "## Production, admin & diffusion"
     layoutOptions:
       type: cluster
     collection: people
@@ -45,7 +45,7 @@ sections:
     itemPartial: card-person-photo
   - type: sectionCollection
     header:
-      content: '## Fondatrices'
+      content: "## Fondatrices"
     collection: people
     sortAndFilterOptions:
       filters:
@@ -70,7 +70,7 @@ sections:
     itemPartial: card-person-name-only
   - type: sectionCollection
     header:
-      content: '## Complices'
+      content: "## Complices"
     layoutOptions:
       type: grid-fluid
       columns: 4
@@ -93,14 +93,14 @@ sections:
       {% collection collection="plays", filters=[], sortCriterias=[{"direction":"asc","by":"yearStart"}], type="layout-none", sortCriterias=[{"direction":"asc","by":"yearStart"}],  tag="ul" %}
       {% raw %}
       {% set prizesStr = item.data.prizes | join(', ') %}
-      <li><strong>{{ item.data.name }}</strong>{{ ":" if prizesStr }} {{ prizesStr }}</li>
+      <li><strong>{% link url=item.data.slug, type="internal", collection="plays" %}{% endlink %}</strong>{{ ":" if prizesStr }} {{ prizesStr }}</li>
       {% endraw %}
       {% endcollection %}
 
       {% endsectionCollection %}
   - type: sectionGrid
     header:
-      content: '## Soutenus par'
+      content: "## Soutenus par"
     items:
       - content: '{% image src="/_images/logo-wallonie_bruxelles_thtre_danse.webp", alt="logo - théâtre et danse", width=200 %}'
       - content: '{% image src="/_images/logo_wbi.webp", alt="logo - Wallonie Bruxelles international", width=200 %}'
@@ -110,7 +110,7 @@ sections:
     class: items-center
   - type: sectionGrid
     header:
-      content: '## Nous sommes membres'
+      content: "## Nous sommes membres"
     items:
       - content: '{% image src="/_images/logo-ctej.webp", alt="logo - Chambre des théâtres pour l''enfance et la jeunesse", width=200 %}'
       - content: '{% image src="/_images/logo-assitej.webp", alt="logo - Assite J", width=200 %}'
@@ -129,11 +129,11 @@ metadata:
   address:
     streetAddress: Rue Van Eyck 11A
     postalCode: Bruxelles
-    addressLocality: '1050'
+    addressLocality: "1050"
     addressCountry: Belgique
   legalAddress:
     streetAddress: Rue de Charleroi 17
-    postalCode: '1470'
+    postalCode: "1470"
     addressLocality: Genappe
     addressCountry: Belgique
   vatID: BE0807.233.604

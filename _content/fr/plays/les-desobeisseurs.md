@@ -9,10 +9,11 @@ cover: /_images/les-desobeisseurs/cie3637_les-de-uesobe-ueisseurs5_cre-uedit-mar
 representationType: Théâtre
 yearStart: 2014
 audienceAge: 8-12ans
+duration: 1h
 setupDuration: 4 à 6h
 peopleOnTour: 5
 audienceCapacity: 180 spectateurs
-stageDimensions: 10 x 8 x 5m
+stageDimensions: Min 7 x 7 x 4m
 folio: /assets/files/les-desobeisseurs/les-desobeisseurs_dossier-de-presentation.pdf
 picturesKit: /assets/files/les-desobeisseurs/visuel-pros-desobs.zip
 techSpecs: /assets/files/les-desobeisseurs/fiche-technique_les-desobeisseurs.pdf
@@ -73,5 +74,4 @@ thanks: |-
   Ministère de la Fédération Wallonie-Bruxelles – Service Théâtre, la Coopération belge au développement et des Iles de Paix.
 tags:
   - past
-vars: {}
 ---

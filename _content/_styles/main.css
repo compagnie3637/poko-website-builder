@@ -1,6 +1,9 @@
 @view-transition {
   navigation: auto;
 }
+.main-header {
+  view-transition-name: main-header;
+}
 
 :root {
   /* --width-prose: 50rem; */
@@ -14,13 +17,15 @@
   /* --width-card: calc(var(--width-prose) / 2.618); */
   /* --width-token: calc(var(--width-prose) / 4.2358); */
 
+  --width-outset: calc(var(--width-body) * 1.618);
+
   /* --radius-round: 1e5px; */
   /*--radius-body: 0rem;*/
   /*--radius-section: 2rem;*/
   --radius-prose: 1rem;
   --radius-featured: 1rem;
   --radius-card: 1rem;
-  --radius-token: 0.2rem;
+  --radius-token: var(--radius-round);
 
   --thick-body: 5px;
   --thick-section: 5px;
@@ -51,7 +56,7 @@
   --py-prose: var(--step-1);
   --py-featured: var(--step-0);
   --py-card: var(--step-1);
-  --py-token: 0.2em;
+  --py-token: 0.3em;
 
   /* --gap-body: var(--step-0, 1.25rem); */
   /* --gap-section: var(--step-0, 1.25rem); */
@@ -81,42 +86,36 @@
 
 /* The theme choses how to apply colors */
 :where(:root, body, [class*="palette"]) {
-  /* --- DEFAULTS --- */
-  --color-text: var(--color-fg-theme);
-  --color-bg: var(--color-bg-theme);
-  /* --color-text: var(--color-read-theme); */
-  /* --color-bg: var(--color-neutral-theme); */
-  /* --color-border: var(); */
-  /* --color-border: var(); */
-  /* --color-outline: var(); */
-  /* --color-text-decoration: var(); */
-  /* --color-accent: var(--color-pop-theme); */
-  /* --color-text-emphasis: var(); */
+  --color-text: var(--read);
+  --color-bg: var(--neutral);
+
+  /* --- Optional defaults / examples --- */
+  /* --color-border: var(--read); */
+  /* --color-outline: var(--read); */
+  /* --color-text-decoration: var(--read); */
+  /* --color-accent: var(--pop); */
+  /* --color-text-emphasis: var(--read); */
   /* --color-shadow has to be used manually in box-shadow definitions */
   /*--color-shadow: var();*/
-  /* --color-caret: var(); */
-  /* --color-column-rule: var(); */
-  /* --color-fill: var(); */
-  /* --color-stroke: var(); */
-
+  /* --color-caret: var(--pop); */
+  /* --color-column-rule: var(--read); */
+  /* --color-fill: var(--pop); */
+  /* --color-stroke: var(--read); */
   /* --- FOCUS --- */
   /* --color-outline--focus: var(); */
-
   /* --- SELECTION --- */
   /*--color-text--selection: var();
     --color-bg--selection: var();*/
-
   /* --- A --- */
   /* --color-text__a: var(); */
   /* --color-bg__a: transparent; */
-  --color-text__a--hover: var(--color-pop-theme);
+  --color-text__a--hover: var(--pop);
   /* --color-bg__a--hover: var(); */
-
   /* --- BUTTON --- */
   /*--color-text__button: var();*/
   /*--color-bg__button: var();*/
   /*--color-border__button: var();*/
-  /* --color-text__button--hover: var(--color-pop-theme); */
+  /* --color-text__button--hover: var(--pop); */
   /*--color-bg__button--hover: var();*/
   /*--color-border__button--hover: var();*/
   /* --color-text__button--disabled: var(); */
@@ -150,12 +149,17 @@ textarea {
 
 :where(
   a.button,
+  .button,
   button,
   input[type="submit"],
   input[type="reset"],
   input[type="button"]
 ) {
   transition: all 0.08s ease;
+  text-box-trim: trim-end;
+  & * {
+    text-box-trim: trim-end;
+  }
 }
 
 h1,
@@ -167,6 +171,10 @@ h6 {
   font-weight: 400;
   &:not(.reset-case) {
     text-transform: uppercase;
+  }
+  & > a {
+    text-decoration: none;
+    font-weight: 700;
   }
 }
 h1:not(.h1, .h2, .h3, .h4, .h5, .h6) {
@@ -180,7 +188,16 @@ h2:not(.h1, .h2, .h3, .h4, .h5, .h6) {
   font-size: var(--step-7);
   font-weight: 300;
   max-inline-size: var(--width-body);
+  /* max-inline-size: var(--width-outset); */
+  /* margin-left: calc(50% - min(99.99vw, var(--width-outset, 99.99vw)) / 2); */
   /* text-box: trim-both cap alphabetic; */
+}
+hr {
+  border-top-color: var(--read);
+}
+.icon {
+  stroke-width: 1px;
+  --size-icon: 30px;
 }
 
 #main-nav a[aria-current="page"] {
@@ -199,8 +216,8 @@ main > h1::before {
   position: absolute;
   inset: 0 0 40% 0;
   z-index: -1;
-  /* background-color: var(--color-pop-theme); */
-  --color-bg: var(--color-pop-theme);
+  /* background-color: var(--pop); */
+  --color-bg: var(--pop);
   --bleed-top: 100vh;
   /* height: 1em;
   width: 100%; */

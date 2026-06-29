@@ -1,18 +1,17 @@
-<article class="card-play-detailed px-restore pbe-card palette--tone-contrast breakout-clickable">
+<article class="card-play-detailed fonts-info flow-1rem px-restore pbe-card palette--tone-contrast breakout-clickable
+    v--size-icon:2em">
   {% if cover %}
     <figure class="card-cover px-0">
-      {% image src=cover, alt=name, aspectRatio="16/9", class="radius-b-0" %}
+      {% image src=cover, alt=name, aspectRatio="16/9", class="radius-b-0" + (" vt-name-cover-" + name | slugify) %}
     </figure>
   {% endif %}
-  <header class="px-body">
-    <a href="{{ url }}">
-      <h3>{{ name }}</h3>
-    </a>
-  </header>
-  <hr/>
+  <h3 class="mbs-1rem fonts-main {{ " vt-name-heading-" + name | slugify }}">
+    <a href="{{ url }}">{{ name }}</a>
+  </h3>
+  <hr class="mbe-0"/>
   {% if playProjects.future.length %}
-    <p class="dates with-icon">
-      {% icon "tablerOutline:calendar" %}
+    <p class="dates with-icon items-center">
+      {% icon "tablerOutline:calendar-week" %}
       <span>{{ playProjects.future.length }} dates</span>
     </p>
   {% endif %}
@@ -21,21 +20,21 @@
   {% endif %}
   <dl class="meta flow space:--step--2">
     {% if duration %}
-      <div class="meta-item with-icon flex items-center">
-        {% icon "tablerOutline:clock" %}
+      <div class="meta-item with-icon items-center">
+        {% icon "tablerOutline:clock-hour-10" %}
         <dt class="sr-only">Durée</dt>
         <dd>{{ duration }}</dd>
       </div>
     {% endif %}
     {% if audienceAge %}
-      <div class="meta-item with-icon flex items-center">
-        {% icon "tablerOutline:backpack" %}
+      <div class="meta-item with-icon items-center">
+        {% icon "tablerOutline:cake" %}
         <dt class="sr-only">Public</dt>
         <dd>{{ audienceAge }}</dd>
       </div>
     {% endif %}
     {% if creditsIntro %}
-      <div class="meta-item with-icon flex items-center">
+      <div class="meta-item with-icon items-center">
         {% icon "tablerOutline:bulb" %}
         <dt class="sr-only">Création</dt>
         <dd>{{ creditsIntro | md }}</dd>
@@ -43,3 +42,8 @@
     {% endif %}
   </dl>
 </article>
+<style>
+  .icon {
+    color: var(--pop);
+  }
+</style>

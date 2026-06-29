@@ -1,8 +1,6 @@
-{% set globPath = "_images/" + page.fileSlug + "/**" %}
-
 <dialog id="gallery-modal" role="region" aria-label="Image gallery carousel">
     <div id="carousel" class="carousel reel" aria-live="polite">
-        {% for imagePath in globPath | glob %}
+        {% for imagePath in imagePaths %}
         {% set thumbnail = imagePath | image({ width: 30 }) %}
         <div
             class="carousel__slide"
@@ -22,7 +20,7 @@
 </dialog>
 
 <ul role="list" aria-label="Galerie photos" class="gallery-play grid-fluid v--columns:10">
-    {% for imagePath in globPath | glob %}
+    {% for imagePath in imagePaths %}
     {% set imgStats = imagePath | image({ widths: ['auto'] }) %}
     {% set imgAuto = imgStats.webp[0].url %}
     <li>
