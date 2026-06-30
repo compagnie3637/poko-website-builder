@@ -1,10 +1,14 @@
 {% set compagnie = collections.organizations | filterCollection({ by:"slug", value: "compagnie-3637"}) | first %}
 {% set metadata = compagnie.data.metadata %}
-<footer class="site-footer palette--contrast palette--pop bleed-bg v--size-icon:30px fonts-info" role="contentinfo">
+<footer
+    class="site-footer flow-1rem palette--contrast palette--pop bleed-bg v--size-icon:30px fonts-info"
+    role="contentinfo">
     <div class="footer-container cluster">
         <section class="footer-link prose flow items-center" aria-label="Liens">
-            {% link vars.newsletterLink, type="external", class="button uppercase palette--tone-contrast border-0" %} Newsletter
-                {% endlink %}
+            {% if vars.newsletterSubEmail %}
+                {% link vars.newsletterSubEmail, type="email", subject=vars.newsletterSubSubject, class="button uppercase palette--tone-contrast border-0" %}
+                Newsletter{% endlink %}
+            {% endif %}
             <nav class="footer-social" aria-label="Réseaux sociaux">
                 <ul role="list" class="social-links cluster justify-center">
                     {% for link in metadata.links %}
@@ -38,15 +42,15 @@
             </div>
         </section>
         <figure class="footer-logo" aria-label="Logo Compagnie 3637">
-            {% image src="/_images/compagnie-3637-logo-black-tight.svg", alt="Compagnie 3637", width=200 %}
+            {% partial "logo.njk", { style: "width: 200px;" } %}
         </figure>
     </div>
     <div class="footer-credits text-center color-[--turquoise-dark] small">
         <p>
             Site web éco-conçu avec
-            <a href="https://www.poko.eco" rel="noopener">poko</a>
+            <a href="https://www.poko.eco" target="_blank" rel="noopener">poko</a>
             par
-            <a href="https://www.mookai.be" rel="noopener">mookaï asbl</a>
+            <a href="https://www.mookai.be" target="_blank" rel="noopener">mookaï asbl</a>
         </p>
     </div>
 </footer>

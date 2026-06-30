@@ -22,4 +22,5 @@ tagsList:
   - slug: stewardship
     label: Régie
 vars:
-  newsletterLink: '#'
+  newsletterSubEmail: "tania@compagnie3637.be"
+  newsletterSubSubject: "Inscription newsletter"

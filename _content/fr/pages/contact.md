@@ -72,8 +72,8 @@ eleventyNavigation:
 {% wrapper tag="section" %}
 Compagnie 3637 ASBL { .h2 }
 
-Siège social: Rue de Charleroi, 17 – 1470 Genappe - Belgique
-Bureau: c/o Le Bocal – Rue Van Eyck 11A- 1050 Bruxelles - Belgique
+Siège social: Rue de Charleroi 17 – 1470 Genappe - Belgique
+Bureau: c/o Le Bocal – Av. Brugmann 482 - 1180 Uccle - Belgique
 
 N°ENTREPRISE: 0807 233 604 – RPM NIVELLES
 {% endwrapper %}

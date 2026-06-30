@@ -82,50 +82,52 @@
           </div>
           <!-- Practical / technical sidebar -->
           <aside aria-label="Informations techniques" class="technical-info box-border v--size-icon:2em">
-            <dl class="flow space:0 justify-content-space-between">
-              {% if audienceAge %}
-                <div class="with-icon flex-grow-1 items-center">
-                  {% icon "tablerOutline:cake" %}
-                  <dt class="sr-only">Public</dt>
-                  <dd>{{ audienceAge }}</dd>
-                </div>
-              {% endif %}
-              {% if duration %}
-                <div class="with-icon flex-grow-1 items-center">
-                  {% icon "tablerOutline:clock-hour-10" %}
-                  <dt class="sr-only">Durée</dt>
-                  <dd>{{ duration }}</dd>
-                </div>
-              {% endif %}
-              {% if setupDuration %}
-                <div class="with-icon flex-grow-1 items-center">
-                  {% icon "tablerOutline:tool" %}
-                  <dt>Montage</dt>
-                  <dd>{{ setupDuration }}</dd>
-                </div>
-              {% endif %}
-              {% if peopleOnTour %}
-                <div class="with-icon flex-grow-1 items-center">
-                  {% icon "tablerOutline:users-group" %}
-                  <dt>Personnes en tournée</dt>
-                  <dd>{{ peopleOnTour }}</dd>
-                </div>
-              {% endif %}
-              {% if audienceCapacity %}
-                <div class="with-icon flex-grow-1 items-center">
-                  {% icon "tablerOutline:ticket" %}
-                  <dt class="sr-only">Jauge</dt>
-                  <dd>{{ audienceCapacity }}</dd>
-                </div>
-              {% endif %}
-              {% if stageDimensions %}
-                <div class="with-icon flex-grow-1 items-center">
-                  {% icon "tablerOutline:ruler-measure" %}
-                  <dt>Plateau</dt>
-                  <dd>{{ stageDimensions }}</dd>
-                </div>
-              {% endif %}
-            </dl>
+            {% if [audienceAge, duration, setupDuration, peopleOnTour, audienceCapacity, stageDimensions] | filterCollection({ by: "truthy", value: true }) | length > 3 %}
+              <dl class="flow space:0 justify-content-space-between">
+                {% if audienceAge %}
+                  <div class="with-icon flex-grow-1 items-center">
+                    {% icon "tablerOutline:cake" %}
+                    <dt class="sr-only">Public</dt>
+                    <dd>{{ audienceAge }}</dd>
+                  </div>
+                {% endif %}
+                {% if duration %}
+                  <div class="with-icon flex-grow-1 items-center">
+                    {% icon "tablerOutline:clock-hour-10" %}
+                    <dt class="sr-only">Durée</dt>
+                    <dd>{{ duration }}</dd>
+                  </div>
+                {% endif %}
+                {% if setupDuration %}
+                  <div class="with-icon flex-grow-1 items-center">
+                    {% icon "tablerOutline:tool" %}
+                    <dt>Montage</dt>
+                    <dd>{{ setupDuration }}</dd>
+                  </div>
+                {% endif %}
+                {% if peopleOnTour %}
+                  <div class="with-icon flex-grow-1 items-center">
+                    {% icon "tablerOutline:users-group" %}
+                    <dt>Personnes en tournée</dt>
+                    <dd>{{ peopleOnTour }}</dd>
+                  </div>
+                {% endif %}
+                {% if audienceCapacity %}
+                  <div class="with-icon flex-grow-1 items-center">
+                    {% icon "tablerOutline:ticket" %}
+                    <dt class="sr-only">Jauge</dt>
+                    <dd>{{ audienceCapacity }}</dd>
+                  </div>
+                {% endif %}
+                {% if stageDimensions %}
+                  <div class="with-icon flex-grow-1 items-center">
+                    {% icon "tablerOutline:ruler-measure" %}
+                    <dt>Plateau</dt>
+                    <dd>{{ stageDimensions }}</dd>
+                  </div>
+                {% endif %}
+              </dl>
+            {% endif %}
           </aside>
         </div>
         <!-- =====================================================

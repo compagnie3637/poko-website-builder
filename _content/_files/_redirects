@@ -1,0 +1,6 @@
+/petite-forme/ /spectacles/ 301
+/compagnie/ /organizations/compagnie-3637/ 301
+/liens-2/ /organizations/compagnie-3637/ 301
+/spectacles/cest-ta-vie/ /plays/c-est-ta-vie/ 301
+/spectacles/zazie-max/ /plays/zazie-et-max/ 301
+/spectacles/* /plays/:splat 301

@@ -73,6 +73,13 @@ typeScales:
       negativeSteps: 4
       prefix: step
       relativeTo: viewport-width
+    customSteps:
+      - startStep: '5'
+        endStep: '7'
+      - startStep: '6'
+        endStep: '8'
+      - startStep: '7'
+        endStep: '9'
 colors:
   - name: black
     value: '#000001'

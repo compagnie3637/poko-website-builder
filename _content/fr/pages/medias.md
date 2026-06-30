@@ -5,11 +5,7 @@ lang: fr
 createdAt: 2026-06-08T11:14:00.000Z
 ldType: WebPage
 name: Traces
-eleventyNavigation:
-  add: Nav
-vars: {}
 ---
-
 
 # Traces
 

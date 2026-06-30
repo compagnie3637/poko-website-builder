@@ -178,14 +178,14 @@ h6 {
   }
 }
 h1:not(.h1, .h2, .h3, .h4, .h5, .h6) {
-  font-size: var(--step-8);
+  font-size: var(--step-6-8);
   text-align: center;
   font-weight: 300;
   max-inline-size: var(--width-body);
   /* text-box: trim-both cap alphabetic; */
 }
 h2:not(.h1, .h2, .h3, .h4, .h5, .h6) {
-  font-size: var(--step-7);
+  font-size: var(--step-5-7);
   font-weight: 300;
   max-inline-size: var(--width-body);
   /* max-inline-size: var(--width-outset); */

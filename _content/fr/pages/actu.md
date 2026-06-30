@@ -5,8 +5,6 @@ lang: fr
 createdAt: 2026-06-08T11:47:00.000Z
 ldType: WebPage
 name: Actu'
-eleventyNavigation:
-  add: Nav
 ---
 
 # Actu'

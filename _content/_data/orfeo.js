@@ -57,18 +57,26 @@ async function fetchProjects() {
       ...perf,
       audience: audienceFromTitle(perf.title),
     }));
+    const perfDates = performances
+      .map((p) => p.start_datetime?.slice(0, 10))
+      .filter(Boolean)
+      .sort();
+    const firstPerfDate = perfDates[0] ?? null;
+    const lastPerfDate = perfDates[perfDates.length - 1] ?? null;
     return {
       ...project,
       past: project.end_date ? new Date(project.end_date) < now : false,
-      sameDay: project.start_date === project.end_date,
-      sameMonth:
-        project.start_date?.slice(0, 7) === project.end_date?.slice(0, 7),
+      sameDay: firstPerfDate === lastPerfDate,
+      sameMonth: firstPerfDate?.slice(0, 7) === lastPerfDate?.slice(0, 7),
       hasSchool: performances.some((p) => p.audience === "school"),
       hasPublic: performances.some((p) => p.audience === "public"),
       perfTimes: [
         ...new Set(performances.map((p) => p.start_datetime?.slice(11, 16))),
       ].sort(),
+      firstPerfDate,
+      lastPerfDate,
       performances,
+      ignore: !firstPerfDate,
     };
   });
 }
@@ -134,7 +142,7 @@ async function fetchStructure(pk) {
   const { data, fromCache } = await cachedFetch(
     `${BASE_URL}/structure/${pk}/`,
     {
-      duration: "1d",
+      duration: "23h",
       type: "json",
       fetchOptions: { headers: { Authorization: `Token ${apiKey}` } },
     },
@@ -169,7 +177,16 @@ export default async function () {
       organizer_web_addresses: web_addresses,
       organizer_contact_infos: structure?.contact_infos ?? [],
       venueUrl: web_addresses[0]?.address ?? null,
-      mapsUrl: project.venue_data?.name
+      venueAddress:
+        [
+          project.venue_data?.address1,
+          [project.venue_data?.zipcode, project.venue_data?.city]
+            .filter(Boolean)
+            .join(" "),
+        ]
+          .filter(Boolean)
+          .join(", ") || null,
+      mapsUrl: project.venue_data.city
         ? `https://www.google.com/maps/search/${encodeURIComponent(
             [
               project.venue_data.name,
