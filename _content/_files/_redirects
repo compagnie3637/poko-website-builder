@@ -1,6 +1,12 @@
 /petite-forme/ /spectacles/ 301
 /compagnie/ /organizations/compagnie-3637/ 301
 /liens-2/ /organizations/compagnie-3637/ 301
+# Plays
+/spectacles/en-apnee/ /plays/en-apnee/ 301
 /spectacles/cest-ta-vie/ /plays/c-est-ta-vie/ 301
+/spectacles/puissant-es/ /plays/puissant-es/ 301
+/spectacles/humanimal/ /plays/humanimal/ 301
+/spectacles/des-illusions/ /plays/des-illusions/ 301
+/spectacles/cortex/ /plays/cortex/ 301
 /spectacles/zazie-max/ /plays/zazie-et-max/ 301
-/spectacles/* /plays/:splat 301
+/spectacles/les-desobeisseurs/ /plays/les-desobeisseurs/ 301
