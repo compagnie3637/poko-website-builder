@@ -8,7 +8,7 @@ name: Contact
 sections:
   - type: sectionGrid
     items:
-      - content: '## Direction artistique { .h3 }'
+      - content: "## Direction artistique { .h3 }"
 eleventyNavigation:
   add: Nav
 ---
@@ -19,6 +19,7 @@ eleventyNavigation:
 
 {% grid type="grid-fluid", gap="var(--step-4)", columns=3, class="width-prose" %}
 {% gridItem class="text-center flow" %}
+
 ## Direction artistique { .h3 }
 
 {% sectionCollection class="flow space:--step--4", tag="div" %}
@@ -28,6 +29,7 @@ eleventyNavigation:
 {% endsectionCollection %}
 {% endgridItem %}
 {% gridItem class="text-center flow" %}
+
 ## Coordination générale { .h3 }
 
 {% sectionCollection class="flow space:--step--4", tag="div" %}
@@ -37,6 +39,7 @@ eleventyNavigation:
 {% endsectionCollection %}
 {% endgridItem %}
 {% gridItem class="text-center flow" %}
+
 ## Diffusion { .h3 }
 
 {% sectionCollection class="flow space:--step--4", tag="div" %}
@@ -46,6 +49,7 @@ eleventyNavigation:
 {% endsectionCollection %}
 {% endgridItem %}
 {% gridItem class="text-center flow" %}
+
 ## Régie générale { .h3 }
 
 {% htmlPartial "card-person-contact-info.njk", {"name":"Amélie Dubois & Brice Tellier","email":"technique@compagnie3637.be"} %}
@@ -64,8 +68,10 @@ eleventyNavigation:
 
 :::
 
-{% link url="http://www.compagnie3637.be/contact/", type="external", class="button uppercase" %}Newsletter [TODO]{% endlink %}
-{% endwrapper %}
+{% if vars.newsletterSubEmail %}
+{% link vars.newsletterSubEmail, type="email", subject=vars.newsletterSubSubject, class="button uppercase" %}
+Newsletter{% endlink %}
+{% endif %}
 
 {% image src="/_images/cie3637_les-de-uesobe-ueisseurs2_cre-uedit-marie-he-uele-cne-tercafs.webp", aspectRatio=4, class="full-bleed px-0 max-inline-[160rem]" %}
 
