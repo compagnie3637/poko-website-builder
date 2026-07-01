@@ -195,9 +195,13 @@ h2:not(.h1, .h2, .h3, .h4, .h5, .h6) {
 hr {
   border-top-color: var(--read);
 }
-.icon {
+:where(.icon) {
   stroke-width: 1px;
   --size-icon: 30px;
+}
+
+.lh-info {
+  line-height: 1.2;
 }
 
 #main-nav a[aria-current="page"] {

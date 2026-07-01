@@ -29,7 +29,7 @@ Depuis 2008, à Bruxelles, la Compagnie 3637 explore le théâtre - et bien plus
 {% endsectionCollection %}
 
 {% wrapper tag="div" %}
-{% image src="/_images/019.webp", aspectRatio=3 %}
+{% image src="/_images/019.webp", aspectRatio=3, class="full-bleed" %}
 {% endwrapper %}
 
 {% sectionCollection  %}

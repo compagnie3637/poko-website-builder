@@ -6,7 +6,7 @@ createdAt: 2026-06-03T12:13:00.000Z
 ldType: Person
 name: Lora Debelle
 metadata:
-  jobTitle: ???
+  jobTitle: plasticienne, médiatrice
   links:
     - name: Instagram
       url: https://www.instagram.com/lortadebelle.artiste/

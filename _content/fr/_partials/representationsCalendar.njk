@@ -1,4 +1,4 @@
-<ul role="list" class="representations-calendar width-body fonts-info v--size-icon:1.5em {{ parentClass }}">
+<ul role="list" class="representations-calendar width-body fonts-info {{ parentClass }}">
     {% set prevYear = null %}
     {% for project in projects %}
         {% if not project.ignore %}
@@ -19,7 +19,7 @@
             {% endif %}
             <li class="representation">
                 <details class="width-body">
-                    <summary class="button px-card">
+                    <summary class="button px-card cluster">
                         <span class="dates font-bold">
                             {% if project.sameDay %}
                                 <time datetime="{{ project.firstPerfDate }}">{{ project.firstPerfDate | formatDateLocalized("D MMM") }}</time>
@@ -46,7 +46,7 @@
                                 <span class="">{% icon "tablerOutline:users" %}Tout public</span>
                             {% endif %}
                         </span>
-                        <span class="venue small cluster bg-transparent">
+                        <span class="venue small flow space:0.2rem items-start bg-transparent">
                             {% if project.venueUrl %}
                                 <a href="{{ project.venueUrl }}" target="_blank" rel="noopener" class="truncate">{% icon "tablerOutline:external-link" %}{{ project.venue_data.name or project.venueUrl }}</a>
                             {% elseif project.venue_data.name %}
@@ -68,7 +68,7 @@
                                         <ul>
                                             {% for perf in project.performances %}
                                                 <li>
-                                                    <time datetime="{{ perf.start_datetime }}">{{ perf.start_datetime | formatDateLocalized("D MMM HH:mm") }}</time>
+                                                    <time datetime="{{ perf.start_datetime }}">{{ perf.start_datetime | formatDateLocalized("datetime-s") }}</time>
                                                     —
                                                     {% if perf.audience === "school" %}
                                                         <span class="">{% icon "tablerOutline:backpack" %}Repr. scolaire</span>
@@ -94,21 +94,21 @@
                                 </div>
                             {% endif %}
                             {#
-                                                                                                                                            {% if project.organizer_contact_infos.length %}
-                                                                                                                                            <div>
-                                                                                                                                                <dt class="h4">Contact organisateur</dt>
-                                                                                                                                                <dd class="organizer-contact">
-                                                                                                                                                    <ul>
-                                                                                                                                                        {% for contact in project.organizer_contact_infos %}
-                                                                                                                                                            <li>{{ contact.value }}
-                                                                                                                                                                {% if contact.label %}
-                                                                                                                                                                    ({{ contact.label }}){% endif %}
-                                                                                                                                                            </li>
-                                                                                                                                                        {% endfor %}
-                                                                                                                                                    </ul>
-                                                                                                                                                </dd>
-                                                                                                                                            {% endif %}
-                                                                                                                                            #}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% if project.organizer_contact_infos.length %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <dt class="h4">Contact organisateur</dt>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <dd class="organizer-contact">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {% for contact in project.organizer_contact_infos %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li>{{ contact.value }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    {% if contact.label %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ({{ contact.label }}){% endif %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {% endfor %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </dd>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% endif %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                #}
                         </dl>
                     </div>
                 </details>
@@ -122,6 +122,7 @@
     .representations-calendar .icon {
         vertical-align: -0.2em;
         stroke-width: 2px;
+        --size-icon: 1.5rem;
     }
     /* hide default marker */
     .representations-calendar .representation details > summary::-webkit-details-marker {
@@ -132,14 +133,25 @@
         border-radius: 0;
         padding-block: var(--step--4);
         border-top: 1px solid var(--read);
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 4fr;
+        /* display: grid; */
+        /* grid-template-columns: 1fr 1fr 1fr 4fr; */
         align-items: center;
-        & .dates {}
-        & .times {}
-        & .spectacle {}
-        & .audience {}
+        /* Total rem must be 50 */
+        & .dates {
+            flex-basis: 9rem;
+        }
+        & .times {
+            flex-basis: 9rem;
+        }
+        & .spectacle {
+            flex-basis: 9rem;
+        }
+        & .audience {
+            flex-basis: 9rem;
+        }
         & .venue {
+            flex-basis: 14rem;
+            flex-grow: 1;
             row-gap: 0;
         }
     }
@@ -147,7 +159,8 @@
 {% if showSpectacle %}
     <style>
         .representations-calendar .representation summary {
-            grid-template-columns: 1fr 1fr 1fr 1fr 4fr;
+            ;
+            /* grid-template-columns: 1fr 1fr 1fr 1fr 4fr; */
         }
     </style>
 {% endif %}

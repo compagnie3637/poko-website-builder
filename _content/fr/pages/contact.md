@@ -75,7 +75,7 @@ Newsletter{% endlink %}
 
 {% endwrapper %}
 
-{% image src="/_images/cie3637_les-de-uesobe-ueisseurs2_cre-uedit-marie-he-uele-cne-tercafs.webp", aspectRatio=4, class="full-bleed px-0 max-inline-[160rem]" %}
+{% image src="/_images/cie3637_les-de-uesobe-ueisseurs2_cre-uedit-marie-he-uele-cne-tercafs.webp", aspectRatio=4, class="full-bleed" %}
 
 {% wrapper tag="section" %}
 Compagnie 3637 ASBL { .h2 }

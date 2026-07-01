@@ -1,13 +1,13 @@
-<article class="card-person-photo">
+<article class="card-person-photo lh-info fonts-info">
     {% if metadata.image %}
         <figure class="card-person-photo">
             {% image src=metadata.image.src, alt=name, aspectRatio="1", width=250 %}
         </figure>
     {% endif %}
-    <header class="card-person-header flow space:--step--2">
+    <header class="card-person-header flow space:0.5rem">
         <h2 class="h3 reset-case font-bold">{{ name }}</h2>
         {% if metadata.jobTitle %}
-            <p class="card-person-jobtitle">{{ metadata.jobTitle }}</p>
+            <p class="card-person-jobtitle palette--pop font-bold">{{ metadata.jobTitle }}</p>
         {% endif %}
         {% if metadata.email %}
             <p class="card-person-email">

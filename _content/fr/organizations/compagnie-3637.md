@@ -18,7 +18,7 @@ sections:
         Avec l’insatisfaction comme moteur de changement et de remise en question, les artistes de la Compagnie 3637 sont convaincu·es qu’offrir aux générations de demain des spectacles engagés et qui, tout en finesse, bousculent les idées reçues peut amener à la construction d’un esprit critique et à des bouleversements intimes et collectifs.
   - type: sectionCollection
     header:
-      content: '## Direction artistique'
+      content: "## Direction artistique"
     layoutOptions:
       type: flow
       gap: var(--step-4)
@@ -32,7 +32,7 @@ sections:
     itemPartial: card-person-detailed
   - type: sectionCollection
     header:
-      content: '## Production, admin & diffusion'
+      content: "## Production, admin & diffusion"
     layoutOptions:
       type: cluster
     collection: people
@@ -45,7 +45,7 @@ sections:
     itemPartial: card-person-photo
   - type: sectionCollection
     header:
-      content: '## Fondatrices'
+      content: "## Fondatrices"
     collection: people
     sortAndFilterOptions:
       filters:
@@ -70,7 +70,7 @@ sections:
     itemPartial: card-person-name-only
   - type: sectionCollection
     header:
-      content: '## Complices'
+      content: "## Complices"
     layoutOptions:
       type: grid-fluid
       columns: 4
@@ -83,14 +83,14 @@ sections:
       exclusions: false
     itemPartial: card-person-accomplice
   - type: sectionRaw
-    content: '{% image src="/_images/21-06-27-edf-36-37.webp", aspectRatio=3, objectPosition="center 75%" %}'
+    content: '{% image src="/_images/21-06-27-edf-36-37.webp", aspectRatio=3, objectPosition="center 75%", class="full-bleed" %}'
   - type: sectionRaw
     content: |-
       {% sectionCollection  %}
       {% sectionHeader  %}
-      ## Créations depuis 2009
+      ## Créations depuis 2008
       {% endsectionHeader %}
-      {% collection collection="plays", filters=[], sortCriterias=[{"direction":"asc","by":"yearStart"}], type="layout-none", sortCriterias=[{"direction":"asc","by":"yearStart"}],  tag="ul" %}
+      {% collection collection="plays", filters=[], sortCriterias=[{"direction":"asc","by":"yearStart"}], type="layout-none", sortCriterias=[{"direction":"asc","by":"yearStart"}],  tag="ul", class="width-body" %}
       {% raw %}
       {% set prizesStr = item.data.prizes | join(', ') %}
       <li><strong>{% link url=item.data.slug, type="internal", collection="plays" %}{% endlink %}</strong>{{ ":" if prizesStr }} {{ prizesStr }}</li>
@@ -100,7 +100,7 @@ sections:
       {% endsectionCollection %}
   - type: sectionGrid
     header:
-      content: '## Soutenus par'
+      content: "## Soutenus par"
     items:
       - content: '{% image src="/_images/logo-wallonie_bruxelles_thtre_danse.webp", alt="logo - théâtre et danse", width=200 %}'
       - content: '{% image src="/_images/logo_wbi.webp", alt="logo - Wallonie Bruxelles international", width=200 %}'
@@ -110,7 +110,7 @@ sections:
     class: items-center
   - type: sectionGrid
     header:
-      content: '## Nous sommes membres'
+      content: "## Nous sommes membres"
     items:
       - content: '{% image src="/_images/logo-ctej.webp", alt="logo - Chambre des théâtres pour l''enfance et la jeunesse", width=200 %}'
       - content: '{% image src="/_images/logo-assitej.webp", alt="logo - Assite J", width=200 %}'
@@ -128,12 +128,12 @@ metadata:
   legalName: Compagnie 3637 ASBL
   address:
     streetAddress: Av. Brugmann 482
-    postalCode: '1180'
+    postalCode: "1180"
     addressLocality: Uccle
     addressCountry: Belgique
   legalAddress:
     streetAddress: Rue de Charleroi 17
-    postalCode: '1470'
+    postalCode: "1470"
     addressLocality: Genappe
     addressCountry: Belgique
   vatID: BE0807.233.604
