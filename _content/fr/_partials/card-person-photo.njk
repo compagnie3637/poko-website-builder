@@ -1,7 +1,7 @@
 <article class="card-person-photo lh-info fonts-info">
     {% if metadata.image %}
         <figure class="card-person-photo">
-            {% image src=metadata.image.src, alt=name, aspectRatio="1", width=250 %}
+            {% image src=metadata.image.src, alt=name, aspectRatio="1", width=250, class="radius-card" %}
         </figure>
     {% endif %}
     <header class="card-person-header flow space:0.5rem">

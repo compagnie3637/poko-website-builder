@@ -6,6 +6,7 @@ createdAt: 2026-06-11T12:12:00.000Z
 ldType: CreativeWork
 name: En apnée
 orfeoId: 79599
+cover: /_images/en-apnee/tentacule01_background_blue.webp
 announcement: |-
   **À DÉCOUVRIR TOUT BIENTÔT POUR LES PROFESSIONNELS**
   aux <a href="https://ctej.be/la-ctej/rencontres/">Rencontres Théâtre Jeune Public </a>@ Charleroi
@@ -13,9 +14,15 @@ announcement: |-
 
   {% link url="https://rencontres.app.infinitix.li/", type="external", target="_blank", rel="noopener", class="button" %}Réservation{% endlink %}
 representationType: Théâtre
-yearStart: 2027
-audienceAge: 9-13ans
-folio: /assets/files/en-apnee/dossier_en-apnee-260610_compressed.pdf
+yearStart: 2026
+audienceAge: 10-14 ans
+duration: 60' + 15' de bord de scène
+setupDuration: 8h
+peopleOnTour: 4-5
+audienceCapacity: 150 en SC / 180 en TP
+stageDimensions: 8 x 6,5 x 4,5m min
+folio: /assets/files/en-apnee/dossier_en-apnee_270703.pdf
+techSpecs: /assets/files/en-apnee/ft_enapnee_v260625.pdf
 summary: |-
   Stevie a onze ans. Elle adore lire des livres sur les galaxies et la formation des atomes, écouter le chant des baleines et passer du temps avec sa maman. Un jour, Stevie ressent un vertige en regardant son amie Chloé : un vertige tellement puissant et incompréhensible qu'il l'envoie dans le fond des océans, là où vivent des créatures étranges. Qu'est-ce qui lui est arrivé ? Est-ce vraiment réel ? Pour la toute première fois, ni sa mère ni les livres ne détiennent la réponse…
 

@@ -8,7 +8,7 @@ name: Contact
 sections:
   - type: sectionGrid
     items:
-      - content: "## Direction artistique { .h3 }"
+      - content: '## Direction artistique { .h3 }'
 eleventyNavigation:
   add: Nav
 ---
@@ -19,7 +19,6 @@ eleventyNavigation:
 
 {% grid type="grid-fluid", gap="var(--step-4)", columns=3, class="width-prose" %}
 {% gridItem class="text-center flow" %}
-
 ## Direction artistique { .h3 }
 
 {% sectionCollection class="flow space:--step--4", tag="div" %}
@@ -29,7 +28,6 @@ eleventyNavigation:
 {% endsectionCollection %}
 {% endgridItem %}
 {% gridItem class="text-center flow" %}
-
 ## Coordination générale { .h3 }
 
 {% sectionCollection class="flow space:--step--4", tag="div" %}
@@ -39,7 +37,6 @@ eleventyNavigation:
 {% endsectionCollection %}
 {% endgridItem %}
 {% gridItem class="text-center flow" %}
-
 ## Diffusion { .h3 }
 
 {% sectionCollection class="flow space:--step--4", tag="div" %}
@@ -49,7 +46,6 @@ eleventyNavigation:
 {% endsectionCollection %}
 {% endgridItem %}
 {% gridItem class="text-center flow" %}
-
 ## Régie générale { .h3 }
 
 {% htmlPartial "card-person-contact-info.njk", {"name":"Amélie Dubois & Brice Tellier","email":"technique@compagnie3637.be"} %}
@@ -58,8 +54,9 @@ eleventyNavigation:
 
 {% endsectionGrid %}
 
-{% wrapper tag="section", class='text-center palette-darker bleed-bg' %}
-::: div
+{% wrapper tag="section", class='text-center palette-darker bleed-bg flow items-center' %}
+::: cluster
+
 {% link url="https://www.facebook.com/Compagnie3637/", type="external" %}{% icon "tablerOutline:brand-facebook", width="30", height="30" %}{% endlink %}
 
 {% link url="https://www.instagram.com/compagnie3637/", type="external" %}{% icon "tablerOutline:brand-instagram", width="30", height="30" %}{% endlink %}
@@ -72,13 +69,12 @@ eleventyNavigation:
 {% link vars.newsletterSubEmail, type="email", subject=vars.newsletterSubSubject, class="button uppercase" %}
 Newsletter{% endlink %}
 {% endif %}
-
 {% endwrapper %}
 
 {% image src="/_images/cie3637_les-de-uesobe-ueisseurs2_cre-uedit-marie-he-uele-cne-tercafs.webp", aspectRatio=4, class="full-bleed" %}
 
-{% wrapper tag="section" %}
-Compagnie 3637 ASBL { .h2 }
+{% wrapper tag="section", class="text-center" %}
+Compagnie 3637 ASBL { .h1 }
 
 Siège social: Rue de Charleroi 17 – 1470 Genappe - Belgique
 Bureau: c/o Le Bocal – Av. Brugmann 482 - 1180 Uccle - Belgique

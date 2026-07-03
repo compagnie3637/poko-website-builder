@@ -11,7 +11,7 @@ yearStart: 2014
 audienceAge: 8-12ans
 duration: 1h
 setupDuration: 4 à 6h
-peopleOnTour: 5
+peopleOnTour: "5"
 audienceCapacity: 180 spectateurs
 stageDimensions: Min 7 x 7 x 4m
 folio: /assets/files/les-desobeisseurs/les-desobeisseurs_dossier-de-presentation.pdf

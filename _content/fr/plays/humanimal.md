@@ -12,7 +12,7 @@ yearStart: 2018
 audienceAge: À partir de 6 ans
 duration: 45’ (sans entracte)
 setupDuration: 2 services de 4h
-peopleOnTour: 3
+peopleOnTour: "3"
 audienceCapacity: 130 spectateurs maximum (et en proximité)
 stageDimensions: Minimum 10 x 7 x 4m
 folio: /assets/files/humanimal/humanimal_a5_fr.pdf
@@ -29,7 +29,7 @@ pressReviews:
   - quote: Partant de notre état sauvage, Bénédicte Mottart danse notre rapport au monde. (…) De ses mains plongées dans l'encre noire naissent forêts, nuages, oiseaux, méduses, baleines. De ses mouvements émergent nos instincts contradictoires. De la musique jaillit une mystérieuse harmonie. (…) Suave et raffiné.
     cite: Le Soir, août 2018
 prizes:
-  - 'Rencontres de Huy 2018 – Mention spéciale du jury: « une expérience singulière »'
+  - "Rencontres de Huy 2018 – Mention spéciale du jury: « une expérience singulière »"
 creditsIntro: Concept & chorégraphie Bénédicte Mottart
 credits:
   Concept & chorégraphie: Bénédicte Mottart

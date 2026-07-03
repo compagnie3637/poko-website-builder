@@ -8,6 +8,7 @@ const {
   articles,
   spreadPageSetup,
   commonCollectionFields,
+  statusField,
   bodyMarkdownField,
   generatePageField,
 } = await import(
@@ -86,10 +87,9 @@ const additionalPlayFields = [
   {
     name: "peopleOnTour",
     label: "Personnes en tournée",
-    widget: "number",
-    value_type: "int",
+    widget: "string",
     required: false,
-    i18n: "duplicate",
+    i18n: true,
   },
   {
     name: "audienceCapacity",
@@ -285,6 +285,7 @@ const theaterEventsCollection = {
 //  ACTUS
 const actusFields = [
   ...commonCollectionFields,
+  statusField,
   {
     name: "datePublished",
     label: "Date Published",

@@ -1,4 +1,4 @@
-<article class="card-actu palette-darker prose box">
+<article class="card-actu palette-darker prose box fonts-info">
     <header class="card-actu-header">
         {% if datePublished %}
             <time class="card-actu-date small palette--pop" datetime="{{ datePublished | formatDate('YYYY-MM-DD') }}">
@@ -13,9 +13,9 @@
             {{ rawInput | md }}
         </div>
     {% endif %}
-    {% if mainLink %}
-        <footer class="card-actu-footer">
-            {{ mainLink | md }}
+    {% if footer %}
+        <footer class="card-actu-footer mbs-1rem">
+            {{ footer | md }}
         </footer>
     {% endif %}
 </article>
@@ -24,7 +24,7 @@
         border-top: 3px solid var(--pop);
     }
     .columns {
-        columns: 2;
+        columns: calc(var(--width-body) / 3);
     }
     .columns > * + * {
         margin-top: 1rem;

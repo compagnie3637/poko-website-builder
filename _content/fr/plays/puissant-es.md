@@ -12,7 +12,7 @@ yearStart: 2023
 audienceAge: 14ans+
 duration: 55’ (sans entracte) +15’ de bord de scène en représentation scolaire
 setupDuration: 6 à 8h
-peopleOnTour: 5
+peopleOnTour: "5"
 audienceCapacity: 180 à 220 spectateurs maximum
 stageDimensions: Minimum 8 x 7 x 4,75m
 folio: /assets/files/puissant-es/puissant-es_dossier.pdf

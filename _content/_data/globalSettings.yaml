@@ -7,3 +7,5 @@ languages:
 collections:
   - people
   - organizations
+newTabLinkTypes:
+  - external

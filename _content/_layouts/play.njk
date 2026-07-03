@@ -14,7 +14,7 @@
       {% if tags and tags.length %}
         <ul aria-label="Status" role="list" class="status-tags">
           {% for tag in tags %}
-            <li class="bleed-bg uppercase font-bold">{{ tag | tagLabel }}</li>
+            <li class="uppercase font-bold">{{ tag | tagLabel }}</li>
           {% endfor %}
         </ul>
       {% endif %}
@@ -150,7 +150,7 @@
               <ul role="list" class="grid-fluid v--columns:3 v--width-column-max:40rem">
                 {% for review in pressReviews %}
                   <li class="card box">
-                    <blockquote>
+                    <blockquote class="reset italic flow space:0.5rem">
                       <p>{{ review.quote }}</p>
                       {% if review.cite %}
                         <footer>
@@ -163,7 +163,7 @@
               </ul>
               {% if pressReviewsDoc %}
                 <p class="text-center">
-                  {% link url=pressReviewsDoc, type="file", target="_blank", class="with-icon" %}{% icon "tablerOutline:download" %} Dossier de presse{% endlink %}
+                  {% link url=pressReviewsDoc, type="file", target="_blank", class="with-icon items-center" %}{% icon "tablerOutline:download" %} Dossier de presse{% endlink %}
                 </p>
               {% endif %}
             </section>
@@ -224,14 +224,16 @@
                Filtered to start_date >= today via Eleventy data cascade or
                a custom filter — TODO: add date filtering when ready
           ====================================================== -->
-          <section aria-labelledby="prochaines-dates" class="box-border">
-            <h2 id="prochaines-dates">Prochaines dates</h2>
-            {% if playProjects.future.length %}
-              {% partial "representationsCalendar.njk", { projects: playProjects.future | asc("start_date") } %}
-            {% else %}
-              <p>Aucune date pour le moment.</p>
-            {% endif %}
-          </section>
+          {% if "past" not in tags %}
+            <section aria-labelledby="prochaines-dates" class="box-border">
+              <h2 id="prochaines-dates">Prochaines dates</h2>
+              {% if playProjects.future.length %}
+                {% partial "representationsCalendar.njk", { projects: playProjects.future | asc("start_date") } %}
+              {% else %}
+                <p>Aucune date pour le moment.</p>
+              {% endif %}
+            </section>
+          {% endif %}
           <!-- =====================================================
                PAST DATES
                TODO: add date filtering (start_date < today) when ready
@@ -285,13 +287,20 @@
     top: var(--step-6);
     right: 0;
     padding: 0.2rem var(--step-6) 0.2rem 1rem;
-    border-radius: var(--radius-card);
-    --color-bg: hsl(from var(--gold) h s l / 0.6);
     background-color: transparent;
-    --bleed-left: 0;
-    --bleed-right: 100vw;
     background-origin: border-box;
     background-clip: content-box, border-box;
+  }
+  .status-tags > li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: hsl(from var(--gold) h s l / 0.6);
+    z-index: -1;
+    border-radius: var(--radius-tag);
   }
   .page-container > *:first-child:not(.cover-top) {
     margin-block-start: calc(var(--step-6) * 2);

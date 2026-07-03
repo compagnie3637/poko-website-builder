@@ -8,8 +8,8 @@ export default {
       );
       return {
         // all,
-        future: all.filter((p) => !p.past),
-        past: all.filter((p) => p.past),
+        future: all.filter((p) => !p.past && !p.ignore),
+        past: all.filter((p) => p.past && !p.ignore),
       };
     },
   },

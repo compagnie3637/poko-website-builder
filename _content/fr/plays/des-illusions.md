@@ -12,7 +12,7 @@ yearStart: 2016
 audienceAge: À partir de 14 ans
 duration: 55 minutes sans entracte
 setupDuration: Minimum 6h
-peopleOnTour: 5
+peopleOnTour: "5"
 audienceCapacity: Maximum 250 spectateurs
 stageDimensions: Minimum 9 x 8 x 4m
 folio: /assets/files/des-illusions/dossier_diffusion_desillusions.pdf
@@ -31,7 +31,7 @@ pressReviews:
   - quote: Foncez voir Des illusions de la Compagnie 3637, véritable volcan en fusion
     cite: Le Soir
 prizes:
-  - 'Prix de la critique 2017 : Meilleur spectacle jeune public'
+  - "Prix de la critique 2017 : Meilleur spectacle jeune public"
   - Prix de la Ministre de la Jeunesse & Coup de foudre de la presse lors des Rencontres Théâtre Jeune Public de Huy 2016
 creditsIntro: une création collective de la Compagnie 3637
 credits:

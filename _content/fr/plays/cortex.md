@@ -11,7 +11,7 @@ yearStart: 2013
 audienceAge: À partir de 8 ans
 duration: 55 minutes
 setupDuration: 3 à 5 h
-peopleOnTour: 4
+peopleOnTour: "4"
 audienceCapacity: 200 spectateurs
 stageDimensions: Minimum 8 x 6 x 5m
 picturesKit: /assets/files/cortex/visuels-pros-cortex-hd.zip

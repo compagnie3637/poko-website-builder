@@ -12,7 +12,7 @@ yearStart: 2019
 audienceAge: 10-14ans
 duration: 60 minutes + 15-20’ de bord de scène
 setupDuration: 4 à 6h
-peopleOnTour: 4
+peopleOnTour: "4"
 audienceCapacity: 100 pers
 stageDimensions: 9 x 13 x 3,8m
 folio: /assets/files/c-est-ta-vie/ctv_dossier.pdf
