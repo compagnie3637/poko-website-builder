@@ -103,7 +103,8 @@
   --width-section: var(--width-body);
   /*--width-inset: ;*/
   --width-featured: calc(var(--width-prose) / 1.618); /* 30.90 */
-  --width-card: calc(var(--width-prose) / 2.618); /* 19 */
+  /* --width-card: calc(var(--width-prose) / 2.618); 19 */
+  /* --width-card: calc(var(--width-prose) / 2); 25 */
   --width-token: calc(var(--width-prose) / 4.2358); /* 11.8 */
 
   --full-bleed-max-width: calc(var(--width-body) * 2);
@@ -254,11 +255,11 @@ html:focus-within {
 /* 1.4 Lists */
 
 /* 1.5 Quotes & Blockquotes */
-:where(q, blockquote) {
+:where(q, blockquote:not(.reset)) {
   font-style: italic;
 }
 
-:where(blockquote) {
+:where(blockquote:not(.reset)) {
   /* TODO: find a solution to indent because this conflicts with margin-inline: auto down below */
   /*margin-inline: 1em;*/
   padding-inline-start: 1em;

@@ -2836,6 +2836,34 @@ const globalSettingsSingleton = {
     //   required: false,
     //   hint: "Choose which custom nav file to use globally",
     // },
+    {
+      name: "newTabLinkTypes",
+      label: "Open links in a new tab",
+      hint: "Open those link types in a new tab by default.",
+      widget: "select",
+      multiple: true,
+      required: false,
+      options: [
+        { value: "external", label: "External" },
+        { value: "internal", label: "Internal" },
+        { value: "file", label: "File" },
+        { value: "email", label: "Email" },
+        // { value: "phone", label: "Phone" },
+      ],
+    },
+    {
+      name: `externalLinksRel`,
+      label: "External links rel",
+      hint: "Default rel attribute for external links",
+      widget: "select",
+      multiple: true,
+      required: false,
+      options: [
+        { value: "noopener", label: "noopener" },
+        { value: "noreferrer", label: "noreferrer" },
+        { value: "nofollow", label: "nofollow" },
+      ],
+    },
   ],
 };
 

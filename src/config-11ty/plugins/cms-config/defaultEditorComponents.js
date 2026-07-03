@@ -1369,6 +1369,13 @@ export const link = {
               required: false,
               hint: "Optional anchor. Link to any title by copy-pasting it here",
             },
+            {
+              name: "newTab",
+              label: "Open link in new tab",
+              widget: "boolean",
+              required: false,
+              default: false,
+            },
           ],
         },
         ...activeCollections.map((collection) => ({
@@ -1394,6 +1401,13 @@ export const link = {
               required: false,
               hint: "Optional anchor. Link to any title by copy-pasting it here",
             },
+            {
+              name: "newTab",
+              label: "Open link in new tab",
+              widget: "boolean",
+              required: false,
+              default: false,
+            },
           ],
         })),
         {
@@ -1406,6 +1420,13 @@ export const link = {
               widget: "string",
               required: true,
               default: "https://",
+            },
+            {
+              name: "newTab",
+              label: "Open link in new tab",
+              widget: "boolean",
+              required: false,
+              default: false,
             },
           ],
         },
@@ -1472,6 +1493,21 @@ export const link = {
               media_folder: `/${CONTENT_DIR}/_files`,
               public_folder: "/assets/files",
             },
+            {
+              name: "download",
+              label: "Download",
+              hint: "Opens a download prompt instead of opening the file in the browser",
+              widget: "boolean",
+              required: false,
+              default: false,
+            },
+            {
+              name: "newTab",
+              label: "Open link in new tab",
+              widget: "boolean",
+              required: false,
+              default: false,
+            },
           ],
         },
       ],
@@ -1504,27 +1540,39 @@ export const link = {
   pattern: /{%\s*link\s*([^>]*?)\s*%}(.*?){% endlink %}/,
   fromBlock: function (match) {
     const argumentsString = match[1] || "";
-    const text = extractQuotedString(argumentsString, "text") || "";
-    const content = match[2] || text;
-    const url = extractQuotedString(argumentsString, "url") || "";
-    const anchor = extractQuotedString(argumentsString, "anchor") || "";
-    const linkType = extractQuotedString(argumentsString, "linkType") || "";
-    let type = extractQuotedString(argumentsString, "type") || linkType || "";
-    let collection = extractQuotedString(argumentsString, "collection") || "";
-    const cc = extractQuotedString(argumentsString, "cc") || "";
-    const bcc = extractQuotedString(argumentsString, "bcc") || "";
-    const subject = extractQuotedString(argumentsString, "subject") || "";
-    let body = extractQuotedString(argumentsString, "body") || "";
-    body = fromQuotableString(body);
 
-    // Clean up otherAttrs by removing a leading comma and the attributes we've already parsed
-    const otherAttrs = argumentsString
-      .replace(/^\s*,\s*/, "")
-      .replace(
-        /(text|content|url|linkType|type|collection|cc|bcc|subject|body|anchor)="[^"]*"(?:\s*,)?/g,
-        "",
-      )
-      .trim();
+    const { extracted, remaining: otherAttrs } = extractAttributes(
+      argumentsString,
+      [
+        "text",
+        "content",
+        "url",
+        "anchor",
+        "download",
+        "newTab",
+        "linkType",
+        "type",
+        "collection",
+        "cc",
+        "bcc",
+        "subject",
+        "body",
+      ],
+    );
+
+    const text = extracted.text || "";
+    const content = match[2] || extracted.content || text;
+    const url = extracted.url || "";
+    const anchor = extracted.anchor || "";
+    const download = extracted.download ?? false;
+    const newTab = extracted.newTab ?? false;
+    const linkType = extracted.linkType || "";
+    let type = extracted.type || linkType || "";
+    let collection = extracted.collection || "";
+    const cc = extracted.cc || "";
+    const bcc = extracted.bcc || "";
+    const subject = extracted.subject || "";
+    let body = fromQuotableString(extracted.body || "");
 
     function isFileUrl(urlString) {
       try {
@@ -1541,7 +1589,7 @@ export const link = {
     }
 
     if (!type) {
-      // Atribute a type if it is not provided
+      // Attribute a type if it is not provided
       if (url.startsWith("http") || url.startsWith("www.")) {
         type = "external";
       } else if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(url)) {
@@ -1573,6 +1621,8 @@ export const link = {
         type: type === "internal" ? collection : type,
         url,
         anchor,
+        download,
+        newTab,
         ...(type === "email" && advanced ? { advanced } : {}),
       },
       // text: text || "",
@@ -1586,6 +1636,8 @@ export const link = {
     let type = data?.linkType?.type;
     const url = data?.linkType?.url;
     const anchor = data?.linkType?.anchor;
+    const download = data?.linkType?.download;
+    const newTab = data?.linkType?.newTab;
     const advanced = data?.linkType?.advanced || {};
     const { cc, bcc, subject, body } = advanced;
     const otherAttrs = data?.otherAttrs;
@@ -1593,8 +1645,8 @@ export const link = {
 
     let attrsStr = "";
 
-    if (type === "external" || type === "file") {
-      attrsStr = njkAttrsStringFromObj({ url, type });
+    if (type === "external") {
+      attrsStr = njkAttrsStringFromObj({ url, type, download, newTab });
     } else if (type === "email") {
       attrsStr = njkAttrsStringFromObj({
         url,
@@ -1604,12 +1656,20 @@ export const link = {
         subject,
         body: toQuotableString(body),
       });
+    } else if (type === "file") {
+      attrsStr = njkAttrsStringFromObj({
+        url,
+        type,
+        download,
+        newTab,
+      });
     } else {
       attrsStr = njkAttrsStringFromObj({
         url,
         anchor,
         type: "internal",
         collection: type,
+        newTab,
       });
     }
 

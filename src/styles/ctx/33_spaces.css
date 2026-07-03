@@ -217,7 +217,7 @@
 } /* prettier-ignore */
 
 /* Special case for ul and ol: base setup */ /* prettier-ignore */
-:where(blockquote) {
+:where(blockquote:not(.reset)) {
     padding-inline-start: var(--offset-blockquote, 1rem);
 } /* Special case for ul and ol: nested */ /* prettier-ignore */
 /* TODO: find a way to display the blockquote indent bar without margin because this breaks the general prose centering */

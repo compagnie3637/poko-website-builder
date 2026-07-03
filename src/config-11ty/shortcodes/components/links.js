@@ -17,7 +17,17 @@ function isFileUrl(urlString) {
   }
 }
 
+function stringifyAttributesObject(attrs) {
+  return Object.entries(attrs)
+    .filter(([, value]) => value)
+    .map(([key, value]) => (value === true ? key : `${key}="${value}"`))
+    .join(" ");
+}
+
 export async function link(unnamedAttrOrObj, optionalAttrsObj) {
+  const newTabLinkTypes = this.ctx?.globalSettings?.newTabLinkTypes || [];
+  const externalLinksRel = this.ctx?.globalSettings?.externalLinksRel || [];
+
   const {
     __keywords,
     url,
@@ -35,9 +45,10 @@ export async function link(unnamedAttrOrObj, optionalAttrsObj) {
     cc,
     bcc,
     preload,
-    // TODO: implement the following?
-    // download,
-    // target,
+    newTab,
+    // download, // Field added but can be treated as other raw attrs
+    // Fields not implemented in UI. Should we?
+    target,
     // rel,
     // hreflang,
     ...attrs
@@ -73,6 +84,25 @@ export async function link(unnamedAttrOrObj, optionalAttrsObj) {
   //
   // pageRef | locale_url(lang, propName, collectionName)
 
+  // const attrs = {
+  //   ...attrsRaw,
+  //   target: target || (newTab && "_blank") || (newTabLinkTypes.includes("internal") && "_blank");
+  //   // ...(newTab ? { target: attrsRaw?.target || "_blank" } : {}),
+  // };
+
+  // const attrsStr = Object.entries(attrs)
+  //   .filter(([, value]) => value)
+  //   .map(([key, value]) => (value === true ? key : `${key}="${value}"`))
+  //   .join(" ");
+
+  function inferTarget(linkType) {
+    return (
+      target ||
+      (newTab && "_blank") ||
+      (newTabLinkTypes.includes(linkType) && "_blank")
+    );
+  }
+
   if (isInternal) {
     const pageData = locale_url.call(
       this,
@@ -81,25 +111,31 @@ export async function link(unnamedAttrOrObj, optionalAttrsObj) {
       prop || "all",
       collection,
     );
-    const attrsStr = Object.entries(attrs)
-      .map(([key, value]) => `${key}="${value}"`)
-      .join(" ");
 
     if (typeof pageData === "object") {
+      const attrsStr = stringifyAttributesObject({
+        ...attrs,
+        target: inferTarget("internal"),
+      });
       const anchorStr = anchor ? `#${slugify(anchor)}` : "";
       return `<a href="${pageData.url}${anchorStr}" ${attrsStr} ${instantAttrStr}>${htmlContent || pageData.name || pageData.url}</a>`;
     }
   }
 
   if (isExternal) {
-    const attrsStr = Object.entries(attrs)
-      .map(([key, value]) => `${key}="${value}"`)
-      .join(" ");
-
+    const attrsStr = stringifyAttributesObject({
+      ...attrs,
+      target: inferTarget("external"),
+      rel: attrs.rel || externalLinksRel.join(" ") || null,
+    });
     return `<a href="${urlRef}" ${attrsStr} ${instantAttrStr}>${htmlContent || urlRef}</a>`;
   }
 
   if (isEmail) {
+    const attrsStr = stringifyAttributesObject({
+      ...attrs,
+      target: inferTarget("email"),
+    });
     return emailLink.call(this, urlRef, {
       text: htmlContent,
       subject,
@@ -111,10 +147,10 @@ export async function link(unnamedAttrOrObj, optionalAttrsObj) {
   }
 
   if (isFile) {
-    const attrsStr = Object.entries(attrs)
-      .map(([key, value]) => `${key}="${value}"`)
-      .join(" ");
-
+    const attrsStr = stringifyAttributesObject({
+      ...attrs,
+      target: inferTarget("file"),
+    });
     return `<a href="${urlRef}" ${attrsStr} ${instantAttrStr}>${htmlContent || urlRef}</a>`;
   }
 
