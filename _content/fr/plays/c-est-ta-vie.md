@@ -12,7 +12,7 @@ yearStart: 2019
 audienceAge: 10-14ans
 duration: 60 minutes + 15-20’ de bord de scène
 setupDuration: 4 à 6h
-peopleOnTour: "4"
+peopleOnTour: '4'
 audienceCapacity: 100 pers
 stageDimensions: 9 x 13 x 3,8m
 folio: /assets/files/c-est-ta-vie/ctv_dossier.pdf
@@ -78,13 +78,13 @@ more: |-
   ### Outils
 
   En plus de cela, la compagnie propose différents outils pour accompagner le spectacle : 
-  – un dossier pédagogique à destination des enseignants (pouvant notamment être exploité dans le cadre du cours de Philosophie et citoyenneté)
-  – un podcast : produit par ékla, en coproduction avec l’ACSR, réalisé par Zoé Suliko sous l’impulsion commune de ékla et de la compagnie 3637. A écouter par ici
-  – des ateliers sur base d’une des thématiques ou scènes du spectacle (contactez directement la compagnie pour plus d’information)
+  – un {% link url="https://www.dropbox.com/scl/fi/qwk2meukissp3ca1kgkd5/CTV_dossier-pedagogique.pdf?rlkey=fr1s4dm9nhvm3e9v8mx6m82vc&st=3nal0pr7&dl=0", type="external", newTab=true %}dossier pédagogique{% endlink %} à destination des enseignants (pouvant notamment être exploité dans le cadre du cours de Philosophie et citoyenneté)
+  – un {% link url="https://soundcloud.com/user-540557740/cest-ta-vie-podcast", type="external", newTab=true %}podcast{% endlink %}: produit par ékla, en coproduction avec l’ACSR, réalisé par Zoé Suliko sous l’impulsion commune de ékla et de la compagnie 3637.
+  – des {% link url="https://www.dropbox.com/scl/fi/8kuwk8ald6r69741bacwr/CTV_ateliers-ecriture.pdf?rlkey=2bp00s3s3m1zh7jbnzxvzkgwb&st=0sg1eza2&dl=0", type="external", newTab=true %}ateliers d'écriture{% endlink %} sur base d’une des thématiques ou scènes du spectacle. Contactez directement la compagnie pour plus d’information.
 
   ### Édition
 
-  Le texte du spectacle a été publié chez Lansman Editeur, dans la collection Lansman Poche, 2020. [En savoir +]
+  Le texte du spectacle a été {% link url="http://www.lansman.be/editions/publication_detail.php?rec_numero=1295", type="external", newTab=true %}publié chez Lansman Éditeur{% endlink %}, dans la collection Lansman Poche, 2020.
 thanks: |-
   ## Merci à
 
@@ -118,7 +118,6 @@ thanks: |-
 coverBottom: /_images/c-est-ta-vie/cesttavie-91-inverse-uee.webp
 tags:
   - on-tour
-vars: {}
 pageStyles: |-
   .cover-bottom {
     object-position: center 80%;

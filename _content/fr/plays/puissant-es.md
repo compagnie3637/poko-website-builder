@@ -12,7 +12,7 @@ yearStart: 2023
 audienceAge: 14ans+
 duration: 55’ (sans entracte) +15’ de bord de scène en représentation scolaire
 setupDuration: 6 à 8h
-peopleOnTour: "5"
+peopleOnTour: '5'
 audienceCapacity: 180 à 220 spectateurs maximum
 stageDimensions: Minimum 8 x 7 x 4,75m
 folio: /assets/files/puissant-es/puissant-es_dossier.pdf
@@ -55,7 +55,7 @@ credits:
 approach: |-
   ## Note d'intention
 
-  Il y a 5 ans (en 2016) nous présentions le spectacle Des Illusions. La fin promettait à notre héroïne une sortie du cadre normatif que lui proposait la société et qui l'oppressait. Nous nous rappelons nos nombreuses discussions avec les jeunes. Iels se sentaient très lié.es au ressenti de Emma, notre protagoniste, mais une impuissance les paralysait et cette question les hantait : « Oui mais concrètement ? Comment faire pour sortir de ce cadre ? ». Petit à petit, les Fridays for Future initiés par la jeunesse nous ont semblé une réponse incroyable ! Et puis le confinement a tout stoppé. Nous avons discuté avec des jeunes de rhétos qui avaient participé à ces actions : certain·es ont été découragé.es par le peu de changement que cela a engendré. D'autres avaient encore plus de rage, la conviction qu'il faut aller plus loin, voire "tout péter !" pour créer l'impact. La question de comment s'engager, de comment canaliser sa colère, son débordement vers le changement, est devenue centrale.
+  Il y a 5 ans (en 2016) nous présentions le spectacle Des Illusions. La fin promettait à notre héroïne une sortie du cadre normatif que lui proposait la société et qui l'oppressait. Nous nous rappelons nos nombreuses discussions avec les jeunes. Iels se sentaient très lié.es au ressenti de Emma, notre protagoniste, mais une impuissance les paralysait et cette question les hantait : « Oui mais concrètement ? Comment faire pour sortir de ce cadre ? ». Petit à petit, les {% link url="https://fridaysforfuture.org/", type="external", newTab=true %}Fridays for Future{% endlink %} initiés par la jeunesse nous ont semblé une réponse incroyable ! Et puis le confinement a tout stoppé. Nous avons discuté avec des jeunes de rhétos qui avaient participé à ces actions : certain·es ont été découragé.es par le peu de changement que cela a engendré. D'autres avaient encore plus de rage, la conviction qu'il faut aller plus loin, voire "tout péter !" pour créer l'impact. La question de comment s'engager, de comment canaliser sa colère, son débordement vers le changement, est devenue centrale.
 
   « Tout péter ! » Que voulait dire ce jeune exactement ? Était-il prêt à la violence ? À l'heure où notre génération est globalement non violente, où la répression policière est de plus en forte, où les lois sur les manifestations se durcissent, où les initiatives de résistances sont étouffées, où les corps se sentent impuissants, où les perspectives sont inexistantes. Le souvenir de cette discussion est le déclenchement de cette création. Le développement de ce nouveau spectacle serait, lui, comme la suite de ce que nous avions souhaité à Emma en 2016. C'est pourquoi nous choisissons de parler concrètement de luttes et de résistances.
 
@@ -80,14 +80,16 @@ more: |-
 
   ### Bords de scène
 
-  Après chaque représentation scolaire, les comédiennes échangent à chaud avec les spectateurices. C'est le moment de partager librement les premiers ressentis et d'engager la discussion afin qu'elle puisse se prolonger dans un deuxième temps plus facilement au sein des classes ou en famille.
+  Après chaque représentation scolaire, les comédiennes échangent à chaud avec les spectateur•ices. C'est le moment de partager librement les premiers ressentis et d'engager la discussion afin qu'elle puisse se prolonger dans un deuxième temps plus facilement au sein des classes ou en famille.
 
   ### Outils
 
-  – un dossier d'accompagnement destiné aux enseignant·es
-  – des ateliers avant et/ou après le spectacle (contactez directement la compagnie pour plus d'informations)
-  – la bande son du spectacle accessible via un QR code disponible sur l'affiche ou [par ici](https://linktr.ee/Compagnie3637)
-  – des références : parmi les références cinématographiques, quelques bandes annonces inspirantes telles que celles de : L'époque de Matthieu Bareyre, [Planet B](https://www.youtube.com/watch?v=OWrfxtSQSUI) de Pieter Van Eecke
+  - un {% link url="/assets/files/puissant-es/accompagnement-puissantes.pdf", type="file", newTab=true %}dossier d'accompagnement{% endlink %} destiné aux enseignant·es
+  - des ateliers avant et/ou après le spectacle (contactez directement la compagnie pour plus d'informations)
+  - la {% link url="https://soundcloud.com/compagnie-3637/sets/puissantes", type="external" %}bande son du spectacle{% endlink %} (aussi accessible via un QR code sur l'affiche)
+  - des références cinématographiques inspirantes telles que:
+      - {% link url="https://www.youtube.com/watch?v=eSY1X3uuK8Q", type="external", newTab=true %}la bande annonce de _L'époque_ de Matthieu Bareyre{% endlink %}
+      - {% link url="https://www.youtube.com/watch?v=OWrfxtSQSUI", type="external", newTab=true %}la bande annonce de _Planet B_ de Pieter Van Eecke{% endlink %}
 thanks: |-
   ## Merci à
 
