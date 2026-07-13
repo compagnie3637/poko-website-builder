@@ -30,9 +30,10 @@ pressReviews:
     cite: La Libre Belgique
   - quote: Foncez voir Des illusions de la Compagnie 3637, véritable volcan en fusion
     cite: Le Soir
-prizes:
-  - "Prix de la critique 2017 : Meilleur spectacle jeune public"
+notableMentions:
+  - Prix de la critique 2017: Meilleur spectacle jeune public
   - Prix de la Ministre de la Jeunesse & Coup de foudre de la presse lors des Rencontres Théâtre Jeune Public de Huy 2016
+  - Représenté 80 fois en Belgique et en France
 creditsIntro: une création collective de la Compagnie 3637
 credits:
   Mise en scène: Baptiste Isaia

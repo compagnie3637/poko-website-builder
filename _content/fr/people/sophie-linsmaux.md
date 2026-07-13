@@ -8,7 +8,7 @@ name: Sophie Linsmaux
 metadata:
   image:
     src: /_images/sophie-linsmaux-nb.webp
-  jobTitle: Fondatrice et direction artistique
+  jobTitle: Direction artistique
   email: sophie@compagnie3637.be
 tags:
   - founder

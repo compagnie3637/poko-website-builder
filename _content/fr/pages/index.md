@@ -21,20 +21,6 @@ Depuis 2008, à Bruxelles, la Compagnie 3637 explore le théâtre - et bien plus
 {% sectionCollection  %}
 {% sectionHeader  %}
 
-## Spectacles en tournée
-
-{% endsectionHeader %}
-{% collection collection="plays", filters=[{"by":"tag","value":["on-tour"]}], sortCriterias=[], type="reel", itemWidth="min(30rem,90%)", itemPartial="card-play-detailed" %}{% endcollection %}
-
-{% endsectionCollection %}
-
-{% wrapper tag="div" %}
-{% image src="/_images/019.webp", aspectRatio=3, class="full-bleed" %}
-{% endwrapper %}
-
-{% sectionCollection  %}
-{% sectionHeader  %}
-
 ## Actu'
 
 {% endsectionHeader %}
@@ -43,3 +29,17 @@ Depuis 2008, à Bruxelles, la Compagnie 3637 explore le théâtre - et bien plus
 {% endsectionCollection %}
 
 {% htmlPartial "instagram-embed.njk" %}
+
+{% wrapper tag="div" %}
+{% image src="/_images/019.webp", aspectRatio=3, class="full-bleed" %}
+{% endwrapper %}
+
+{% sectionCollection  %}
+{% sectionHeader  %}
+
+## Spectacles en tournée
+
+{% endsectionHeader %}
+{% collection collection="plays", filters=[{"by":"tag","value":["on-tour"]}], sortCriterias=[], type="reel", itemWidth="min(30rem,90%)", itemPartial="card-play-detailed" %}{% endcollection %}
+
+{% endsectionCollection %}

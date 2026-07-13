@@ -8,7 +8,7 @@ name: Coralie Vanderlinden
 metadata:
   image:
     src: /_images/coralie-vanderlinden.webp
-  jobTitle: Fondatrice et direction artistique
+  jobTitle: Direction artistique
   email: coralie@compagnie3637.be
 tags:
   - founder

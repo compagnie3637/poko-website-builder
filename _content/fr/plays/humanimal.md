@@ -28,8 +28,9 @@ pressReviews:
     cite: La Libre Belgique, août 2018
   - quote: Partant de notre état sauvage, Bénédicte Mottart danse notre rapport au monde. (…) De ses mains plongées dans l'encre noire naissent forêts, nuages, oiseaux, méduses, baleines. De ses mouvements émergent nos instincts contradictoires. De la musique jaillit une mystérieuse harmonie. (…) Suave et raffiné.
     cite: Le Soir, août 2018
-prizes:
-  - "Rencontres de Huy 2018 – Mention spéciale du jury: « une expérience singulière »"
+notableMentions:
+  - Rencontres de Huy 2018 – Mention spéciale du jury: « une expérience singulière »
+  - Représenté 60 fois en Belgique, France et Luxembourg
 creditsIntro: Concept & chorégraphie Bénédicte Mottart
 credits:
   Concept & chorégraphie: Bénédicte Mottart

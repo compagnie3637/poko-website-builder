@@ -22,8 +22,10 @@ summary: Ella ne dit pas que c'est vrai, elle dit qu'elle s'en souvient… Le te
 pressReviews:
   - quote: Entre danse et flot de paroles prégnantes, confusion et limpidité, nouveauté et étrangeté, « Cortex », qui en appelle à la mémoire, à son interprétation, interpelle et ensorcelle
     cite: La Libre
-prizes:
+notableMentions:
   - Prix de la Ministre de la Culture lors des rencontres de Huy 2013
+  - Sélectionné par les Doms et les Hivernales au Festival d’Avignon en 2015
+  - Représenté 70 fois en Belgique et en France
 creditsIntro: Création collective Bénédicte Mottart, Coralie Vanderlinden, Philippe Lecrenier et Martin Mahaux
 credits:
   Mise en scène: Baptiste Isaia

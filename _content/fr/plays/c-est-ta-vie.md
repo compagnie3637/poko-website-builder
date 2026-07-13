@@ -28,6 +28,9 @@ summary: |-
 pressReviews:
   - quote: C’est ta vie réussit un petit bijou de délicatesse sans rien occulter et en se situant toujours à hauteur des jeunes ados…
     cite: Le soir, JMW, 30/12/19
+notableMentions:
+  - Présenté au festival Noël au Théâtre 2019
+  - Prix de la ministre de la Jeunesse & Coup de foudre de la Presse aux Rencontres de Huy
 creditsIntro: |-
   Création collective de la Compagnie 3637
   Ecriture collective
@@ -118,6 +121,7 @@ thanks: |-
 coverBottom: /_images/c-est-ta-vie/cesttavie-91-inverse-uee.webp
 tags:
   - on-tour
+vars: {}
 pageStyles: |-
   .cover-bottom {
     object-position: center 80%;

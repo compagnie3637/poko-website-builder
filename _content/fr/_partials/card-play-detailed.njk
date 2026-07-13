@@ -9,10 +9,10 @@
       <a href="{{ url }}">{{ name }}</a>
     </h3>
     <hr class="mbe-0"/>
-    {% if playProjects.future.length %}
+    {% if playProjects.past.length > 10 %}
       <p class="dates with-icon items-center">
         {% icon "tablerOutline:calendar-week" %}
-        <span>{{ playProjects.future.length }} dates</span>
+        <span>{{ playProjects.past.length }} représentations données</span>
       </p>
     {% endif %}
     {% if summary %}

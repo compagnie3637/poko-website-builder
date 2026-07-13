@@ -29,9 +29,10 @@ summary: |-
 pressReviews:
   - quote: Un spectacle de marionnettes plein d’humour et de tendresse qui botte les fesses aux clichés, mêle jeu d’acteur et la manipulation et file un coup de jeune à celle-ci parvenant à donner à leur personnage une gestuelle résolument actuelle
     cite: Le Soir
-prizes:
+notableMentions:
   - Prix du Kiwanis décerné par la Presse
   - Prix de la Province de Liège lors des rencontres de Huy 2010
+  - Représenté près de 750 fois en Belgique et en France
 creditsIntro: d'après Thierry Lenain
 credits:
   Mise en scène: Baptiste Isaia

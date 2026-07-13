@@ -1,7 +1,7 @@
 {% set compagnie = collections.organizations | filterCollection({ by:"slug", value: "compagnie-3637"}) | first %}
 {% set metadata = compagnie.data.metadata %}
 <footer
-    class="site-footer flow-1rem palette--contrast palette--pop bleed-bg v--size-icon:30px fonts-info"
+    class="site-footer flow-1rem palette--contrast palette--pop bleed-bg v--size-icon:30px fonts-info small"
     role="contentinfo">
     <div class="footer-container cluster">
         <section class="footer-link prose flow items-center" aria-label="Liens">
@@ -23,7 +23,7 @@
             </nav>
         </section>
         <section class="footer-info prose flow space:--step--3 text-center" aria-label="Informations légales">
-            <p class="copyright h3">&copy; {{ metadata.legalName }}</p>
+            <p class="copyright h4">&copy; {{ metadata.legalName }}</p>
             <address class="company-address">
                 <p>
                     <strong>Siège social:</strong>

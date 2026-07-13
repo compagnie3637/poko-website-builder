@@ -11,7 +11,7 @@ yearStart: 2014
 audienceAge: 8-12ans
 duration: 1h
 setupDuration: 4 à 6h
-peopleOnTour: "5"
+peopleOnTour: '5'
 audienceCapacity: 180 spectateurs
 stageDimensions: Min 7 x 7 x 4m
 folio: /assets/files/les-desobeisseurs/les-desobeisseurs_dossier-de-presentation.pdf
@@ -30,6 +30,8 @@ summary: |-
 pressReviews:
   - quote: Les désobéisseurs convoquent des genres très différents, sans aucune prétention, si ce n’est d’embarquer intelligemment les enfants sur le chemin de la résistance
     cite: Le Soir
+notableMentions:
+  - Présenté aux rencontres de Huy en 2013
 creditsIntro: Texte Jean-Michel d'Hoop et Coralie Vanderlinden
 credits:
   Mise en scène: Jean-Michel d'Hoop
@@ -74,4 +76,5 @@ thanks: |-
   Ministère de la Fédération Wallonie-Bruxelles – Service Théâtre, la Coopération belge au développement et des Iles de Paix.
 tags:
   - past
+vars: {}
 ---

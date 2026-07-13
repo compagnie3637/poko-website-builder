@@ -33,6 +33,9 @@ pressReviews:
   - quote: Un formidable concentré d'énergie, où s'allient poids des mots et feu de la colère comme vecteur d'expression et d'action
     cite: La libre, sept 2023
   - quote: Puissant·es est le cri de révolte de trois ados qui traversent la ville dans l’obscurité de la nuit, et découvrent la joie enivrante de résister ensemble.
+notableMentions:
+  - Première le 25/09/2023 au Vilar
+  - Présentation au Rencontres de Huy 2024
 creditsIntro: |-
   Création collective de la Compagnie 3637
   Ecriture collective
@@ -117,4 +120,5 @@ thanks: |-
   Le Champilambart de Vallet (FR), l'ANCRE – Théâtre Royal, le Centre culturel du Brabant wallon, le Centre Culturel d'Ans, le Centre culturel de Chênée et le Théâtre de la montagne magique.
 tags:
   - on-tour
+vars: {}
 ---
