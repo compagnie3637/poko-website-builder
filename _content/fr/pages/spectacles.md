@@ -8,7 +8,7 @@ name: Spectacles
 sections:
   - type: sectionCollection
     header:
-      content: '## En tournée'
+      content: "## En tournée"
     layoutOptions:
       type: reel
       itemWidth: min(30rem,90%)
@@ -23,7 +23,7 @@ sections:
     itemPartial: card-play-detailed
   - type: sectionCollection
     header:
-      content: '## Prochainement'
+      content: "## Prochainement"
     layoutOptions:
       type: reel
       itemWidth: min(30rem,90%)
@@ -37,10 +37,8 @@ sections:
       exclusions: false
     itemPartial: card-play-detailed
   - type: sectionCollection
-    sectionWrapper:
-      class: buggy
     header:
-      content: '## Passés'
+      content: "## Passés"
     layoutOptions:
       type: reel
       itemWidth: min(30rem,90%)

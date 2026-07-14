@@ -142,7 +142,7 @@ async function fetchStructure(pk) {
   const { data, fromCache } = await cachedFetch(
     `${BASE_URL}/structure/${pk}/`,
     {
-      duration: "23h",
+      duration: "2w",
       type: "json",
       fetchOptions: { headers: { Authorization: `Token ${apiKey}` } },
     },

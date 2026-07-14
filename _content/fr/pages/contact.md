@@ -48,7 +48,7 @@ eleventyNavigation:
 {% gridItem class="text-center flow" %}
 ## Régie générale { .h3 }
 
-{% htmlPartial "card-person-contact-info.njk", {"name":"Amélie Dubois & Brice Tellier","email":"technique@compagnie3637.be"} %}
+{% htmlPartial "card-person-contact-info.njk", {"name": "", "email":"technique@compagnie3637.be"} %}
 {% endgridItem %}
 {% endgrid %}
 

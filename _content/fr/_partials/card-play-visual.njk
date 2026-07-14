@@ -1,0 +1,48 @@
+{% set pair = index % 2 %}
+{% if cover %}
+  <article
+    class="card-play-visual card pile pb-0 fonts-info breakout-clickable {{ "
+    mbs-section" if pair == 0 and items.length > 1 else "
+    mbs-0" }}">
+    <figure class="card-cover px-0">
+      {% image src=cover, alt=name, class="" + (" vt-name-cover-" + name | slugify) %}
+    </figure>
+    <h3 class="fonts-main {{ " vt-name-heading-" + name | slugify }}">
+      <a href="{{ url }}">{{ name }}</a>
+    </h3>
+  </article>
+{% endif %}
+<style>
+  .card-play-visual {
+    block-size: 50rem;
+    max-block-size: 80vh;
+  }
+  .card-play-visual figure,
+  .card-play-visual img {
+    block-size: 100%;
+  }
+  .card-play-visual h3 {
+    align-self: end;
+    justify-self: stretch;
+    text-align: center;
+    word-break: break-word;
+  }
+  .card-play-visual a {
+    display: block;
+    padding-inline: 0.4rem;
+    padding-block-end: 0.5em;
+    color: transparent;
+    background-color: rgba(0, 0, 0, 0);
+    transition: all 0.3s ease;
+  }
+  .card-play-visual a:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  @media(max-width: 50rem) {
+    /* Overrides the mbs- classes above to avoid gap on mobile */
+    .card-play-visual {
+      margin-block-start: 0;
+    }
+  }
+</style>

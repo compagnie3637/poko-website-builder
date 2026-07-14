@@ -6,7 +6,7 @@ createdAt: 2026-06-08T13:47:00.000Z
 ldType: CreativeWork
 name: C'est ta vie
 orfeoId: 33642
-cover: /_images/c-est-ta-vie/cesttavie-3.webp
+cover: /_images/c-est-ta-vie/c-est-ta-vie-mh-tercafs-2.webp
 representationType: Théâtre
 yearStart: 2019
 audienceAge: 10-14ans
@@ -121,7 +121,6 @@ thanks: |-
 coverBottom: /_images/c-est-ta-vie/cesttavie-91-inverse-uee.webp
 tags:
   - on-tour
-vars: {}
 pageStyles: |-
   .cover-bottom {
     object-position: center 80%;

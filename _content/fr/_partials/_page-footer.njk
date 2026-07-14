@@ -42,7 +42,7 @@
             </div>
         </section>
         <figure class="footer-logo" aria-label="Logo Compagnie 3637">
-            {% partial "logo.njk", { style: "width: 150px;" } %}
+            {% partial "logo.njk", { style: "width: var(--step-9);" } %}
         </figure>
     </div>
     <div class="footer-credits text-center color-[--turquoise-dark] small">
@@ -54,3 +54,10 @@
         </p>
     </div>
 </footer>
+<style>
+    @media(max-width: 45rem) {
+        .footer-container {
+            flex-direction: column;
+        }
+    }
+</style>
