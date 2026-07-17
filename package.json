@@ -12,7 +12,7 @@
   "type": "module",
   "module": "index.ts",
   "dependencies": {
-    "@sveltia/cms": "^0.168.0"
+    "@sveltia/cms": "0.170.0"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",

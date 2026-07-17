@@ -5,7 +5,7 @@
     "": {
       "name": "poko-website-builder",
       "dependencies": {
-        "@sveltia/cms": "^0.168.0",
+        "@sveltia/cms": "0.170.0",
       },
       "devDependencies": {
         "@11ty/eleventy": "^3.1.2",
@@ -339,7 +339,7 @@
 
     "@speed-highlight/core": ["@speed-highlight/core@1.2.14", "", {}, "sha512-G4ewlBNhUtlLvrJTb88d2mdy2KRijzs4UhnlrOSRT4bmjh/IqNElZa3zkrZ+TC47TwtlDWzVLFADljF1Ijp5hA=="],
 
-    "@sveltia/cms": ["@sveltia/cms@0.168.0", "", {}, "sha512-8ADEu9dpveL403BibDWlxnkXzLbIUNAdktQ3aXZx+3l45g5KP0g//Q/udkQHlYnltXGuG3UUbwHJ5viLBd2lvA=="],
+    "@sveltia/cms": ["@sveltia/cms@0.170.0", "", {}, "sha512-2bGgc5YT67YM+p0w7UeZaOgpw//9spHvlA2B+88NJPZRjucGbw+X8Frkrpi6f9os5dyq9Z9/RF+T/TcbxxfrIA=="],
 
     "@tabler/icons": ["@tabler/icons@3.34.0", "", {}, "sha512-jtVqv0JC1WU2TTEBN32D9+R6mc1iEBuPwLnBsWaR02SIEciu9aq5806AWkCHuObhQ4ERhhXErLEK7Fs+tEZxiA=="],
 

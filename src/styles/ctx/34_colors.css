@@ -4,16 +4,16 @@
  * Five-layer stack, top-down:
  *
  *   1. Tokens        raw named colors                (--gray, --white, ...)
- *   2. Palettes      token -> per-palette role       (--read-palette, --neutral-palette, --pop-palette, --tone-palette)
- *   3. Slots         active permutation (public)     (--read, --neutral, --pop, --tone)
+ *   2. Palettes      token -> per-palette role       (--color-read-palette, --color-neutral-palette, --color-pop-palette, --color-tone-palette)
+ *   3. Slots         active permutation (public)     (--color-read, --color-neutral, --color-pop, --color-tone)
  *   4. Intent        semantic, namespaced            (--color-text, --color-bg, --color-accent, ...)
  *   5. Elements      CSS properties                  (color: var(--color-text))
  *
  * ROLES
- *   --read-palette / --read      dominant foreground (the text you read)
- *   --neutral-palette / --neutral   default background surface
- *   --pop-palette / --pop        highlight / call attention
- *   --tone-palette / --tone      supporting tone / secondary
+ *   --color-read-palette / --color-read      dominant foreground (the text you read)
+ *   --color-neutral-palette / --color-neutral   default background surface
+ *   --color-pop-palette / --color-pop        highlight / call attention
+ *   --color-tone-palette / --color-tone      supporting tone / secondary
  *
  * VARIANTS (absolute permutations)
  *   Each variant is a COMPLETE 4-slot permutation. It reads from the
@@ -78,72 +78,72 @@
   .palette--default,
   .palette--reset,
   .palette--read {
-    --read: var(--read-palette);
-    --neutral: var(--neutral-palette);
-    --pop: var(--pop-palette);
-    --tone: var(--tone-palette);
+    --color-read: var(--color-read-palette);
+    --color-neutral: var(--color-neutral-palette);
+    --color-pop: var(--color-pop-palette);
+    --color-tone: var(--color-tone-palette);
   }
 
   /* Contrast: swap r <-> n. */
   .palette--contrast {
-    --read: var(--neutral-palette);
-    --neutral: var(--read-palette);
-    --pop: var(--pop-palette);
-    --tone: var(--tone-palette);
+    --color-read: var(--color-neutral-palette);
+    --color-neutral: var(--color-read-palette);
+    --color-pop: var(--color-pop-palette);
+    --color-tone: var(--color-tone-palette);
   }
 
   /* Pop: swap r <-> p. */
   .palette--pop,
   .palette--accent {
-    --read: var(--pop-palette);
-    --neutral: var(--neutral-palette);
-    --pop: var(--read-palette);
-    --tone: var(--tone-palette);
+    --color-read: var(--color-pop-palette);
+    --color-neutral: var(--color-neutral-palette);
+    --color-pop: var(--color-read-palette);
+    --color-tone: var(--color-tone-palette);
   }
 
   /* Tone: swap r <-> t. */
   .palette--tone,
   .palette--alt {
-    --read: var(--tone-palette);
-    --neutral: var(--neutral-palette);
-    --pop: var(--pop-palette);
-    --tone: var(--read-palette);
+    --color-read: var(--color-tone-palette);
+    --color-neutral: var(--color-neutral-palette);
+    --color-pop: var(--color-pop-palette);
+    --color-tone: var(--color-read-palette);
   }
 
   /* Background pop: swap n <-> p. */
   .palette--bg-pop {
-    --read: var(--read-palette);
-    --neutral: var(--pop-palette);
-    --pop: var(--neutral-palette);
-    --tone: var(--tone-palette);
+    --color-read: var(--color-read-palette);
+    --color-neutral: var(--color-pop-palette);
+    --color-pop: var(--color-neutral-palette);
+    --color-tone: var(--color-tone-palette);
   }
 
   /* Background tone: swap n <-> t. */
   .palette--bg-tone {
-    --read: var(--read-palette);
-    --neutral: var(--tone-palette);
-    --pop: var(--pop-palette);
-    --tone: var(--neutral-palette);
+    --color-read: var(--color-read-palette);
+    --color-neutral: var(--color-tone-palette);
+    --color-pop: var(--color-pop-palette);
+    --color-tone: var(--color-neutral-palette);
   }
 
   /* Pop-contrast: r=n, n=p, p=r. */
   .palette--pop-contrast,
   .palette--contrast-pop,
   .palette--contrast.palette--pop {
-    --read: var(--neutral-palette);
-    --neutral: var(--pop-palette);
-    --pop: var(--read-palette);
-    --tone: var(--tone-palette);
+    --color-read: var(--color-neutral-palette);
+    --color-neutral: var(--color-pop-palette);
+    --color-pop: var(--color-read-palette);
+    --color-tone: var(--color-tone-palette);
   }
 
   /* Tone-contrast: r=n, n=t, t=r. */
   .palette--tone-contrast,
   .palette--contrast-tone,
   .palette--contrast.palette--tone {
-    --read: var(--neutral-palette);
-    --neutral: var(--tone-palette);
-    --pop: var(--pop-palette);
-    --tone: var(--read-palette);
+    --color-read: var(--color-neutral-palette);
+    --color-neutral: var(--color-tone-palette);
+    --color-pop: var(--color-pop-palette);
+    --color-tone: var(--color-read-palette);
   }
 }
 
@@ -155,13 +155,13 @@
   /* TODO: Some color properties do not inherit by default */
   /* TODO: text-decoration-color need more specificity because of a:-webkit-any-link or similar !!! */
   /* TODO: Issue is present in mookai website */
-  /* * {
+  * {
     border-color: inherit;
     outline-color: inherit;
     text-decoration-color: inherit;
     text-emphasis-color: inherit;
     column-rule-color: inherit;
-  } */
+  }
 
   /* Root color application.
    * Re-declared on every palette-carrying element so the var chain is

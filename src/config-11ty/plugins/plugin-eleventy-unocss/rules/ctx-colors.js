@@ -1,9 +1,9 @@
 const paletteKeys = {
   0: "transparent",
-  r: "read-palette",
-  n: "neutral-palette",
-  p: "pop-palette",
-  t: "tone-palette",
+  r: "color-read-palette",
+  n: "color-neutral-palette",
+  p: "color-pop-palette",
+  t: "color-tone-palette",
 };
 
 const slotNames = ["--read", "--neutral", "--pop", "--tone"];
