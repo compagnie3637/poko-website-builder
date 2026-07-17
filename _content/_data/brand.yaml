@@ -69,7 +69,7 @@ typeScales:
     advanced:
       minWidth: 360
       maxWidth: 1240
-      positiveSteps: 9
+      positiveSteps: 12
       negativeSteps: 4
       prefix: step
       relativeTo: viewport-width

@@ -61,6 +61,6 @@ Ici, vous découvrirez l’ensemble des créations de la compagnie.
 
 Des spectacles qui explorent le monde avec sensibilité, humour et honnêteté. Chaque projet naît d’un besoin urgent de raconter, de questionner, de bousculer un peu. Parcourez-les, laissez-vous surprendre, et plongez dans les univers que nous façonnons pour les jeunes… et pour tous ceux qui veulent encore s’émerveiller.
 
-{% link url="agenda", type="internal", collection="pages", class="button-alt" %}{% endlink %}
+{% link url="agenda", type="internal", collection="pages", class="button-alt h1" %}{% endlink %}
 
 {% sections %}{% endsections %}

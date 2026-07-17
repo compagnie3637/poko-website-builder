@@ -9,7 +9,7 @@
     <!-- Navigation -->
     {% partial "headless/page-nav.11ty.js" %}
     <!-- Main content -->
-    <main id="main-content" class="play-main fonts-info">
+    <main id="main-content" class="play-main fonts-info width-page">
       <h1 id="play-title" class="{{ "vt-name-heading-" + name | slugify }}">{{ name }}</h1>
       <div class="page-container palette--pop-contrast radius-card reset-down-w">
         <div class="pile">
@@ -293,7 +293,8 @@
     background-color: var(--color-bg);
     border-top-left-radius: var(--radius-tag);
     border-bottom-left-radius: var(--radius-tag);
-    padding: 0.2rem var(--step-6) 0.2rem 1rem;
+    padding: 0.6rem var(--step-6) 0.3rem 1rem;
+    text-box-trim: trim-end;
   }
   .technical-info > dl > div {
     /* border: solid 1px var(--color-tone); */

@@ -7,17 +7,17 @@
 
 :root {
   /* --width-prose: 50rem; */
-  /*--width-max: (alias for width-body) ;*/
+  /*--width-max: (alias for width-page) ;*/
   /*--width-outset: ;*/
-  /* --width-body: calc(var(--width-prose) * 1.618); */
-  /*--width-max: var(--width-body);*/
-  /* --width-section: var(--width-body); */
+  /* --width-page: calc(var(--width-prose) * 1.618); */
+  /*--width-max: var(--width-page);*/
+  /* --width-section: var(--width-page); */
   /*--width-inset: ;*/
   /* --width-featured: calc(var(--width-prose) / 1.618); */
   /* --width-card: calc(var(--width-prose) / 2.618); */
   /* --width-token: calc(var(--width-prose) / 4.2358); */
 
-  --width-outset: calc(var(--width-body) * 1.618);
+  --width-outset: calc(var(--width-page) + var(--step-10));
 
   /* --radius-round: 1e5px; */
   /*--radius-body: 0rem;*/
@@ -182,14 +182,14 @@ h1:not(.h1, .h2, .h3, .h4, .h5, .h6) {
   font-size: var(--step-6-8);
   text-align: center;
   font-weight: 300;
-  max-inline-size: var(--width-body);
+  max-inline-size: var(--width-page);
   /* text-box: trim-both cap alphabetic; */
 }
 h2:not(.h1, .h2, .h3, .h4, .h5, .h6) {
   font-size: var(--step-5-7);
   font-weight: 300;
-  max-inline-size: var(--width-body);
-  /* max-inline-size: var(--width-outset); */
+  /* max-inline-size: var(--width-page); */
+  max-inline-size: var(--width-outset);
   /* margin-left: calc(50% - min(99.99vw, var(--width-outset, 99.99vw)) / 2); */
   /* text-box: trim-both cap alphabetic; */
 }
@@ -205,7 +205,7 @@ hr {
   font-weight: bold;
 }
 main > h1 {
-  /* max-inline-size: var(--width-body); */
+  /* max-inline-size: var(--width-page); */
   margin-block-start: var(--step-9);
   position: relative;
   isolation: isolate;
