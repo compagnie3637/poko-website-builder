@@ -82,7 +82,7 @@ typeScales:
         endStep: '9'
 colors:
   - name: black
-    value: '#000001'
+    value: '#000000'
   - name: white
     value: '#ffffff'
   - name: turquoise

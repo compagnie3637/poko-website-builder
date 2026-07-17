@@ -20,7 +20,7 @@ sections:
         Au fil des créations, les artistes de la Compagnie3637 ont développé une approche artistique métissant le mot, le mouvement, la marionnette, l’univers sonore, offrant plusieurs modes de transmission. Cette identité s’est forgée et continue de s’inventer en dialogue avec un noyau d’artistes, et de personnalités fidèles à la compagnie: Baptiste Isaia en tant que metteur en scène ou conseiller artistique, Philippe Lecrenier à la composition musicale et Lisa Cogniaux à l’écriture, la dramaturgie ou à la mise en scène, Marie Angibaud et Tania Hansez à la production, diffusion, administration et toute l’équipe de régisseur.euses précieuse et indispensable.
   - type: sectionCollection
     header:
-      content: "## Direction artistique"
+      content: '## Direction artistique'
     layoutOptions:
       type: flow
       gap: var(--step-4)
@@ -34,7 +34,7 @@ sections:
     itemPartial: card-person-detailed
   - type: sectionCollection
     header:
-      content: "## Production, admin & diffusion"
+      content: '## Production, admin & diffusion'
     layoutOptions:
       type: cluster
     collection: people
@@ -47,7 +47,7 @@ sections:
     itemPartial: card-person-photo
   - type: sectionCollection
     header:
-      content: "## Fondatrices"
+      content: '## Fondatrices'
     collection: people
     sortAndFilterOptions:
       filters:
@@ -72,7 +72,7 @@ sections:
     itemPartial: card-person-name-only
   - type: sectionCollection
     header:
-      content: "## Complices"
+      content: '## Complices'
     layoutOptions:
       type: grid-fluid
       columns: 4
@@ -104,7 +104,7 @@ sections:
       {% endsectionCollection %}
   - type: sectionGrid
     header:
-      content: "## Soutenus par"
+      content: '## Soutenus par'
     items:
       - content: '{% image src="/_images/logo-wallonie_bruxelles_thtre_danse.webp", alt="logo - théâtre et danse", width=200 %}'
       - content: '{% image src="/_images/logo_wbi.webp", alt="logo - Wallonie Bruxelles international", width=200 %}'
@@ -114,7 +114,7 @@ sections:
     class: items-center
   - type: sectionGrid
     header:
-      content: "## Nous sommes membres"
+      content: '## Nous sommes membres'
     items:
       - content: '{% image src="/_images/logo-ctej.webp", alt="logo - Chambre des théâtres pour l''enfance et la jeunesse", width=200 %}'
       - content: '{% image src="/_images/logo-assitej.webp", alt="logo - Assite J", width=200 %}'
@@ -129,15 +129,17 @@ eleventyNavigation:
   title: Compagnie
 metadata:
   title: Compagnie 3637
+  image:
+    src: /_images/team_mars26.webp
   legalName: Compagnie 3637 ASBL
   address:
     streetAddress: Av. Brugmann 482
-    postalCode: "1180"
+    postalCode: '1180'
     addressLocality: Uccle
     addressCountry: Belgique
   legalAddress:
     streetAddress: Rue de Charleroi 17
-    postalCode: "1470"
+    postalCode: '1470'
     addressLocality: Genappe
     addressCountry: Belgique
   vatID: BE0807.233.604

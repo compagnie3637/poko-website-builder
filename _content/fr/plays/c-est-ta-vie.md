@@ -119,6 +119,9 @@ thanks: |-
 
   Wallonie-Bruxelles International et Wallonie-Bruxelles Théâtre Danse.
 coverBottom: /_images/c-est-ta-vie/cesttavie-91-inverse-uee.webp
+metadata:
+  image:
+    src: /_images/c-est-ta-vie/c-est-ta-vie-mh-tercafs-2.webp
 tags:
   - on-tour
 pageStyles: |-

@@ -118,7 +118,9 @@ thanks: |-
   ### En partenariat avec
 
   Le Champilambart de Vallet (FR), l'ANCRE – Théâtre Royal, le Centre culturel du Brabant wallon, le Centre Culturel d'Ans, le Centre culturel de Chênée et le Théâtre de la montagne magique.
+metadata:
+  image:
+    src: /_images/puissant-es/puissantes_m-tercafs_1.webp
 tags:
   - on-tour
-vars: {}
 ---

@@ -74,7 +74,9 @@ thanks: |-
   ### Avec l'aide de
 
   Ministère de la Fédération Wallonie-Bruxelles – Service Théâtre, la Coopération belge au développement et des Iles de Paix.
+metadata:
+  image:
+    src: /_images/les-desobeisseurs/cie3637_les-de-uesobe-ueisseurs5_cre-uedit-marie-he-uele-cne-tercafs.webp
 tags:
   - past
-vars: {}
 ---

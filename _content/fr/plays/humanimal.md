@@ -12,7 +12,7 @@ yearStart: 2018
 audienceAge: À partir de 6 ans
 duration: 45’ (sans entracte)
 setupDuration: 2 services de 4h
-peopleOnTour: "3"
+peopleOnTour: '3'
 audienceCapacity: 130 spectateurs maximum (et en proximité)
 stageDimensions: Minimum 10 x 7 x 4m
 folio: /assets/files/humanimal/humanimal_a5_fr.pdf
@@ -104,6 +104,9 @@ thanks: |-
   ### Accueil en résidence
 
   Grand Studio, Centre Culturel de Verviers, Centre Culturel de Namur, Centre Culturel de Colfontaine, Centre Culturel de Welkenraedt, Ultima Vez.
+metadata:
+  image:
+    src: /_images/humanimal/1_guillaume-escallier.webp
 tags:
   - past
 ---

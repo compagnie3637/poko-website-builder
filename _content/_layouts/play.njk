@@ -9,21 +9,25 @@
     <!-- Navigation -->
     {% partial "headless/page-nav.11ty.js" %}
     <!-- Main content -->
-    <main id="main-content" class="fonts-info">
+    <main id="main-content" class="play-main fonts-info">
       <h1 id="play-title" class="{{ "vt-name-heading-" + name | slugify }}">{{ name }}</h1>
-      {% if tags and tags.length %}
-        <ul aria-label="Status" role="list" class="status-tags">
-          {% for tag in tags %}
-            <li class="uppercase font-bold">{{ tag | tagLabel }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
       <div class="page-container palette--pop-contrast radius-card reset-down-w">
-        {% if cover %}
-          <figure class="cover-top p-0">
-            {% image src=cover, alt=name, class="vt-name-cover-" + name | slugify %}
-          </figure>
-        {% endif %}
+        <div class="pile">
+          {% if cover %}
+            <figure class="cover-top p-0">
+              {% image src=cover, alt=name, class="vt-name-cover-" + name | slugify %}
+            </figure>
+          {% endif %}
+          {% if tags and tags.length %}
+            <ul aria-label="Status" role="list" class="status-tags">
+              {% for tag in tags %}
+                <li class="uppercase font-bold width-body text-align-right">
+                  <span class="status-tag-label">{{ tag | tagLabel }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
         {% if announcement %}
           <section aria-label="Annonce" class="prose center">
             {{ announcement | md }}
@@ -180,7 +184,7 @@
               <dl>
                 {% for role, names in credits %}
                   <dt>
-                    <span class="text-[--tone] uppercase">{{ role }}</span>
+                    <span class="text-[--color-tone] uppercase">{{ role }}</span>
                   </dt>
                   <dd>{{ names }}</dd>
                 {% endfor %}
@@ -271,52 +275,38 @@
 </html>
 <style>
   .box-border {
-    border-block-start: solid 1px var(--tone);
+    border-block-start: solid 1px var(--color-tone);
   }
   #main-content h2 {
     font-size: var(--step-4);
   }
   .status-tags {
-    position: relative;
+    z-index: 1;
+    margin-block: var(--step-6);
+    padding-inline: 0;
   }
   .status-tags > li {
-    text-box-trim: trim-end;
+    --color-bg: hsl(from var(--gold) h s l / 0.6);
+  }
+  .status-tag-label {
     color: white;
-    position: absolute;
-    z-index: 300;
-    top: var(--step-6);
-    right: 0;
+    background-color: var(--color-bg);
+    border-top-left-radius: var(--radius-tag);
+    border-bottom-left-radius: var(--radius-tag);
     padding: 0.2rem var(--step-6) 0.2rem 1rem;
-    background-color: transparent;
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-  }
-  .status-tags > li::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100%;
-    background-color: hsl(from var(--gold) h s l / 0.6);
-    z-index: -1;
-    border-radius: var(--radius-tag);
-  }
-  .page-container > *:first-child:not(.cover-top) {
-    margin-block-start: calc(var(--step-6) * 2);
   }
   .technical-info > dl > div {
-    /* border: solid 1px var(--tone); */
+    /* border: solid 1px var(--color-tone); */
     padding: var(--step--1);
     & + div {
-      border-block-start: solid 1px var(--tone);
+      border-block-start: solid 1px var(--color-tone);
     }
   }
   .summary-grid + section {
     margin-block-start: 0;
   }
   .summary-grid .technical-info {
-    border-inline-start: solid 1px var(--tone);
+    border-inline-start: solid 1px var(--color-tone);
     margin-inline-start: -1px; /* Offset border so it disappears off screen in column */
   }
   .technical-info dt:after {

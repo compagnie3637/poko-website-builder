@@ -39,6 +39,13 @@
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
   }
+  @media(hover: none) {
+    /* Always show label when hover is unavailable */
+    .card-play-visual a {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
   @media(max-width: 50rem) {
     /* Overrides the mbs- classes above to avoid gap on mobile */
     .card-play-visual {

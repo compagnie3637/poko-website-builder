@@ -65,6 +65,9 @@ thanks: |-
   ### En partenariat avec
 
   Le Théâtre de la montagne magique, Pierre de Lune / Centre Scénique Jeunes publics de Bruxelles, Le 38 / centre culturel de Genappe, ReForm, le centre culturel Jacques Franck et La Roseraie.
+metadata:
+  image:
+    src: /_images/en-apnee/tentacule01_background_blue.webp
 tags:
   - soon
 ---

@@ -1,51 +1,51 @@
 <article class="card-play-detailed card fonts-info flow-1rem pbs-0 palette--tone-contrast breakout-clickable v--size-icon:2em">
-  {% if cover %}
-    <figure class="card-cover px-0">
-      {% image src=cover, alt=name, aspectRatio="16/9", class="radius-b-0" + (" vt-name-cover-" + name | slugify) %}
-    </figure>
-  {% endif %}
-  <div class="px-body">
-    <h3 class="mbs-1rem fonts-main {{ " vt-name-heading-" + name | slugify }}">
-      <a href="{{ url }}">{{ name }}</a>
-    </h3>
-    <hr
-    class="mbe-0"/>
-    {# {% if playProjects.past.length > 10 %}
-              <p class="dates with-icon items-center">
-                {% icon "tablerOutline:calendar-week" %}
-                <span>{{ playProjects.past.length }} représentations données</span>
-              </p>
-            {% endif %} #}
-    {% if summary %}
-      <p class="summary">{{ summary | truncate(200) }}</p>
+    {% if cover %}
+        <figure class="card-cover px-0">
+            {% image src=cover, alt=name, aspectRatio="16/9", class="radius-b-0" + (" vt-name-cover-" + name | slugify) %}
+        </figure>
     {% endif %}
-    <dl class="meta flow space:--step--2">
-      {% if duration %}
-        <div class="meta-item with-icon items-center">
-          {% icon "tablerOutline:clock-hour-10" %}
-          <dt class="sr-only">Durée</dt>
-          <dd>{{ duration }}</dd>
-        </div>
-      {% endif %}
-      {% if audienceAge %}
-        <div class="meta-item with-icon items-center">
-          {% icon "tablerOutline:cake" %}
-          <dt class="sr-only">Public</dt>
-          <dd>{{ audienceAge }}</dd>
-        </div>
-      {% endif %}
-      {% if creditsIntro %}
-        <div class="meta-item with-icon items-center">
-          {% icon "tablerOutline:bulb" %}
-          <dt class="sr-only">Création</dt>
-          <dd>{{ creditsIntro | md }}</dd>
-        </div>
-      {% endif %}
-    </dl>
-  </div>
+    <div class="px-body">
+        <h3 class="mbs-1rem fonts-main {{ " vt-name-heading-" + name | slugify }}">
+            <a href="{{ url }}">{{ name }}</a>
+        </h3>
+        <hr
+        class="mbe-0"/>
+        {# {% if playProjects.past.length > 10 %}
+                      <p class="dates with-icon items-center">
+                        {% icon "tablerOutline:calendar-week" %}
+                        <span>{{ playProjects.past.length }} représentations données</span>
+                      </p>
+                    {% endif %} #}
+        {% if summary %}
+            <p class="summary">{{ summary | truncate(200) }}</p>
+        {% endif %}
+        <dl class="meta flow space:--step--2">
+            {% if duration %}
+                <div class="meta-item with-icon items-center">
+                    {% icon "tablerOutline:clock-hour-10" %}
+                    <dt class="sr-only">Durée</dt>
+                    <dd>{{ duration }}</dd>
+                </div>
+            {% endif %}
+            {% if audienceAge %}
+                <div class="meta-item with-icon items-center">
+                    {% icon "tablerOutline:cake" %}
+                    <dt class="sr-only">Public</dt>
+                    <dd>{{ audienceAge }}</dd>
+                </div>
+            {% endif %}
+            {% if creditsIntro %}
+                <div class="meta-item with-icon items-center">
+                    {% icon "tablerOutline:bulb" %}
+                    <dt class="sr-only">Création</dt>
+                    <dd>{{ creditsIntro | md }}</dd>
+                </div>
+            {% endif %}
+        </dl>
+    </div>
 </article>
 <style>
-  .icon {
-    color: var(--pop);
-  }
+    .icon {
+        color: var(--color-pop);
+    }
 </style>

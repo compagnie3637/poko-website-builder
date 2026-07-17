@@ -12,7 +12,7 @@ yearStart: 2016
 audienceAge: À partir de 14 ans
 duration: 55 minutes sans entracte
 setupDuration: Minimum 6h
-peopleOnTour: "5"
+peopleOnTour: '5'
 audienceCapacity: Maximum 250 spectateurs
 stageDimensions: Minimum 9 x 8 x 4m
 folio: /assets/files/des-illusions/dossier_diffusion_desillusions.pdf
@@ -98,7 +98,9 @@ thanks: |-
   ### Avec le soutien de
 
   Le Théâtre de la Montagne Magique, la Maison des Cultures et de la Cohésion sociale de Molenbeek, le Centre culturel de Braine l'Alleud, le Théâtre de Liège, le Centre culturel de Nivelles, le Centre culturel Jacques Franck, le Manège.Mons, le Centre culturel de Chênée, le Centre culturel de Tubize, et des Iles de Paix.
+metadata:
+  image:
+    src: /_images/des-illusions/guillaume_escallier1.webp
 tags:
   - past
-vars: {}
 ---
