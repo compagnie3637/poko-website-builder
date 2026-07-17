@@ -116,11 +116,14 @@ export async function image(args) {
     ? `${WORKING_DIR}/${srcRaw}`.replace(/\/+/g, "/")
     : srcRaw;
   let html = await Image(src, options);
+  // if (!html) {
+  //   console.error({ error, src, options, page: this.page.fileSlug });
+  // }
   html = width
     ? html.replace(`${width}w`, "1x").replace(`${width * 2}w`, "2x")
     : html;
   // console.log({ html });
 
   // return `<p>${html}</p>`;
-  return wrapperTag ? `<${wrapperTag}>${html}</${wrapperTag}>` : html;
+  return wrapperTag && html ? `<${wrapperTag}>${html}</${wrapperTag}>` : html;
 }

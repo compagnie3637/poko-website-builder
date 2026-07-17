@@ -2708,7 +2708,7 @@ const globalSettingsSingleton = {
     },
     {
       name: "cssHead",
-      label: "Internal Styles (CSS)",
+      label: "Head Styles (CSS)",
       widget: "code",
       required: false,
       default_language: "css",

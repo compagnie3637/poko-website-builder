@@ -97,17 +97,19 @@
     This needs some other calculation... */
   --width-prose: 50rem;
   /*--width-prose: calc(50 * var(--step-0));*/
-  --width-body: calc(var(--width-prose) * 1.618); /* 80,98 */
-  --width-max: var(--width-body); /* (alias for width-body) */
-  /*--width-outset: ;*/
-  --width-section: var(--width-body);
+  --width-page: calc(var(--width-prose) * 1.618); /* 80,98 */
+  --width-body: var(--width-page); /* (alias for width-page) */
+  --width-max: var(--width-page); /* (alias for width-page) */
+  --width-outset: calc(var(--width-page) * 1.618);
+  --width-section: var(--width-page);
   /*--width-inset: ;*/
   --width-featured: calc(var(--width-prose) / 1.618); /* 30.90 */
   /* --width-card: calc(var(--width-prose) / 2.618); 19 */
   /* --width-card: calc(var(--width-prose) / 2); 25 */
   --width-token: calc(var(--width-prose) / 4.2358); /* 11.8 */
 
-  --full-bleed-max-width: calc(var(--width-body) * 2);
+  --width-wrap: var(--width-prose);
+  --full-bleed-max-width: calc(var(--width-page) * 2);
 
   --radius-round: 1e5px;
   /* --radius-body: 0rem; */
@@ -327,6 +329,7 @@ body > footer ~ div:not([class*="poko"]) {
 
 /* 3.1 Images */
 :where(img, picture, video, svg) {
+  max-inline-size: 100%;
   /* Center images by default */
   /*margin-inline: auto;*/
   /*inline-size: 100%;*/

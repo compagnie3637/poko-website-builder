@@ -51,10 +51,32 @@
 /* ----- Max Width ----- */
 
 :where(body) {
-  --max-width: min(100%, var(--width-body));
-  max-inline-size: min(100%, var(--width-body));
-  margin-inline: auto;
+  /* --max-width: min(100%, var(--width-page));
+  max-inline-size: min(100%, var(--width-page));
+  margin-inline: auto; */
+  --mi-auto-applied: auto;
+  --max-width: min(100%, var(--width-page));
 }
+/* prettier-ignore */
+/* :where(:where(section, .section) > :where(.area, header, footer, .header, .footer, .main)), */
+/* prettier-ignore */
+:where(*:not(html, body, main, section, .section, header, footer, aside, article, hgroup, div), .layout) {
+/* :where(body > *:not(main), main > *) { */
+  max-inline-size: var(--max-width);
+  margin-inline: var(--mi-auto-applied);
+
+  & > * {
+      --mi-auto-applied: 0;
+  }
+}
+:where(.reset-w),
+:where(.reset-down-w *) {
+  --mi-auto-applied: unset;
+  --max-width: unset;
+  max-inline-size: unset;
+  margin-inline: unset;
+}
+
 /*:where(img, picture, video) {
     --max-width: min(100%, var(--width-prose));
     max-inline-size: min(100%, var(--width-prose));
@@ -66,33 +88,42 @@
 :where(figure,figcaption,form,fieldset),
 :where(dl,dt,dd,blockquote,details) {
     --max-width: min(100%, var(--width-prose));
-    max-inline-size: min(100%, var(--width-prose));
-    margin-inline: auto;
+    /* max-inline-size: min(100%, var(--width-prose)); */
+    /* margin-inline: auto; */
 
-    :where(& *),
-    :where(.layout &),
-    :where(:where(section, .section) > :where(.area, header, footer, .header, .footer, .main) &) {
+    /* NOTE: was useful before we switched to non constrained body width */
+    /* :where(:where(section, .section) > :where(.area, header, footer, .header, .footer, .main) &) { */
+    /* :where(& *),
+    :where(.layout &) {
         margin-inline: 0;
-    }
-    :where(&.reset-w),
+    } */
+    /* :where(&.reset-w),
     :where(.reset-down-w &){
         max-inline-size: unset;
         margin-inline: unset;
-    }
+    } */
 
     /* Reset Flow */
     margin-block-start: 0;
 }
+:where(section, .section) {
+  --max-width: min(100%, var(--width-section, var(--width-page)));
+  /* max-inline-size: min(100%, var(--width-section, var(--width-page))); */
+}
 :where(.featured) {
   --max-width: min(100%, var(--width-featured, var(--width-prose)));
-  max-inline-size: min(100%, var(--width-featured, var(--width-prose)));
+  /* max-inline-size: min(100%, var(--width-featured, var(--width-prose))); */
 }
 :where(.card) {
   --max-width: min(100%, var(--width-card, var(--width-prose)));
-  max-inline-size: min(100%, var(--width-card, var(--width-prose)));
+  /* max-inline-size: min(100%, var(--width-card, var(--width-prose))); */
 }
-:where(:where(.card, .box, [class*="width-"]) *) {
-  margin-inline: 0;
+:where(:where(.card, .box, [class*="width-"]) > *) {
+  /* margin-inline: 0; */
+  --mi-auto-applied: unset;
+  --max-width: unset;
+  max-inline-size: unset;
+  margin-inline: unset;
 }
 
 /* ----- Flow ----- */

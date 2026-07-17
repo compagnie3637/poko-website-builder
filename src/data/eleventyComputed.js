@@ -16,7 +16,6 @@ export default {
   // ...temp,
   ldType: (data) => {
     if (data.eleventyExcludeFromCollections) return undefined;
-    if (data.eleventyExcludeFromCollections) return undefined;
     const type = data.page?.ldType || data.ldType;
     if (type) return type;
 
@@ -27,7 +26,10 @@ export default {
 
     const collectionDir = segments.slice(1, 2)?.[0];
 
-    return COLLECTIONS[collectionDir]?.ldType || "WebPage";
+    return (
+      Object.values(COLLECTIONS).find((c) => c.name === collectionDir)
+        ?.ldType || "WebPage"
+    );
   },
   language: (data) => {
     // Display collection names only
