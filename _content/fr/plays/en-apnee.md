@@ -21,7 +21,7 @@ setupDuration: 8h
 peopleOnTour: 4-5
 audienceCapacity: 150 en SC / 180 en TP
 stageDimensions: 8 x 6,5 x 4,5m min
-folio: /assets/files/en-apnee/dossier_en-apnee_270703.pdf
+folio: https://www.dropbox.com/scl/fi/x05zz8os62lwgbzr70ss3/En-apn-e_dossier_260817.pdf?rlkey=ucw5x3dsorf60skz359bxzsjc&e=1&dl=0
 techSpecs: /assets/files/en-apnee/ft_enapnee_v260625.pdf
 summary: |-
   Stevie a onze ans. Elle adore lire des livres sur les galaxies et la formation des atomes, écouter le chant des baleines et passer du temps avec sa maman. Un jour, Stevie ressent un vertige en regardant son amie Chloé : un vertige tellement puissant et incompréhensible qu'il l'envoie dans le fond des océans, là où vivent des créatures étranges. Qu'est-ce qui lui est arrivé ? Est-ce vraiment réel ? Pour la toute première fois, ni sa mère ni les livres ne détiennent la réponse…
@@ -70,4 +70,5 @@ metadata:
     src: /_images/en-apnee/tentacule01_background_blue.webp
 tags:
   - soon
+vars: {}
 ---
