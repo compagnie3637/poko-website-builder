@@ -45,7 +45,9 @@ credits:
   Accompagnement à la mise en scène: Coralie Vanderlinden
   Interprètes: Sasha Allen, Clément Corrillon, Marion Eudes
   Scénographie et costumes: Irma Morin, Chloé Jacqmotte
-  Musique originale: Virginie Tasset
+  Musique originale, enregistrement: Virginie Tasset
+  Musicien·nes: Eugénie Defraigne, Virgile Van Essche
+  Mixage: Irvin Rousseau, Simon Vanneste
   Création lumière: Candice Hansel
   Régie: Alice Spenlé
   Production: Marie Angibaud / Compagnie 3637
@@ -70,5 +72,4 @@ metadata:
     src: /_images/en-apnee/tentacule01_background_blue.webp
 tags:
   - soon
-vars: {}
 ---
