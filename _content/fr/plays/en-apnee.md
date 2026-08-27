@@ -50,6 +50,8 @@ credits:
   Visuel: River Vassart
 gallery:
   - /_images/en-apnee/en-apnee_guillaume-zaracas_1-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_2-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_3.webp
 thanks: |-
   ### Co-production
 
