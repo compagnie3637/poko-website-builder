@@ -55,11 +55,6 @@ gallery:
   - /_images/en-apnee/en-apnee_guillaume-zaracas_4-jpg.webp
   - /_images/en-apnee/en-apnee_guillaume-zaracas_5-jpg.webp
   - /_images/en-apnee/en-apnee_guillaume-zaracas_6-jpg.webp
-  - /_images/en-apnee/en-apnee_guillaume-zaracas_7-jpg.webp
-  - /_images/en-apnee/en-apnee_guillaume-zaracas_8-jpg.webp
-  - /_images/en-apnee/en-apnee_guillaume-zaracas_9-jpg.webp
-  - /_images/en-apnee/en-apnee_guillaume-zaracas_10-jpg.webp
-  - /_images/en-apnee/en-apnee_guillaume-zaracas_11-jpg.webp
 thanks: |-
   ### Co-production
 
@@ -79,4 +74,5 @@ metadata:
     src: /_images/en-apnee/tentacule01_background_blue.webp
 tags:
   - soon
+vars: {}
 ---
