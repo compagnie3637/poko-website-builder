@@ -7,12 +7,6 @@ ldType: CreativeWork
 name: En apnée
 orfeoId: 79599
 cover: /_images/en-apnee/tentacule01_background_blue.webp
-announcement: |-
-  **À DÉCOUVRIR TOUT BIENTÔT POUR LES PROFESSIONNELS**
-  aux <a href="https://ctej.be/la-ctej/rencontres/">Rencontres Théâtre Jeune Public </a>@ Charleroi
-  Le dimanche **23 aout à 10h & 14h** à Charleroi Danses (Ecuries 1)
-
-  {% link url="https://rencontres.app.infinitix.li/", type="external", target="_blank", rel="noopener", class="button" %}Réservation{% endlink %}
 representationType: Théâtre
 yearStart: 2026
 audienceAge: 10-14 ans
