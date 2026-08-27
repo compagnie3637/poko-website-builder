@@ -21,8 +21,9 @@ setupDuration: 8h
 peopleOnTour: 4-5
 audienceCapacity: 150 en SC / 180 en TP
 stageDimensions: 8 x 6,5 x 4,5m min
-folio: https://www.dropbox.com/scl/fi/x05zz8os62lwgbzr70ss3/En-apn-e_dossier_260817.pdf?rlkey=ucw5x3dsorf60skz359bxzsjc&e=1&dl=0
-techSpecs: /assets/files/en-apnee/ft_enapnee_v260625.pdf
+folio: https://www.dropbox.com/scl/fi/94lv645ngc4wt4v8muoqf/Dossier_En-Apn-e_26.08.25.pdf?rlkey=slthvr6zqyvhq6of9wybfoah4&dl=0
+picturesKit: https://www.dropbox.com/scl/fo/1njkwqmfm8gpocy3u8677/AAY2vLsquRbVc7k7iiyXlWo?rlkey=tnrbv23rgdu6k690ylezhtk6o&dl=0
+techSpecs: https://www.dropbox.com/scl/fi/wu1alp68kvpo5966fe9oo/FT_ENAPNEE.pdf?rlkey=fetfxkssm7o6w2jcdypvbrp6h&dl=0
 summary: |-
   Stevie a onze ans. Elle adore lire des livres sur les galaxies et la formation des atomes, écouter le chant des baleines et passer du temps avec sa maman. Un jour, Stevie ressent un vertige en regardant son amie Chloé : un vertige tellement puissant et incompréhensible qu'il l'envoie dans le fond des océans, là où vivent des créatures étranges. Qu'est-ce qui lui est arrivé ? Est-ce vraiment réel ? Pour la toute première fois, ni sa mère ni les livres ne détiennent la réponse…
 
@@ -53,6 +54,18 @@ credits:
   Production: Marie Angibaud / Compagnie 3637
   Diffusion: Tania Hansez / Compagnie 3637
   Visuel: River Vassart
+gallery:
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_1-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_2-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_3.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_4-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_5-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_6-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_7-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_8-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_9-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_10-jpg.webp
+  - /_images/en-apnee/en-apnee_guillaume-zaracas_11-jpg.webp
 thanks: |-
   ### Co-production
 
