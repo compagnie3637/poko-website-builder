@@ -60,7 +60,7 @@ sections:
     header:
       content: "## Organe d'administration"
     layoutOptions:
-      type: cluster
+      type: switcher
       gap: var(--step-4)
     collection: people
     sortAndFilterOptions:
