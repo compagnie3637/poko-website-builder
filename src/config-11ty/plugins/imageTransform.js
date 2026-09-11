@@ -89,7 +89,7 @@ export const imageOptionsDefaults = {
   // 	sizes: "100vw",
   // },
 
-  failOnError: false,
+  failOnError: true,
 
   // optional, attributes assigned on <img> nodes override these values
   htmlOptions: {
@@ -109,7 +109,9 @@ export const imageOptionsDefaults = {
 
     // Which source to use for `<img width height src>` attributes (when multiple img definitions)
     // Should keep "largest" I think, or we'll take the smallest when creating responsive images
-    fallback: "largest", // or "smallest"
+    fallback: "largest",
+    // We can use "smallest" when only one width and accounting for pixel density
+    // fallback: "smallest",
   },
 };
 

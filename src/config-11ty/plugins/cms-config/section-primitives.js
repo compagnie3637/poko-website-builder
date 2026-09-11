@@ -142,6 +142,40 @@ export const layoutTypeCluster = {
   fields: [{ name: "gap", label: "Gap", widget: "string", required: false }],
 };
 
+// CSS multi-column layout. Both knobs compose into the `columns` shorthand property
+// (`<column-width> || <column-count>`) via `--columns-faux-masonry`, so all
+// four combinations are meaningful — see the render partials `_grid.11ty.js`
+// and `_collection.11ty.js`.
+export const layoutTypeFauxMasonry = {
+  name: "faux-masonry",
+  label: "Faux Masonry (CSS columns)",
+  collapsed: true,
+  hint: "Items flow top-to-bottom within each column (Pinterest-style). Reading order runs down each column, not across rows — use where visual balance matters more than sequence.",
+  fields: [
+    {
+      name: "widthColumnMin",
+      label: "Min Column Width",
+      widget: "string",
+      required: false,
+      hint: "CSS length (e.g. 24.9rem). Columns are at least this wide and stretch to fill. Leave empty to use the default (24.9rem) or to set an exact column count below.",
+    },
+    {
+      name: "columns",
+      label: "Column Count",
+      widget: "number",
+      required: false,
+      hint: "Alone: exactly this many columns. Combined with Min Column Width: an upper cap on how many columns can fit.",
+    },
+    {
+      name: "gap",
+      label: "Gap",
+      widget: "string",
+      required: false,
+      hint: "The gap between columns (e.g. 1em [default], var(--step-2) [fluid type scale], 0 [no gap])",
+    },
+  ],
+};
+
 export const layoutTypeFixedFluid = {
   name: "fixedFluid",
   label: "Fixed-Fluid (Asymmetrical Columns)",
@@ -311,6 +345,42 @@ export const collectionSelectField = (extraOptions = []) => ({
 });
 
 /**
+ * Optional object: when absent the whole section is dropped from the output as
+ * soon as the filtered collection is empty. When present (even without a
+ * message) the section stays visible.
+ *
+ * `enabled` exists only to make that presence persistable. Sveltia's
+ * `omit_empty_optional_fields` (on by default) strips optional fields left
+ * empty, so an object whose every subfield is blank is never written to the
+ * entry — the checkbox would silently reset on reload. A hidden subfield with a
+ * non-empty default guarantees the object survives a save.
+ */
+export const keepVisibleField = {
+  name: "keepVisible",
+  label: "Keep section visible when empty",
+  widget: "object",
+  required: false,
+  i18n: true,
+  collapsed: true,
+  fields: [
+    {
+      name: "enabled",
+      label: "Enabled",
+      widget: "hidden",
+      default: true,
+    },
+    {
+      name: "fallbackMessage",
+      label: "Fallback message",
+      hint: "Displayed in place of the items when the filtered collection is empty. Leave empty to keep the section visible without any message.",
+      widget: "richtext",
+      required: false,
+      i18n: true,
+    },
+  ],
+};
+
+/**
  * Sort & filter object used by collection-shaped fields. Mirrors the inline
  * editor's exact shape so frontmatter and inline modes round-trip identically.
  */
@@ -394,7 +464,7 @@ export const sortAndFilterOptionsField = {
               collection: "dataFiles",
               file: "translatedData",
               value_field: "tagsList.*.slug",
-              display_fields: ["tagsList.*.name"],
+              display_fields: ["tagsList.*.label"],
               required: true,
               multiple: true,
             },
@@ -454,6 +524,7 @@ export const sortAndFilterOptionsField = {
       default: false,
       hint: "When enabled, the defined filters will exclude items instead of including them.",
     },
+    keepVisibleField,
   ],
 };
 
@@ -578,6 +649,7 @@ export const gridAreaFields = [
       layoutTypeSwitcher,
       layoutTypeGridFluid,
       layoutTypeCluster,
+      layoutTypeFauxMasonry,
       layoutTypeNone,
     ],
   },
@@ -671,6 +743,7 @@ export const collectionAreaFields = (extraOptions = []) => [
       layoutTypeSwitcher,
       layoutTypeGridFluid,
       layoutTypeCluster,
+      layoutTypeFauxMasonry,
       layoutTypeNone,
     ],
   },

@@ -74,7 +74,7 @@
    * computed, so a descendant needs its own declaration to pick up its local
    * palette context. */
   body,
-  [class*="palette"],
+  [class*="palette-"],
   .palette--default,
   .palette--reset,
   .palette--read {

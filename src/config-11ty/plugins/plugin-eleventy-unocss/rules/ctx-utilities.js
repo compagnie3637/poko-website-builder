@@ -164,6 +164,11 @@ export default [
         [symbols.selector]: () => `:where(.full-bleed)`,
         "max-inline-size": "99.99vw",
         "padding-inline": "unset",
+        // NOTE: the box escapes the inherited --width-cap, so republish the
+        // absolute cap layouts read (grid-fluid column count). --px-applied
+        // is flagged because the lateral padding is dropped here.
+        "--width-cap": "var(--full-bleed-max-width, 99.99vw)",
+        "--px-applied": "1",
         "inline-size": "min(99.99vw, var(--full-bleed-max-width, 99.99vw))",
         "margin-inline-start":
           "calc(50% - min(99.99vw, var(--full-bleed-max-width, 99.99vw)) / 2)",
@@ -178,6 +183,8 @@ export default [
         [symbols.selector]: (selector) => `:where(${selector})`,
         "max-inline-size": "99.99vw",
         "padding-inline": "unset",
+        "--width-cap": varExpression,
+        "--px-applied": "1",
         // "inline-size": `min(99.99vw, ${varExpression})`,
         "inline-size": varExpression,
         "margin-inline-start": `calc(50% - min(99.99vw, ${varExpression}) / 2)`,

@@ -31,6 +31,7 @@ export default async function (eleventyConfig, pluginOptions) {
     // entrypoints.unshift(ctxCssEntrypoint);
     await bunBuild({
       entrypoints: [ctxCssEntrypoint],
+      // TODO: Bun v1.3.14 can now load content from memory instead of a file. See https://bun.com/docs/bundler#files
       outdir,
       naming: "ctx.css",
       // naming: "index.css",

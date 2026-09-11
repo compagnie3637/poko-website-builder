@@ -118,6 +118,7 @@ import {
 } from "./src/config-11ty/filters/index.js";
 import {
   newLine,
+  htmlLineBreak,
   fetchFile as fetchFileShortcode,
   linkPaired as linkPairedShortcode,
   buttonPaired as buttonPairedShortcode,
@@ -138,7 +139,7 @@ function shouldNotRender(data) {
   // This excludes files whose path contains a `.` or a `_` directly after a `/`
   if (
     /(?:^|\/)_/.test(data.page.filePathStem) ||
-    /(?:^|\/)\\./.test(data.page.filePathStem)
+    /(?:^|\/)\./.test(data.page.filePathStem)
   ) {
     return true;
   }
@@ -642,6 +643,11 @@ export default async function (eleventyConfig) {
     // All CSS files to assets
     [`${WORKING_DIR}/*.css`]: "/assets/styles/",
     "assets/js/instant-page.js": "assets/js/instant-page.js",
+    // TODO:
+    // "node_modules/formbouncerjs/dist/bouncer.polyfills.min.js": "assets/js/formbouncer.js",
+    // Add like this:
+    // <script type="module">
+    //   import "/assets/js/formbouncer.js";
   });
 
   // Populate Default Content with virtual templates
@@ -733,6 +739,7 @@ export default async function (eleventyConfig) {
   // });
   // await eleventyConfig.addAsyncShortcode("links", links);
   eleventyConfig.addShortcode("n", newLine);
+  eleventyConfig.addShortcode("br", htmlLineBreak);
   await eleventyConfig.addNunjucksAsyncShortcode(
     "fetchFile",
     fetchFileShortcode,

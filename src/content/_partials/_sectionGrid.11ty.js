@@ -10,8 +10,9 @@ import {
 //   {
 //     header?:        { content, class?, attributes? },
 //     items:          [{ content, class?, attributes? }, …],
-//     layoutOptions?: { type?: "switcher"|"grid-fluid"|"cluster",
-//                       widthWrap?, gap?, columns? },
+//     layoutOptions?: { type?: "switcher"|"grid-fluid"|"cluster"|"faux-masonry",
+//                       widthWrap?, gap?, columns?,
+//                       widthColumnMin?, widthColumnMax? },
 //     class?:         string,  // inner grid class
 //     footer?:        { content, class?, attributes? },
 //     sectionWrapper?:{ class?, attributes? },
@@ -23,6 +24,7 @@ export default async function (data) {
     outerClass: "section-grid",
     renderInner(d) {
       return renderItemsListInner.call(this, {
+        cascade: d?.__cascade,
         items: d?.items,
         itemPartial: "_gridItem",
         wrapperPartial: "_grid",
@@ -31,6 +33,8 @@ export default async function (data) {
           gap: d?.layoutOptions?.gap,
           widthWrap: d?.layoutOptions?.widthWrap,
           columns: d?.layoutOptions?.columns,
+          widthColumnMin: d?.layoutOptions?.widthColumnMin,
+          widthColumnMax: d?.layoutOptions?.widthColumnMax,
           class: d?.class,
         },
       });

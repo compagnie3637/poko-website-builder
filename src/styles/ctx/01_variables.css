@@ -1,8 +1,44 @@
+/* ----- Typed custom properties ----- */
+
+/* NOTE: Registration is document-global and order-independent: this is a type
+   contract, not a cascade rule. Its purpose is arithmetic safety — an
+   unregistered property accepts any token (e.g. the unitless `0`, which is a
+   <number>, not a <length>), and every calc() consuming it then becomes
+   invalid at computed-value time, silently falling back several layers away.
+   Registered, the value is parsed against the syntax and computed (unitless
+   zero -> 0px), so consumers can rely on the type.
+
+   Only register properties that have no "invalid means something" semantics.
+   `--columns` and `--width-cap` are deliberately NOT registered: a registered
+   property is never missing, so `var(--columns)` could no longer invalidate
+   `--width-column-min` (which is how `--columns: unset` switches .grid-fluid
+   to fluid mode), and `var(--width-cap, var(--width-page))` would stop
+   falling back — `initial-value` must be computationally independent, so it
+   cannot reference another variable. */
+
+@property --gap-grid {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --px-body {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 12.8px;
+}
+
+@property --px-applied {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 :root {
-    --ratio-square: 1;
-    --ratio-landscape: 4/3;
-    --ratio-portrait: 3/4;
-    --ratio-widescreen: 16/9;
-    --ratio-ultrawide: 18/5;
-    --ratio-golden: 1.618/1;
+  --ratio-square: 1;
+  --ratio-landscape: 4/3;
+  --ratio-portrait: 3/4;
+  --ratio-widescreen: 16/9;
+  --ratio-ultrawide: 18/5;
+  --ratio-golden: 1.618/1;
 }

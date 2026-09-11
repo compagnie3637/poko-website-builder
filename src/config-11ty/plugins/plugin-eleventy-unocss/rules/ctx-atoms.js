@@ -41,11 +41,20 @@ export default [
   // E.g. width-prose, width-body, width-card, width-300px, ...
   [
     /^width-([a-zA-Z0-9\-]+)$/,
-    ([, name], { symbols }) => ({
-      [symbols.selector]: () => `:where(.width-${name})`,
-      "max-inline-size": resolveNamedValue(name, "--width-"),
-      "margin-inline": "auto",
-    }),
+    ([, name], { symbols }) => {
+      const value = resolveNamedValue(name, "--width-");
+      return {
+        [symbols.selector]: () => `:where(.width-${name})`,
+        "max-inline-size": value,
+        // NOTE: --width-cap is the absolute reference (layouts read it),
+        // --max-width the % clamped one. Both are needed: custom properties
+        // resolve eagerly, so redeclaring --width-cap alone would leave
+        // descendants inheriting the host's already-substituted --max-width.
+        "--width-cap": value,
+        "--max-width": `min(100%, ${value})`,
+        "margin-inline": "auto",
+      };
+    },
   ],
   // Padding utility — all logical axes + aliases
   // p-*, py-*/pb-*, px-*/pi-*, pbs-*, pbe-*, pis-*, pie-*

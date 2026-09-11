@@ -59,7 +59,6 @@ export async function image(args) {
 
   let wrapperTag = wrapper ? wrapper.split(" ")[0] : "";
   // wrapperTag = wrapperTag || (width ? "p" : "");
-  // TODO: compute sizes from widths
   // TODO: Allow defining a wrapping tag??
   //
   // TODO: If we have some 'full-bleed' class on the image, we need sizes to be "100vw"?? We might want to account for a max bleed nonetheless
@@ -91,17 +90,20 @@ export async function image(args) {
             ...((fetchpriority || loading === "eager") && {
               fetchpriority: fetchpriority || "high",
             }),
-            ...(width && { sizes: null }), // TODO: right?
+            ...(width && { sizes: `${width}px` }),
             ...(sizes && { sizes }),
             ...(className && { class: className }),
             ...(id && { id }),
-            ...((width && {
-              style: `inline-size:${width}px;${style || ""}`,
-            }) ||
-              (style && { style })),
-            // ...(style && { style }),
+            // NOTE: I think `fallback: "smallest"` allows us to avoid inline styling
+            // ...((width && {
+            //   style: `inline-size:${width}px;${style || ""}`,
+            // }) ||
+            //   (style && { style })),
+            ...(style && { style }),
             ...otherArgs,
           },
+          // We can use "smallest" when only one width and accounting for pixel density
+          ...(width && { fallback: "smallest" }),
         },
       },
       opts,
@@ -122,7 +124,6 @@ export async function image(args) {
   html = width
     ? html.replace(`${width}w`, "1x").replace(`${width * 2}w`, "2x")
     : html;
-  // console.log({ html });
 
   // return `<p>${html}</p>`;
   return wrapperTag && html ? `<${wrapperTag}>${html}</${wrapperTag}>` : html;

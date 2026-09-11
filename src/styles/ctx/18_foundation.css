@@ -93,23 +93,60 @@
   --step-9: clamp(5.8048rem, 4.3695rem + 6.379vw, 9.3132rem);
 
   /* ⚠️ 1rem stays at 16px for our step calculations to remain consistant */
-  /* TODO: Would be nice to find a way to overwrite the rem unit to match our scale.
+  /* TODO: Would it be nice to find a way to overwrite the rem unit to match our scale?
     This needs some other calculation... */
-  --width-prose: 50rem;
+
+  /* prettier-ignore */
+  /* Widths Map
+    var	      φⁿ	    rem	    px
+    token	    φ⁻³	    11.8	  189
+    tile	    φ⁻²	    19.1	  306    (Ex 'card')
+    column    φ⁻¹·⁵	  24.3	  389
+    card	    φ⁻¹	    30.9	  494    (Ex 'featured')
+    featured	φ⁻⁰·⁵	  39.3	  629    (Ex 'snug')
+    prose	    φ⁰	    50	    800
+    inset	    φ⁰·⁵	  63.6	  1018
+    page	    φ¹	    80.9	  1294
+    outset	  φ¹·⁵	  102.9	  1646
+    screen	  φ²	    130.9	  2094
+    bleed	    φ³	    211.8	  3389
+  */
+
+  --ratio-width: 1.618; /* φ */
+  --ratio-width-sm: 1.272; /* √φ */
+
+  --width-prose: 50rem; /* φ⁰ = 50 */
   /*--width-prose: calc(50 * var(--step-0));*/
-  --width-page: calc(var(--width-prose) * 1.618); /* 80,98 */
-  --width-body: var(--width-page); /* (alias for width-page) */
-  --width-max: var(--width-page); /* (alias for width-page) */
-  --width-outset: calc(var(--width-page) * 1.618);
+  /* POSITIVE STEPS - Greater than Prose */
+  --width-page: calc(var(--width-prose) * var(--ratio-width)); /* φ¹ ≈ 80.9 */
+  /* (aliases for width-page for backward compat) */
+  --width-body: var(--width-page);
+  --width-max: var(--width-page);
+  /* sections are page width by default  */
   --width-section: var(--width-page);
-  /*--width-inset: ;*/
-  --width-featured: calc(var(--width-prose) / 1.618); /* 30.90 */
-  /* --width-card: calc(var(--width-prose) / 2.618); 19 */
-  /* --width-card: calc(var(--width-prose) / 2); 25 */
-  --width-token: calc(var(--width-prose) / 4.2358); /* 11.8 */
+  /* φ⁰·⁵ ≈ 63.6 */
+  --width-inset: calc(var(--width-page) / var(--ratio-width-sm));
+  /* φ¹·⁵ ≈ 102.9 */
+  --width-outset: calc(var(--width-page) * var(--ratio-width-sm));
+  /* φ² ≈ 130.9 */
+  --width-screen: calc(var(--width-page) * var(--ratio-width));
+  /* φ³ ≈ 211.8 */
+  --width-bleed: calc(var(--width-screen) * var(--ratio-width));
+  /* NEGATIVE STEPS - Smaller than Prose */
+  /* φ⁻⁰·⁵ ≈ 39.3rem (629px) — featured content / modal / form / narrow-article width */
+  --width-featured: calc(var(--width-prose) / var(--ratio-width-sm));
+  /* φ⁻¹ ≈ 30.9 */
+  --width-card: calc(var(--width-prose) / var(--ratio-width));
+  /* φ⁻¹·⁵ ≈ 24.3rem (389px) — narrow card / sidebar / input column */
+  --width-column: calc(var(--width-card) / var(--ratio-width-sm));
+  /* φ⁻² ≈ 19.1 */
+  --width-tile: calc(var(--width-card) / var(--ratio-width));
+  /* φ⁻³ ≈ 11.8 */
+  --width-token: calc(var(--width-tile) / var(--ratio-width));
 
   --width-wrap: var(--width-prose);
-  --full-bleed-max-width: calc(var(--width-page) * 2);
+  /* --full-bleed-max-width: calc(var(--width-page) * 2); */
+  --full-bleed-max-width: var(--width-bleed);
 
   --radius-round: 1e5px;
   /* --radius-body: 0rem; */
@@ -126,6 +163,7 @@
   /* --thick-card: 2px; */
   /* --thick-token: 1px; */
 
+  /*--border-style-page: solid;*/
   /*--border-style-body: solid;*/
   /*--border-style-section: solid;*/
   /*--border-style-prose: solid;*/
@@ -133,14 +171,16 @@
   /*--border-style-card: solid;*/
   --border-style-token: solid;
 
-  --px-body: var(--step--2, 0.8rem);
+  --px-page: var(--step--2, 0.8rem);
+  --px-body: var(--px-page);
   --px-section: var(--step--1, 1rem);
   --px-prose: var(--step--1, 1rem);
   --px-featured: var(--step--1, 1rem);
   --px-card: var(--step--1, 1rem);
   --px-token: var(--step--1, 1rem);
 
-  --py-body: var(--step-2, 0.8rem);
+  --py-page: var(--step-2, 0.8rem);
+  --py-body: var(--py-page);
   --py-section: var(--step-4, 3rem);
   /* --py-area: var(--step-1); */
   --py-prose: var(--step--1, 1rem);
@@ -148,7 +188,8 @@
   --py-card: var(--step--1, 1rem);
   --py-token: var(--step--1, 1rem);
 
-  /* --gap-body: var(--step-0, 1.25rem); */
+  /* --gap-page: var(--step-0, 1.25rem); */
+  /* --gap-body: var(--gap-page); */
   /* --gap-section: var(--step-0, 1.25rem); */
   /* --gap-prose: var(--step--1, 1rem); */
   /* --gap-featured: var(--step--1, 1rem); */
@@ -179,7 +220,7 @@
   overflow-x: clip;
 
   font-size: var(--step-0);
-  font-family: var(--font-stack-body, system-ui, sans-serif);
+  font-family: "Emoji", var(--font-stack-body, system-ui, sans-serif);
   /* color: #100c08; */
   /* background-color: #fdfdfe; */
 }
@@ -187,19 +228,19 @@
 /* Necessary for context classes change so the var is re-applied. */
 /* Otherwise the var on the body is used and redefinition has no effect. */
 :where([class*="fonts-"]) {
-  font-family: var(--font-stack-body, system-ui, sans-serif);
+  font-family: "Emoji", var(--font-stack-body, system-ui, sans-serif);
 }
 
 /* 1.2 Headings */
 /* prettier-ignore */
 :where(.h8, .h7, h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1, .h0, .h-1, .h-2, .h-3, .h-4) {
-    font-family: var(--font-stack-heading, system-ui, sans-serif);
+    font-family: "Emoji", var(--font-stack-heading, system-ui, sans-serif);
 }
 
 /* Code Font */
 /* prettier-ignore */
 :where(tt, code, kbd, pre, samp, tt *, code *, kbd *, pre *, samp *) {
-  font-family: var(
+  font-family: "Emoji", var(
     --font-stack-code,
     ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace
   );
@@ -238,6 +279,10 @@ html:focus-within {
 
 :where(body) {
   text-underline-offset: var(--text-underline-offset, 0.15em);
+}
+
+a.reset {
+  text-decoration: none;
 }
 
 :where(tt, code, kbd, pre, samp) {

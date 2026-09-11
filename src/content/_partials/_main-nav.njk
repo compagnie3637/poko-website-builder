@@ -1,7 +1,7 @@
 {% set navPages = collections.all | filterCollection([{ by: 'lang', value:
 lang }, { by: 'parent', value: '' }]) | eleventyNavigation %}
 {% if navPages | length %}
-    <header class="main-header">
+    <header class="main-header {{ class }}">
         <nav
             class="flex flex-nowrap gap-[--step-0] flex-justify-between items-start">
             <!-- Main pages navigation -->
@@ -9,7 +9,7 @@ lang }, { by: 'parent', value: '' }]) | eleventyNavigation %}
                 {% for link in navPages %}
                     <li>
                         {# prettier-ignore #}
-                        <a href="{{ link.url }}" hreflang="{{ link.lang }}" {% if link.url == page.url %} aria-current="page" {% endif %}>{{ link.title }}</a>
+                        <a href="{{ link.url }}" {% if link.lang %} hreflang="{{ link.lang }}" {% endif %} {% if link.url == page.url %} aria-current="page" {% endif %}>{{ link.title }}</a>
                     </li>
                 {% endfor %}
             </ul>

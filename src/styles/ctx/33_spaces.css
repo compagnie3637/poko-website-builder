@@ -55,7 +55,8 @@
   max-inline-size: min(100%, var(--width-page));
   margin-inline: auto; */
   --mi-auto-applied: auto;
-  --max-width: min(100%, var(--width-page));
+  --width-cap: var(--width-page);
+  --max-width: min(100%, var(--width-cap));
 }
 /* prettier-ignore */
 /* :where(:where(section, .section) > :where(.area, header, footer, .header, .footer, .main)), */
@@ -69,13 +70,6 @@
       --mi-auto-applied: 0;
   }
 }
-:where(.reset-w),
-:where(.reset-down-w *) {
-  --mi-auto-applied: unset;
-  --max-width: unset;
-  max-inline-size: unset;
-  margin-inline: unset;
-}
 
 /*:where(img, picture, video) {
     --max-width: min(100%, var(--width-prose));
@@ -87,6 +81,7 @@
 :where(.prose, .featured, .card, p, h1, h2, h3, h4, h5, h6, hgroup, address, :where(ul, ol):not([role="list"]):not(.reset), menu, search),
 :where(figure,figcaption,form,fieldset),
 :where(dl,dt,dd,blockquote,details) {
+    --width-cap: var(--width-prose);
     --max-width: min(100%, var(--width-prose));
     /* max-inline-size: min(100%, var(--width-prose)); */
     /* margin-inline: auto; */
@@ -107,20 +102,28 @@
     margin-block-start: 0;
 }
 :where(section, .section) {
-  --max-width: min(100%, var(--width-section, var(--width-page)));
+  --width-cap: var(--width-section);
+  --max-width: min(100%, var(--width-cap, var(--width-page)));
   /* max-inline-size: min(100%, var(--width-section, var(--width-page))); */
 }
 :where(.featured) {
-  --max-width: min(100%, var(--width-featured, var(--width-prose)));
+  --width-cap: var(--width-featured);
+  --max-width: min(100%, var(--width-cap, var(--width-prose)));
   /* max-inline-size: min(100%, var(--width-featured, var(--width-prose))); */
 }
+/* NOTE: limiting width automatically on cards might be an anti-pattern with our layouts if width is too narrow.
+   Parents constrain children. */
 :where(.card) {
-  --max-width: min(100%, var(--width-card, var(--width-prose)));
+  --width-cap: var(--width-card);
+  --max-width: min(100%, var(--width-cap, var(--width-prose)));
   /* max-inline-size: min(100%, var(--width-card, var(--width-prose))); */
 }
-:where(:where(.card, .box, [class*="width-"]) > *) {
+:where(.reset-w),
+:where(.reset-down-w *),
+:where(:where(.card, .box, [class^="width-"], [class*=" width-"]) > *) {
   /* margin-inline: 0; */
   --mi-auto-applied: unset;
+  /* NOTE: Do not reset `--with-cap` here because it is used as a reference for layouts inside sections */
   --max-width: unset;
   max-inline-size: unset;
   margin-inline: unset;

@@ -754,6 +754,7 @@ const parseCollectionBody = ({ attributes, content }) => {
       "filters",
       "sortCriterias",
       "exclusions",
+      "keepVisible",
       "itemPartial",
     ]);
 
@@ -768,12 +769,18 @@ const parseCollectionBody = ({ attributes, content }) => {
   // `itemPartial` was already pulled out into `collectionSpecific` above.
   const itemPartial = collectionSpecific.itemPartial;
 
+  const keepVisible = collectionSpecific.keepVisible;
+
   const sortAndFilterOptions =
-    filters.length || sortCriterias.length || collectionSpecific.exclusions
+    filters.length ||
+    sortCriterias.length ||
+    collectionSpecific.exclusions ||
+    keepVisible
       ? {
           filters,
           sortCriterias,
           exclusions: !!collectionSpecific.exclusions,
+          ...(keepVisible ? { keepVisible } : {}),
         }
       : undefined;
 
@@ -802,13 +809,15 @@ const buildCollectionBody = ({
   layoutOptions,
   attributes,
 }) => {
-  const { filters, sortCriterias, exclusions } = sortAndFilterOptions || {};
+  const { filters, sortCriterias, exclusions, keepVisible } =
+    sortAndFilterOptions || {};
 
   const collAttrs = {
     collection: collection || "all",
     filters,
     exclusions,
     sortCriterias,
+    keepVisible,
     ...(layoutOptions || {}),
     class: className,
     itemPartial,
@@ -1283,6 +1292,35 @@ const layoutTypeCluster = {
     },
   ],
 };
+const layoutTypeFauxMasonry = {
+  name: "faux-masonry",
+  label: "Faux Masonry (CSS columns)",
+  collapsed: true,
+  hint: "Items flow top-to-bottom within each column (Pinterest-style). Reading order runs down each column, not across rows — use where visual balance matters more than sequence.",
+  fields: [
+    {
+      name: "widthColumnMin",
+      label: "Min Column Width",
+      widget: "string",
+      required: false,
+      hint: "CSS length (e.g. 24.9rem). Columns are at least this wide and stretch to fill. Leave empty to use the default (24.9rem) or to set an exact column count below.",
+    },
+    {
+      name: "columns",
+      label: "Column Count",
+      widget: "number",
+      required: false,
+      hint: "Alone: exactly this many columns. Combined with Min Column Width: an upper cap on how many columns can fit.",
+    },
+    {
+      name: "gap",
+      label: "Gap",
+      widget: "string",
+      required: false,
+      hint: "The gap between columns (e.g. 1em [default], var(--step-2) [fluid type scale], 0 [no gap])",
+    },
+  ],
+};
 const layoutTypeFlow = {
   name: "flow",
   label: "Flow",
@@ -1339,7 +1377,7 @@ export const link = {
   label: "Link",
   icon: "link",
   mode: "dialog",
-  // dialog: true, // Legacy
+  trigger: "button",
   summary:
     "🔗 {{content | truncate(20)}}{{content | ternary(': ', '')}}{{linkType.url | truncate(30)}}",
   fields: [
@@ -1696,7 +1734,7 @@ export const icon = {
   label: "Icon",
   icon: "triangle_circle",
   mode: "dialog",
-  // dialog: true, // Legacy
+  trigger: "button",
   summary: "🔅 {{icon.iconLib.iconName}}",
   fields: [
     {
@@ -1823,7 +1861,7 @@ export const imageShortcode = {
   id: "imageShortcode",
   label: "Image",
   icon: "image",
-  // dialog: true,
+  trigger: "button",
   // summary:
   //   "🖼️ {{attributes.alt | truncate(20)}}{{attributes.alt | ternary(': ', '')}}{{src | truncate(30)}}",
   fields: [
@@ -2933,6 +2971,7 @@ export const sectionGrid = {
         layoutTypeSwitcher,
         layoutTypeGridFluid,
         layoutTypeCluster,
+        layoutTypeFauxMasonry,
         layoutTypeNone,
       ],
     },
@@ -3288,6 +3327,36 @@ ${footerContent}
   },
 };
 
+// Mirror of `keepVisibleField` in `./section-primitives.js` — keep both in sync.
+// Optional object: when absent, an empty filtered collection removes the whole
+// section (header/footer included) from the output. The hidden `enabled`
+// subfield exists only so that an added-but-messageless object is not stripped
+// on save by `omit_empty_optional_fields`.
+const keepVisibleField = {
+  name: "keepVisible",
+  label: "Keep section visible when empty",
+  widget: "object",
+  required: false,
+  i18n: true,
+  collapsed: true,
+  fields: [
+    {
+      name: "enabled",
+      label: "Enabled",
+      widget: "hidden",
+      default: true,
+    },
+    {
+      name: "fallbackMessage",
+      label: "Fallback message",
+      hint: "Displayed in place of the items when the filtered collection is empty. Leave empty to keep the section visible without any message.",
+      widget: "richtext",
+      required: false,
+      i18n: true,
+    },
+  ],
+};
+
 export const sectionCollection = {
   id: "sectionCollection",
   label: "Section > Collection List",
@@ -3485,6 +3554,7 @@ export const sectionCollection = {
           default: false,
           hint: "When enabled, the defined filters will exclude items instead of including them. For example, if you set a Tag filter with 'example' value and enable Exclusions, items with 'example' tag will not be displayed in the section.",
         },
+        keepVisibleField,
       ],
     },
     {
@@ -3499,6 +3569,7 @@ export const sectionCollection = {
         layoutTypeSwitcher,
         layoutTypeGridFluid,
         layoutTypeCluster,
+        layoutTypeFauxMasonry,
         layoutTypeFlow,
         layoutTypeReel,
         layoutTypeNone,
@@ -3772,6 +3843,7 @@ export const sectionBuilder = {
                 layoutTypeSwitcher,
                 layoutTypeGridFluid,
                 layoutTypeCluster,
+                layoutTypeFauxMasonry,
                 layoutTypeNone,
               ],
             },
@@ -3944,6 +4016,7 @@ export const sectionBuilder = {
                   default: false,
                   hint: "When enabled, the defined filters will exclude items instead of including them. For example, if you set a Tag filter with 'example' value and enable Exclusions, items with 'example' tag will not be displayed in the section.",
                 },
+                keepVisibleField,
               ],
             },
             {
@@ -3964,6 +4037,7 @@ export const sectionBuilder = {
                 layoutTypeSwitcher,
                 layoutTypeGridFluid,
                 layoutTypeCluster,
+                layoutTypeFauxMasonry,
                 layoutTypeNone,
               ],
             },

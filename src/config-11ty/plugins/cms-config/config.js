@@ -26,6 +26,7 @@ import {
   layoutTypeSwitcher,
   layoutTypeGridFluid,
   layoutTypeCluster,
+  layoutTypeFauxMasonry,
   layoutTypeFixedFluid,
   layoutTypeFlow,
   layoutTypeReel,
@@ -520,7 +521,7 @@ export const fontStackDefinitionField = (nativeDefault = "system-ui") => ({
 });
 export const styleContextRelationField = (valField) => ({
   widget: "relation",
-  required: true,
+  required: false,
   collection: "stylesConfig",
   file: "brand",
   value_field: `${valField}.*.name`,
@@ -614,11 +615,13 @@ export const mostCommonMarkdownCollectionConfig = {
   view_groups: {
     groups: [
       {
+        name: "navItems",
         label: "Nav Items",
         field: "eleventyNavigation.add",
         value: "Nav",
       },
       {
+        name: "tags",
         label: "Tags",
         field: "tags",
       },
@@ -746,13 +749,14 @@ export const pageLayoutsCollection = {
       direction: "ascending",
     },
   },
+  editor: { preview: false },
   fields: [
     {
       name: "body",
       label: "Layout Markup",
       hint: "Page layout markup as Nunjucks flavored HTML",
       widget: "code",
-      language: "html",
+      default_language: "jinja",
       required: false,
       output_code_only: true,
       allow_language_selection: false,
@@ -881,7 +885,7 @@ export const htmlPartialsCollection = {
       widget: "code",
       output_code_only: true,
       allow_language_selection: false,
-      language: "html",
+      default_language: "jinja",
       i18n: true,
     },
   ],
@@ -1123,6 +1127,7 @@ export function buildSectionsField(activeCollections) {
               layoutTypeSwitcher,
               layoutTypeGridFluid,
               layoutTypeCluster,
+              layoutTypeFauxMasonry,
               layoutTypeNone,
             ],
           },
@@ -1270,6 +1275,7 @@ export function buildSectionsField(activeCollections) {
               layoutTypeSwitcher,
               layoutTypeGridFluid,
               layoutTypeCluster,
+              layoutTypeFauxMasonry,
               layoutTypeFlow,
               layoutTypeReel,
               layoutTypeNone,
@@ -1418,10 +1424,12 @@ export const pagesCollection = {
       "eleventyNavigation.parent",
       "name",
       // "eleventyNavigation.add",
-      "eleventyNavigation.order",
+      // "eleventyNavigation.order",
+      "order",
     ],
     default: {
-      field: "eleventyNavigation.order",
+      // field: "eleventyNavigation.order",
+      field: "order",
       direction: "ascending",
     },
   },
@@ -2701,8 +2709,8 @@ const globalSettingsSingleton = {
       label: "HTML Head",
       widget: "code",
       required: false,
-      // TODO: default-language not working
-      default_language: "html",
+      // TODO: default-language not working?
+      default_language: "jinja",
       output_code_only: true,
       allow_language_selection: false,
     },

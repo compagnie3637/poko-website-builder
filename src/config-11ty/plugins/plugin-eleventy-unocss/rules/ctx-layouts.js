@@ -201,7 +201,7 @@ export default [
         "box-sizing": "content-box",
         "margin-inline": "auto",
         "max-inline-size":
-          "var(--max-width, var(--width-body, var(--measure, 60ch)))",
+          "var(--max-width, var(--width-page, var(--measure, 60ch)))",
         "padding-inline": "var(--gutters-center)",
       };
     },
@@ -372,9 +372,21 @@ export default [
         {
           [symbols.selector]: () => `:where(.grid-fluid)`,
           "--gap-grid": "var(--gap, 1em)",
-          // NOTE: width - gap * (columns - 1) / (columns + 1)
+          // NOTE: widest content box this grid can ever reach: the absolute
+          // cap inherited from its host, minus its own lateral padding
+          // (box-sizing is border-box, and .grid-fluid is a padding target).
+          "--width-cap-inner":
+            "calc(var(--width-cap, var(--width-page)) - 2 * var(--px-body, 0.8rem) * (1 - var(--px-applied, 0)))",
+          // NOTE: exact width of one column at --columns:
+          // (width - gap * (columns - 1)) / columns
+          // minus 1px so rounding never drops a column, while staying large
+          // enough that `columns + 1` can never fit (even with gap: 0).
           "--width-column-min":
-            "calc(calc(var(--width-body) - var(--gap-grid) * calc(var(--columns) - 1)) / calc(var(--columns) + 1))",
+            // "calc(calc(var(--width-page) - var(--gap-grid) * calc(var(--columns) - 1)) / var(--columns) - 1px)",
+            // "calc(calc(var(--max-width) - var(--gap-grid) * calc(var(--columns) - 1)) / var(--columns) - 1px)",
+            // "calc(calc(var(--width-cap, var(--width-page)) - var(--gap-grid) * calc(var(--columns) - 1)) / var(--columns) - 1px)",
+            "calc((var(--width-cap-inner) - var(--gap-grid) * (var(--columns) - 1)) / var(--columns) - 1px)",
+
           display: "grid",
           "grid-gap": "var(--gap-grid)",
           "grid-template-columns":
@@ -637,7 +649,7 @@ export default [
   // Container query helper
   // Matches "container" and "container:myContainerName"
   [
-    /^container(?::([a-zA-Z]+))?$/,
+    /^container(?::(-?[a-zA-Z_][a-zA-Z0-9_-]*))?$/,
     ([, name], { symbols }) => {
       return {
         [symbols.selector]: (selector) => `:where(${selector})`,
@@ -659,6 +671,29 @@ export default [
         {
           [symbols.selector]: () => `:where(.pile) > *`,
           "grid-area": "1/1",
+        },
+      ];
+    },
+  ],
+  [
+    /^faux-masonry$/,
+    ([, name], { symbols }) => {
+      return [
+        {
+          [symbols.selector]: (selector) => `:where(${selector})`,
+          "--columns-faux-masonry":
+            "var(--width-column-min, var(--columns, 24.9rem))",
+          columns: "var(--columns-faux-masonry)",
+          "--gap-faux-masonry": "var(--gap, 1em)",
+          "column-gap": "var(--gap-faux-masonry)",
+        },
+        {
+          [symbols.selector]: (selector) => `:where(${selector}) > *`,
+          // Without this, multicol splits a tall item across the column
+          // boundary mid-element, which is never what a masonry layout wants.
+          "break-inside": "avoid",
+          // Same meaning as in .grid-fluid: caps the item, not the column.
+          "max-inline-size": "var(--width-column-max, none)",
         },
       ];
     },

@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="{{lang or 'en'}}" class="no-js">
+<html lang="{{lang or 'en'}}" class="no-js {{htmlClass}}">
   <head>
     {% partial "_html-head-default.md" %} {% getBundle "html", "head" %}
   </head>
-  <body>
+  <body class="{{bodyClass}}">
     <!-- Navigation -->
     {% partial "headless/page-nav.11ty.js" %}
 

@@ -1,5 +1,6 @@
 // Shortcodes
 export { newLine } from "./newLine.js";
+export { htmlLineBreak } from "./newLine.js";
 export { fetchFile } from "./fetch.js";
 // Components
 export { link, button, linkPaired, buttonPaired } from "./components/links.js";
