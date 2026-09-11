@@ -48,6 +48,7 @@ credits:
   Production: Marie Angibaud / Compagnie 3637
   Diffusion: Tania Hansez / Compagnie 3637
   Visuel: River Vassart
+  Photos: Guillaume Zaracas
 gallery:
   - /_images/en-apnee/en-apnee_guillaume-zaracas_1-jpg.webp
   - /_images/en-apnee/en-apnee_guillaume-zaracas_2-jpg.webp
