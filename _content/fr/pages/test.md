@@ -2,11 +2,31 @@
 translationKey: test
 order: 7
 lang: fr
-createdAt: 2026-07-06T10:49:00.000Z
+createdAt: 2026-09-11T09:43:00.000Z
 ldType: WebPage
-fileTest: /assets/files/test/dossier_en-apnee-260610_compressed.pdf
-name: test
 status: draft
+name: test
+sections:
+  - type: sectionCollection
+    header:
+      content: |-
+        ## STRUCTURED SECTION
+
+        {% link url="index", type="internal", collection="pages" %}{% endlink %}
+    collection: plays
+    sortAndFilterOptions:
+      exclusions: false
+      keepVisible:
+        enabled: true
+        fallbackMessage: FB {% link url="index", type="internal", collection="pages" %}home{% endlink %}
 ---
 
-{% link url="/assets/files/dossier_en-apnee-260610_compressed.pdf", type="file" %}Dossier - En apnée{% endlink %}
+{% sectionCollection  %}
+{% sectionHeader  %}
+# Collection Inline
+{% endsectionHeader %}
+{% collection collection="plays", filters=[{"by":"tag","value":["soon"]}], sortCriterias=[], keepVisible={"fallbackMessage":""} %}{% endcollection %}
+
+{% endsectionCollection %}
+
+{% sections %}{% endsections %}

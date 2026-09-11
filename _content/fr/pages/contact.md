@@ -17,7 +17,7 @@ eleventyNavigation:
 
 {% sectionGrid  %}
 
-{% grid type="grid-fluid", gap="var(--step-4)", columns=3, class="width-prose" %}
+{% grid type="grid-fluid", gap="var(--step-4)", columns=2, class="width-prose" %}
 {% gridItem class="text-center flow" %}
 ## Direction artistique { .h3 }
 
@@ -48,7 +48,7 @@ eleventyNavigation:
 {% gridItem class="text-center flow" %}
 ## Régie générale { .h3 }
 
-{% htmlPartial "card-person-contact-info.njk", {"name": "", "email":"technique@compagnie3637.be"} %}
+{% htmlPartial "card-person-contact-info.njk", {"name":"","email":"technique@compagnie3637.be"} %}
 {% endgridItem %}
 {% endgrid %}
 
