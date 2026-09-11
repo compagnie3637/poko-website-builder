@@ -6,7 +6,7 @@ createdAt: 2026-06-11T12:12:00.000Z
 ldType: CreativeWork
 name: En apnée
 orfeoId: 79599
-cover: /_images/en-apnee/tentacule01_background_blue.webp
+cover: /_images/en-apnee/en-apnee-12.webp
 representationType: Théâtre
 yearStart: 2026
 audienceAge: 10-14 ans
@@ -60,6 +60,7 @@ gallery:
   - /_images/en-apnee/en-apnee_guillaume-zaracas_9-jpg.webp
   - /_images/en-apnee/en-apnee_guillaume-zaracas_10-jpg.webp
   - /_images/en-apnee/en-apnee_guillaume-zaracas_11-jpg.webp
+  - /_images/en-apnee/en-apnee-12.webp
 thanks: |-
   ### Co-production
 
@@ -78,6 +79,5 @@ metadata:
   image:
     src: /_images/en-apnee/tentacule01_background_blue.webp
 tags:
-  - soon
-vars: {}
+  - on-tour
 ---
