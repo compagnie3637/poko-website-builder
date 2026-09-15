@@ -335,7 +335,7 @@ const actusCollection = {
       direction: "descending",
     },
   },
-  view_groups: {},
+  view_groups: undefined,
   thumbnail: undefined,
   reorder: false,
   fields: actusFields,

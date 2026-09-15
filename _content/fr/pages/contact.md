@@ -8,51 +8,50 @@ name: Contact
 sections:
   - type: sectionGrid
     items:
-      - content: '## Direction artistique { .h3 }'
+      - content: |-
+          ## Direction artistique { .h3 }
+
+          {% sectionCollection class="flow space:--step--4", tag="div" %}
+
+          {% collection collection="people", filters=[{"by":"tag","value":["art-direction"]}], sortCriterias=[], type="flow", itemPartial="card-person-contact-info" %}{% endcollection %}
+
+          {% endsectionCollection %}
+        class: text-center flow
+      - content: |-
+          ## Coordination générale { .h3 }
+
+          {% sectionCollection class="flow space:--step--4", tag="div" %}
+
+          {% collection collection="people", filters=[{"by":"tag","value":["coordination"]}], sortCriterias=[], type="flow", itemPartial="card-person-contact-info" %}{% endcollection %}
+
+          {% endsectionCollection %}
+        class: text-center flow
+      - content: |-
+          ## Diffusion { .h3 }
+
+          {% sectionCollection class="flow space:--step--4", tag="div" %}
+
+          {% collection collection="people", filters=[{"by":"tag","value":["diffusion"]}], sortCriterias=[], type="flow", itemPartial="card-person-contact-info" %}{% endcollection %}
+
+          {% endsectionCollection %}
+        class: text-center flow
+      - content: |-
+          ## Régie générale { .h3 }
+
+          {% htmlPartial "card-person-contact-info.njk", {"email":"technique@compagnie3637.be","name":""} %}
+        class: text-center flow
+    layoutOptions:
+      type: grid-fluid
+      gap: var(--step-4)
+      columns: 2
+    class: width-prose
 eleventyNavigation:
   add: Nav
 ---
 
 # Contact
 
-{% sectionGrid  %}
-
-{% grid type="grid-fluid", gap="var(--step-4)", columns=2, class="width-prose" %}
-{% gridItem class="text-center flow" %}
-## Direction artistique { .h3 }
-
-{% sectionCollection class="flow space:--step--4", tag="div" %}
-
-{% collection collection="people", filters=[{"by":"tag","value":["art-direction"]}], sortCriterias=[], type="flow", itemPartial="card-person-contact-info" %}{% endcollection %}
-
-{% endsectionCollection %}
-{% endgridItem %}
-{% gridItem class="text-center flow" %}
-## Coordination générale { .h3 }
-
-{% sectionCollection class="flow space:--step--4", tag="div" %}
-
-{% collection collection="people", filters=[{"by":"tag","value":["coordination"]}], sortCriterias=[], type="flow", itemPartial="card-person-contact-info" %}{% endcollection %}
-
-{% endsectionCollection %}
-{% endgridItem %}
-{% gridItem class="text-center flow" %}
-## Diffusion { .h3 }
-
-{% sectionCollection class="flow space:--step--4", tag="div" %}
-
-{% collection collection="people", filters=[{"by":"tag","value":["diffusion"]}], sortCriterias=[], type="flow", itemPartial="card-person-contact-info" %}{% endcollection %}
-
-{% endsectionCollection %}
-{% endgridItem %}
-{% gridItem class="text-center flow" %}
-## Régie générale { .h3 }
-
-{% htmlPartial "card-person-contact-info.njk", {"name":"","email":"technique@compagnie3637.be"} %}
-{% endgridItem %}
-{% endgrid %}
-
-{% endsectionGrid %}
+{% sections %}{% endsections %}
 
 {% wrapper tag="section", class='text-center palette-darker bleed-bg flow items-center' %}
 ::: cluster

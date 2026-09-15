@@ -13,7 +13,7 @@ pageStyles: |-
   }
 ---
 
-<h1 aria-label="Compagnie 3637">{% partial "logo.njk", { style: "inline-size:calc(2\*var(--step-6-8));" } %}</h1>
+{% htmlPartial "home-logo-title.njk" %}
 
 Depuis 2008, à Bruxelles, la Compagnie 3637 explore le théâtre - et bien plus encore - pour et autour des jeunes avec le désir de s’emparer de sujets vastes et complexes à l’image du monde dans lequel nous vivons. Nous mêlons les formes, les languages, les énergies -mots, mouvement, marionnette, sons - pour créer un espace de liberté, de singularité, d’écoute. Nous voulons offrir aux jeunes - et à toustes celleux qui les accompagnent - un théâtre vivant, engagé, qui ne donne pas de réponses toutes faites, mais invite à penser, ressentir, débattre, imaginer. Un théâtre qui bouscule, questionne, fait grandir.
 
@@ -23,7 +23,7 @@ Depuis 2008, à Bruxelles, la Compagnie 3637 explore le théâtre - et bien plus
 {% sectionHeader  %}
 ## Actu'
 {% endsectionHeader %}
-{% collection collection="actus", filters=[], sortCriterias=[{"direction":"desc","by":"date"}], type="faux-masonry", class="columns", itemPartial="card-actu" %}{% endcollection %}
+{% collection collection="actus", filters=[], sortCriterias=[{"by":"date","direction":"desc"}], type="faux-masonry", class="columns", itemPartial="card-actu" %}{% endcollection %}
 
 {% endsectionCollection %}
 
