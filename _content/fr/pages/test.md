@@ -8,10 +8,21 @@ name: test
 sections:
   - type: sectionCollection
     header:
-      content: |-
-        ## STRUCTURED SECTION
-
-        {% link url="index", type="internal", collection="pages" %}{% endlink %}
-    collection: pages
+      content: '## Spectacles en tournée'
+    collection: plays
+    sortAndFilterOptions:
+      filters:
+        - by: tag
+          value:
+            - past
+      exclusions: false
 status: draft
 ---
+
+{% sectionCollection  %}
+{% sectionHeader  %}
+## Spectacles en tournée
+{% endsectionHeader %}
+{% collection collection="plays", filters=[{"by":"tag","value":["on-tour"]},{"by":"first","value":2}], sortCriterias=[] %}{% endcollection %}
+
+{% endsectionCollection %}
