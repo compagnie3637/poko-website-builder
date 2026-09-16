@@ -6,7 +6,7 @@ createdAt: 2026-06-11T12:12:00.000Z
 ldType: CreativeWork
 name: En apnée
 orfeoId: 79599
-cover: /_images/en-apnee/en-apnee-12.webp
+cover: /_images/en-apnee/tentacule01_background_blue.webp
 representationType: Théâtre
 yearStart: 2026
 audienceAge: 10-14 ans
@@ -48,7 +48,6 @@ credits:
   Production: Marie Angibaud / Compagnie 3637
   Diffusion: Tania Hansez / Compagnie 3637
   Visuel: River Vassart
-  Photos: Guillaume Zaracas
 gallery:
   - /_images/en-apnee/en-apnee_guillaume-zaracas_1-jpg.webp
   - /_images/en-apnee/en-apnee_guillaume-zaracas_2-jpg.webp
@@ -81,4 +80,5 @@ metadata:
     src: /_images/en-apnee/tentacule01_background_blue.webp
 tags:
   - on-tour
+vars: {}
 ---
