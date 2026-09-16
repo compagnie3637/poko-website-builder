@@ -14,6 +14,7 @@ Fin aout, nous avons eu la grande joie de présenter {% link url="en-apnee", typ
 
 On a déjà très hâte des prochaines représentations!
 
+
 {% partialWrapper "page-header.njk", { image: "", class: "" } %}
 
 {% endpartialWrapper %}
