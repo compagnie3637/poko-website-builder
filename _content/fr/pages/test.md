@@ -15,13 +15,3 @@ sections:
     collection: pages
 status: draft
 ---
-
-{% sectionCollection  %}
-{% sectionHeader  %}
-# Collection Inline
-{% endsectionHeader %}
-{% collection collection="pages" %}{% endcollection %}
-
-{% endsectionCollection %}
-
-{% sections %}{% endsections %}
