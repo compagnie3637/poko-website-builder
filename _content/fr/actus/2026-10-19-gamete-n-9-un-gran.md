@@ -4,6 +4,13 @@ lang: fr
 createdAt: 2026-10-19T14:26:00.000Z
 datePublished: 2026-10-19
 title: GAMETE n'9 ? Un grand brainstorming autour de la prochaine création
+footer: |-
+  _Une idée de titre à proposer?!_ 
+  On est joueuses et preneuses de vos idées les plus farfelues
+
+  N'hésitez pas à nous les transmettre {% link type="internal" %}en nous écrivant{% endlink %}
+
+   :)
 ---
 
 Les premières résidences ont eu lieu
@@ -15,8 +22,4 @@ La sortie est prévue pour **mars 2028**. On se réjouis de vous en dire plus, t
 
 D'ici là, c'est le grand brainstorming dans nos esprits pour trouver LE bon titre.
 On y parle de gamètes, de stéréotypes véhiculés autour de la conception; on va rire et grandir dans nos réflexions.
-Une idée de titre à proposer?! On est joueuses et preneuses de vos idées les plus farfelues
-
-N'hésitez pas à nous les transmettre {% link anchor="tania@compagnie3637.be", type="internal", collection="people" %}en nous écrivant{% endlink %}
-
-:)
+Une idée de titre à proposer?! On est joueuses et preneuses de vos idées les plus farfelues.
