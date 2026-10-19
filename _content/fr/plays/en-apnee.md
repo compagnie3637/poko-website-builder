@@ -19,20 +19,24 @@ folio: https://www.dropbox.com/scl/fi/94lv645ngc4wt4v8muoqf/Dossier_En-Apn-e_26.
 picturesKit: https://www.dropbox.com/scl/fo/1njkwqmfm8gpocy3u8677/AAY2vLsquRbVc7k7iiyXlWo?rlkey=tnrbv23rgdu6k690ylezhtk6o&dl=0
 techSpecs: https://www.dropbox.com/scl/fi/wu1alp68kvpo5966fe9oo/FT_ENAPNEE.pdf?rlkey=fetfxkssm7o6w2jcdypvbrp6h&dl=0
 summary: |-
-  Stevie a onze ans. Elle adore lire des livres sur les galaxies et la formation des atomes, écouter le chant des baleines et passer du temps avec sa maman. Un jour, Stevie ressent un vertige en regardant son amie Chloé : un vertige tellement puissant et incompréhensible qu'il l'envoie dans le fond des océans, là où vivent des créatures étranges. Qu'est-ce qui lui est arrivé ? Est-ce vraiment réel ? Pour la toute première fois, ni sa mère ni les livres ne détiennent la réponse…
+  Stevie a onze ans. Elle aime lire, pâtisser avec son ami Adam, regarder de vieux fi lms avec sa mère. Quand quelque chose lui fait peur, elle cherche à comprendre, comme on explore l’océan pour apprivoiser ses profondeurs.
 
-  > Il n'y a qu'une seule chose
-  > Tout au fond de moi
-  > Que je ne sais pas
-  > C'est une sensation étrange
-  > Dans ma poitrine
-  > Et toujours dans ma tête
-  > Quelque chose de léger
-  > Et souple et chaud
-  > Qui me fait rougir
-  > Et ça n'arrive que quand
-  > Je regarde
-  > Mon amie Chloé
+  Mais une émotion nouvelle lui coupe le souffle quand elle regarde son amie Chloé. Aucun mot ne la nomme, aucun livre ne l’éclaire. Alors Stevie retient tout à l’intérieur, tandis que les adultes dessinent pour elle une route toute tracée.
+
+  **Un récit poétique sur la découverte de soi, l’absence de modèles et le courage d’écouter ce qui grandit en soi.** 
+
+  > _Il n'y a qu'une seule chose_
+  > _Tout au fond de moi_
+  > _Que je ne sais pas_
+  > _C'est une sensation étrange_
+  > _Dans ma poitrine_
+  > _Et toujours dans ma tête_
+  > _Quelque chose de léger_
+  > _Et souple et chaud_
+  > _Qui me fait rougir_
+  > _Et ça n'arrive que quand_
+  > _Je regarde_
+  > _Mon amie Chloé_
 creditsIntro: Adaptation du roman de Meg Grehan « The deepest breath », traduit en français par Aylin Manco
 credits:
   Mise en scène: Lisa Cogniaux
@@ -80,5 +84,4 @@ metadata:
     src: /_images/en-apnee/tentacule01_background_blue.webp
 tags:
   - on-tour
-vars: {}
 ---
