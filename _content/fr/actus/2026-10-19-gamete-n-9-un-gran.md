@@ -1,5 +1,5 @@
 ---
-translationKey: 65056d5af170
+translationKey: actus/2026-10-19-gamete-n-9-un-gran
 lang: fr
 createdAt: 2026-10-19T14:26:00.000Z
 datePublished: 2026-10-19
@@ -8,7 +8,7 @@ footer: |-
   _Une idée de titre à proposer?!_ 
   On est joueuses et preneuses de vos idées les plus farfelues
 
-  N'hésitez pas à nous les transmettre {% link type="internal" %}en nous écrivant{% endlink %}
+  N'hésitez pas à nous les transmettre {% link type="internal", collection="pages" %}en nous écrivant{% endlink %}
 
    :)
 ---
