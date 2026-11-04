@@ -45,8 +45,9 @@ credits:
   Photos aimants: Jérémie Hyndericks
   Séquence animée: Eric Blésin / atelier Zorobabel
   Création lumière: Antoine Vilain
-  Régie: Duo en alternance, Amélie Dubois, Brice Tellier, Tom Vincke
+  Régie: Duo en alternance, Brice Tellier, Renaud Avisse, Mael Vial
   Production: Marie Angibaud – Compagnie 3637
+  Diffusion: Tania Hansez – Compagnie 3637
 approach: |-
   ## Démarche artistique
 
@@ -124,6 +125,7 @@ metadata:
     src: /_images/c-est-ta-vie/c-est-ta-vie-mh-tercafs-2.webp
 tags:
   - on-tour
+vars: {}
 pageStyles: |-
   .cover-bottom {
     object-position: center 80%;
