@@ -50,11 +50,12 @@ credits:
   Artiste chorégraphique: Oriane Varak
   Artiste graphique: Florence Vieira
   Costumes: Camille Collin
-  Régie: Amélie Dubois, Tom Vincke
+  Régie: Brice Tellier, Nicolas Arnould, Renaud Avisse
   Construction: Jofroi Smets
   Voix enregistrées: Maia Baran, Bernard Cogniaux, Jimony Ekila, Baptiste Isaia, David Macaluso
   Suivi philosophique et pédagogique: Lora Debelle
   Production: Marie Angibaud, Bénédicte Mottart
+  Diffusion: Tania Hansez
 approach: |-
   ## Note d'intention
 
@@ -123,4 +124,5 @@ metadata:
     src: /_images/puissant-es/puissantes_m-tercafs_1.webp
 tags:
   - on-tour
+vars: {}
 ---
