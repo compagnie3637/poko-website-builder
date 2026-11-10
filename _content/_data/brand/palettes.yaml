@@ -1,0 +1,21 @@
+palettes:
+  - name: turquoise
+    read: black
+    tone: turquoise
+    pop: turquoise-light
+    neutral: white
+  - name: alt
+    read: turquoise-dark
+    tone: turquoise
+    pop: turquoise-light
+    neutral: white
+  - name: gold
+    read: black
+    tone: turquoise
+    pop: bronze
+    neutral: white
+  - name: darker
+    read: white
+    tone: turquoise
+    pop: gold
+    neutral: turquoise-dark

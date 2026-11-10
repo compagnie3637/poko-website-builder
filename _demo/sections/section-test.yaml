@@ -1,9 +1,0 @@
-fr:
-  lang: fr
-  createdAt: 2025-07-26T10:57:00.000Z
-  uuid: 7a39ca97f658
-  localizationKey: 6e8852844aad
-  name: section test
-  blocks:
-    - type: images
-      images: /_images/favicon-POKO-01.webp

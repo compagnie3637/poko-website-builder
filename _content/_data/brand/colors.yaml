@@ -1,0 +1,15 @@
+colors:
+  - name: black
+    value: "#000000"
+  - name: white
+    value: "#ffffff"
+  - name: turquoise
+    value: "#477c77"
+  - name: turquoise-light
+    value: "#32c8b9"
+  - name: turquoise-dark
+    value: "#3a5f5b"
+  - name: gold
+    value: "#e6c419"
+  - name: bronze
+    value: "#b39e2f"

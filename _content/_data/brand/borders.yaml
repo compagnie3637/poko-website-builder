@@ -1,0 +1,12 @@
+radius:
+  round: 1e5px
+  body: '0'
+  section: '0'
+  prose: 1rem
+  featured: 1rem
+  card: 1rem
+  token: 1e5px
+thick:
+  token: 1px
+borderStyle:
+  token: solid

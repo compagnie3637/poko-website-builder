@@ -1,0 +1,18 @@
+fontStacks:
+  - name: main
+    body:
+      native: transitional
+      custom: Lora
+    heading:
+      native: neo-grotesque
+      custom: Darker Grotesque
+    code:
+      native: monospace-code
+  - name: info
+    body:
+      native: neo-grotesque
+    heading:
+      native: neo-grotesque
+      custom: Darker Grotesque
+    code:
+      native: monospace-code

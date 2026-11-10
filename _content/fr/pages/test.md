@@ -19,10 +19,4 @@ sections:
 status: draft
 ---
 
-{% sectionCollection  %}
-{% sectionHeader  %}
-## Spectacles en tournée
-{% endsectionHeader %}
-{% collection collection="plays", filters=[{"by":"tag","value":["on-tour"]},{"by":"first","value":2}], sortCriterias=[] %}{% endcollection %}
-
-{% endsectionCollection %}
+A new link {% link url="spectacles", type="internal", collection="pages" %}inserted{% endlink %} here

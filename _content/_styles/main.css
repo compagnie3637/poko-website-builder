@@ -6,137 +6,44 @@
 }
 
 :root {
-  /* --width-prose: 50rem; */
-  /*--width-max: (alias for width-page) ;*/
-  /*--width-outset: ;*/
-  /* --width-page: calc(var(--width-prose) * 1.618); */
-  /*--width-max: var(--width-page);*/
-  /* --width-section: var(--width-page); */
-  /*--width-inset: ;*/
-  /* --width-featured: calc(var(--width-prose) / 1.618); */
-  /* --width-card: calc(var(--width-prose) / 2.618); */
-  /* --width-token: calc(var(--width-prose) / 4.2358); */
+  /* --width-outset: calc(var(--width-page) + var(--step-10)); */
 
-  --width-outset: calc(var(--width-page) + var(--step-10));
-
-  /* --radius-round: 1e5px; */
-  /*--radius-body: 0rem;*/
-  /*--radius-section: 2rem;*/
-  --radius-prose: 1rem;
+  /* --radius-prose: 1rem;
   --radius-featured: 1rem;
   --radius-card: 1rem;
   --radius-token: var(--radius-round);
-  --radius-tag: 0.5rem;
+  --radius-tag: 0.5rem; */
 
-  --thick-body: 5px;
-  --thick-section: 5px;
-  --thick-prose: 5px;
-  --thick-featured: 2px;
-  --thick-card: 2px;
-  --thick-token: 1px;
+  /* --thick-token: 1px; */
 
-  /*--border-style-body: solid;*/
-  /*--border-style-section: solid;*/
-  /*--border-style-prose: solid;*/
-  /*--border-style-featured: solid;*/
-  /*--border-style-card: solid;*/
-  --border-style-token: solid;
+  /* --border-style-token: solid; */
 
   --p-card: var(--step-1);
 
-  --px-body: var(--step--2);
+  /* --px-body: var(--step--2);
   --px-section: var(--step--2);
   --px-prose: var(--step--2);
   --px-featured: var(--step--2);
   --px-card: var(--step--2);
   --px-token: 1.5em;
+  --px-button: 1.5em; */
 
-  --py-body: var(--step-2);
+  /* --py-body: var(--step-2);
   --py-section: var(--step-6);
-  /*--py-area: var(--step-1);*/
   --py-prose: var(--step-1);
   --py-featured: var(--step-0);
   --py-card: var(--step-1);
   --py-token: 0.3em;
-
-  /* --gap-body: var(--step-0, 1.25rem); */
-  /* --gap-section: var(--step-0, 1.25rem); */
-  /* --gap-prose: var(--step--1, 1rem); */
-  /* --gap-featured: var(--step--1, 1rem); */
-  /* --gap-card: var(--step--1, 1rem); */
-  /* --gap-token: var(--step--1, 1rem); */
-
-  /* --flow-p: 1em; */
-  /* --flow-h1: 0.67em; */
-  /* --flow-h2: 0.83em; */
-  /* --flow-h3: 1em; */
-  /* --flow-h4: 1.33em; */
-  /* --flow-h5: 1.67em; */
-  /* --flow-h6: 2.33em; */
-  /* --flow-hr: 1em; */
-  /* --flow-prose: var(--step-1); */
-  /* --flow-section: var(--step-2); */
-  /* --flow-area: var(--step-3); */
-
-  /* ul and ol left padding */
-  /* --offset-list: 2rem; */
-  /* --offset-blockquote: 1rem; */
-  /* --text-underline-offset: 0.15em; */
-  /* --fit: cover; */
+  --py-button: 0.3em; */
 }
 
 /* The theme choses how to apply colors */
-:where(:root, body, [class*="palette"]) {
+/* :where(:root, body, [class*="palette"]) {
   --color-text: var(--color-read);
   --color-bg: var(--color-neutral);
 
-  /* --- Optional defaults / examples --- */
-  /* --color-border: var(--color-read); */
-  /* --color-outline: var(--color-read); */
-  /* --color-text-decoration: var(--color-read); */
-  /* --color-accent: var(--color-pop); */
-  /* --color-text-emphasis: var(--color-read); */
-  /* --color-shadow has to be used manually in box-shadow definitions */
-  /*--color-shadow: var();*/
-  /* --color-caret: var(--color-pop); */
-  /* --color-column-rule: var(--color-read); */
-  /* --color-fill: var(--color-pop); */
-  /* --color-stroke: var(--color-read); */
-  /* --- FOCUS --- */
-  /* --color-outline--focus: var(); */
-  /* --- SELECTION --- */
-  /*--color-text--selection: var();
-    --color-bg--selection: var();*/
-  /* --- A --- */
-  /* --color-text__a: var(); */
-  /* --color-bg__a: transparent; */
   --color-text__a--hover: var(--color-pop);
-  /* --color-bg__a--hover: var(); */
-  /* --- BUTTON --- */
-  /*--color-text__button: var();*/
-  /*--color-bg__button: var();*/
-  /*--color-border__button: var();*/
-  /* --color-text__button--hover: var(--color-pop); */
-  /*--color-bg__button--hover: var();*/
-  /*--color-border__button--hover: var();*/
-  /* --color-text__button--disabled: var(); */
-  /* --color-bg__button--disabled: var(); */
-
-  /* --- CODE --- */
-  /* --color-text__code: var(); */
-  /* --color-bg__code: var(); */
-  /* --color-border__code: var(); */
-
-  /* --- MARK --- */
-  /* --color-text__mark: var(); */
-  /*--color-bg__mark: var();*/
-  /* --color-border__mark: var(); */
-
-  /* --- SCROLLBAR --- */
-  /* TODO: this is for the Reel Layout Component */
-  /* --track-color */
-  /* --thumb-color */
-}
+} */
 
 input,
 textarea {

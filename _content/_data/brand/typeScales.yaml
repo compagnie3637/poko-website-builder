@@ -1,0 +1,20 @@
+typeScales:
+  - name: main
+    minFontSize: 16
+    maxFontSize: 20
+    minTypeScale: 1.2
+    maxTypeScale: 1.25
+    advanced:
+      minWidth: 360
+      maxWidth: 1240
+      positiveSteps: 12
+      negativeSteps: 4
+      prefix: step
+      relativeTo: viewport-width
+    customSteps:
+      - startStep: '5'
+        endStep: '7'
+      - startStep: '6'
+        endStep: '8'
+      - startStep: '7'
+        endStep: '9'

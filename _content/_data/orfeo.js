@@ -37,26 +37,66 @@ async function fetchAllPages(endpoint, params = {}) {
 
 /**
  * Derives audience type from a performance title.
- * "REPR SC" → "school", anything else → "public".
+ * "sco" or "repr sc" (any case) anywhere in title → "school", else "public".
  */
 function audienceFromTitle(title = "") {
-  return title.trim().toUpperCase() === "REPR SC" ? "school" : "public";
+  return /sco|repr sc/i.test(title) ? "school" : "public";
+}
+
+/**
+ * Derives audience type from the planning event's "Type de représentation"
+ * custom field ("Scolaire" → "school", "TP" → "public"),
+ * falling back to title inference when absent or unrecognized.
+ */
+function audienceFromPlanningEvent(planningEvent, title) {
+  const type = planningEvent?.custom_fields?.type_de_representation;
+  if (type === "Scolaire") return "school";
+  if (type === "TP") return "public";
+  return audienceFromTitle(title);
+}
+
+/**
+ * "performance" planning events.
+ * `custom_fields` holds audience info in the "Type de représentation" field.
+ * A planning event's pk matches the pk of the corresponding entry in
+ * project.performances (Performance is a simplified planning event serializer).
+ */
+async function fetchPlanningEvents() {
+  return fetchAllPages("/planning_event/", {
+    activity_type: "performance",
+    // is_cancelled: false,
+  });
 }
 
 /**
  * Projects in Orfeo = one venue booking / run, contains individual performances.
  */
 async function fetchProjects() {
-  const projects = await fetchAllPages("/project/", {
-    // is_published: true,
-    // ordering: "start_date",
-  });
+  const [projects, planningEvents] = await Promise.all([
+    fetchAllPages("/project/", {
+      // is_published: true,
+      // ordering: "start_date",
+    }),
+    fetchPlanningEvents(),
+  ]);
+  const planningEventByPk = new Map(planningEvents.map((e) => [e.pk, e]));
   const now = new Date();
   return projects.map((project) => {
-    const performances = project.performances.map((perf) => ({
-      ...perf,
-      audience: audienceFromTitle(perf.title),
-    }));
+    // console.log({ project });
+    const performances = project.performances.map((perf) => {
+      const planningEvent = planningEventByPk.get(perf.pk) ?? null;
+      if (!planningEvent) {
+        console.warn(
+          `No planning event found for performance ${perf.pk} "${perf.title}"`,
+        );
+      }
+      return {
+        // ...planningEvent,
+        ...perf,
+        is_cancelled: planningEvent?.is_cancelled ?? false,
+        audience: audienceFromPlanningEvent(planningEvent, perf.title),
+      };
+    });
     const perfDates = performances
       .map((p) => p.start_datetime?.slice(0, 10))
       .filter(Boolean)
@@ -171,11 +211,15 @@ export default async function () {
   const enrichedProjects = projects.map((project) => {
     const organizerPk = project.contracts?.[0]?.organizer?.pk;
     const structure = organizerPk ? structureByPk[organizerPk] : null;
+    // organizer_contact_infos is also available on project.contracts?.[0]?.organizer?.contact_infos
+    const organizer_contact_infos = structure?.contact_infos ?? [];
+    // web_addresses is only available on the detailed `structure` object
     const web_addresses = structure?.web_addresses ?? [];
+
     return {
       ...project,
       organizer_web_addresses: web_addresses,
-      organizer_contact_infos: structure?.contact_infos ?? [],
+      organizer_contact_infos,
       venueUrl: web_addresses[0]?.address ?? null,
       venueAddress:
         [

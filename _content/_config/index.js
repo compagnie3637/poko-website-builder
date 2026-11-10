@@ -1,7 +1,4 @@
-const CONTENT_DIR = process.env.CONTENT_DIR || "_content";
-const ELEVENTY_ROOT = process.env.ELEVENTY_ROOT;
-
-const {
+import {
   pages,
   creativeWorks,
   events,
@@ -11,9 +8,24 @@ const {
   statusField,
   bodyMarkdownField,
   generatePageField,
-} = await import(
-  `${ELEVENTY_ROOT}/src/config-11ty/plugins/cms-config/config.js`
-);
+} from "poko-website-builder/cms-config";
+
+const CONTENT_DIR = process.env.CONTENT_DIR || "_content";
+const ELEVENTY_ROOT = process.env.ELEVENTY_ROOT;
+
+// const {
+//   pages,
+//   creativeWorks,
+//   events,
+//   articles,
+//   spreadPageSetup,
+//   commonCollectionFields,
+//   statusField,
+//   bodyMarkdownField,
+//   generatePageField,
+// } = await import(
+//   `${ELEVENTY_ROOT}/src/config-11ty/plugins/cms-config/config.js`
+// );
 
 const pos = 4; // Just after page name field
 
@@ -326,6 +338,8 @@ const actusCollection = {
   icon: "newspaper",
   identifier_field: "datePublished",
   // slug: "{{datePublished}}",
+  // slug: "{{datePublished | date('YYYY-MM-DD')}}-{{title | truncate(20)}}",
+  slug: undefined,
   path: "actus/{{datePublished | date('YYYY-MM-DD')}}-{{title | truncate(20)}}",
   summary: "{{datePublished}} - {{title | truncate(20)}}",
   sortable_fields: {
@@ -361,7 +375,7 @@ export const collections = [
     public_folder: "/_images/{{slug}}",
     fields: playFields,
   },
-  theaterEventsCollection,
+  // theaterEventsCollection,
   actusCollection,
   {
     ...pages,

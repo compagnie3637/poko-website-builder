@@ -6,11 +6,9 @@ datePublished: 2026-10-19
 title: GAMETE n'9 ? Un grand brainstorming autour de la prochaine création
 footer: |-
   _Une idée de titre à proposer?!_ 
-  On est joueuses et preneuses de vos idées les plus farfelues
+  On est joueuses et preneuses de vos idées les plus farfelues. N'hésitez pas à nous les transmettre.
 
-  N'hésitez pas à nous les transmettre {% link type="internal", collection="pages" %}en nous écrivant{% endlink %}
-
-   :)
+  {% link type="internal", collection="pages" %}Écrivez-nous{% endlink %}
 ---
 
 Les premières résidences ont eu lieu

@@ -1,0 +1,22 @@
+widthsContexts:
+  - name: main
+    prose: 50rem
+px:
+  page: var(--step--2, 0.8rem)
+  body: var(--px-page)
+  section: var(--step--1, 1rem)
+  prose: var(--step--1, 1rem)
+  featured: var(--step--1, 1rem)
+  card: var(--step--1, 1rem)
+  token: 1.5em
+  button: 1.5em
+py:
+  page: var(--step-2, 0.8rem)
+  body: var(--py-page)
+  section: var(--step-6)
+  area: var(--step-1)
+  prose: var(--step-1)
+  featured: var(--step-0)
+  card: var(--step-1)
+  token: 0.3em
+  button: 0.3em
