@@ -199,7 +199,7 @@ export default async function () {
     fetchProjects(),
   ]);
 
-  const futureOrganizerPks = [
+  const organizerPks = [
     ...new Set(
       projects
         // .filter((p) => !p.is_past)
@@ -207,26 +207,20 @@ export default async function () {
         .filter(Boolean),
     ),
   ];
-  const futureStructures = await mapLimit(
-    futureOrganizerPks,
-    3,
-    fetchStructure,
-  );
-  const futureStructureByPk = Object.fromEntries(
-    futureStructures.map((s) => [s.data.pk, s.data]),
+  const structures = await mapLimit(organizerPks, 3, fetchStructure);
+  const structureByPk = Object.fromEntries(
+    structures.map((s) => [s.data.pk, s.data]),
   );
 
   const enrichedProjects = projects.map((project) => {
     const organizerPk = project.contracts?.[0]?.organizer?.pk;
-    const futureStructure = organizerPk
-      ? futureStructureByPk[organizerPk]
-      : null;
+    const structure = organizerPk ? structureByPk[organizerPk] : null;
     const organizer_contact_infos =
-      futureStructure?.contact_infos ||
+      structure?.contact_infos ||
       project.contracts?.[0]?.organizer?.contact_infos ||
       [];
     // web_addresses is only available on the detailed `structure` object
-    const web_addresses = futureStructure?.web_addresses ?? [];
+    const web_addresses = structure?.web_addresses ?? [];
 
     return {
       ...project,
