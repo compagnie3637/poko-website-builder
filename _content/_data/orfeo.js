@@ -202,7 +202,7 @@ export default async function () {
   const futureOrganizerPks = [
     ...new Set(
       projects
-        .filter((p) => !p.is_past)
+        // .filter((p) => !p.is_past)
         .flatMap((p) => p.contracts.map((c) => c.organizer?.pk))
         .filter(Boolean),
     ),
