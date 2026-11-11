@@ -93,6 +93,7 @@ async function fetchProjects() {
       return {
         // ...planningEvent,
         ...perf,
+        is_past: perf.end_datetime ? new Date(perf.end_datetime) < now : false,
         is_cancelled: planningEvent?.is_cancelled ?? false,
         audience: audienceFromPlanningEvent(planningEvent, perf.title),
       };
@@ -103,6 +104,7 @@ async function fetchProjects() {
       .sort();
     const firstPerfDate = perfDates[0] ?? null;
     const lastPerfDate = perfDates[perfDates.length - 1] ?? null;
+    const is_past = performances.every((p) => p.is_past);
     return {
       ...project,
       past: project.end_date ? new Date(project.end_date) < now : false,
@@ -115,6 +117,7 @@ async function fetchProjects() {
       ].sort(),
       firstPerfDate,
       lastPerfDate,
+      is_past,
       performances,
       ignore: !firstPerfDate,
     };
@@ -196,25 +199,34 @@ export default async function () {
     fetchProjects(),
   ]);
 
-  const organizerPks = [
+  const futureOrganizerPks = [
     ...new Set(
       projects
+        .filter((p) => !p.is_past)
         .flatMap((p) => p.contracts.map((c) => c.organizer?.pk))
         .filter(Boolean),
     ),
   ];
-  const structures = await mapLimit(organizerPks, 3, fetchStructure);
-  const structureByPk = Object.fromEntries(
-    structures.map((s) => [s.data.pk, s.data]),
+  const futureStructures = await mapLimit(
+    futureOrganizerPks,
+    3,
+    fetchStructure,
+  );
+  const futureStructureByPk = Object.fromEntries(
+    futureStructures.map((s) => [s.data.pk, s.data]),
   );
 
   const enrichedProjects = projects.map((project) => {
     const organizerPk = project.contracts?.[0]?.organizer?.pk;
-    const structure = organizerPk ? structureByPk[organizerPk] : null;
-    // organizer_contact_infos is also available on project.contracts?.[0]?.organizer?.contact_infos
-    const organizer_contact_infos = structure?.contact_infos ?? [];
+    const futureStructure = organizerPk
+      ? futureStructureByPk[organizerPk]
+      : null;
+    const organizer_contact_infos =
+      futureStructure?.contact_infos ||
+      project.contracts?.[0]?.organizer?.contact_infos ||
+      [];
     // web_addresses is only available on the detailed `structure` object
-    const web_addresses = structure?.web_addresses ?? [];
+    const web_addresses = futureStructure?.web_addresses ?? [];
 
     return {
       ...project,
